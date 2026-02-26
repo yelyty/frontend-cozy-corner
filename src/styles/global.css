@@ -1,47 +1,28 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	/* Color Palette */
+	--bg-primary: #FFF4E0;
+	--accent: #B46060;
+	--accent-dark: #8B4545;
+	--secondary: #FFBF9B;
+	--secondary-rgb: 255, 191, 155;
+	--text-primary: 77, 77, 77;
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+		0 2px 6px rgba(var(--text-primary), 0.1), 0 8px 24px rgba(var(--text-primary), 0.15), 0 16px 32px
+		rgba(var(--text-primary), 0.15);
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: 'Crimson Text', Georgia, serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background: var(--bg-primary);
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: rgb(var(--text-primary));
 	font-size: 20px;
-	line-height: 1.7;
+	line-height: 1.8;
 }
 main {
 	width: 720px;
@@ -56,8 +37,9 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
+	color: rgb(var(--text-primary));
+	line-height: 1.3;
+	font-family: 'Raleway', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 h1 {
 	font-size: 3.052em;
@@ -82,7 +64,7 @@ a {
 	color: var(--accent);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-dark);
 }
 p {
 	margin-bottom: 1em;
@@ -107,15 +89,22 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: var(--secondary);
 	border-radius: 2px;
+	font-size: 0.9em;
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	background-color: rgba(var(--secondary-rgb), 0.3);
+	overflow-x: auto;
+	border: 1px solid var(--secondary);
 }
 pre > code {
 	all: unset;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 0.9em;
+	line-height: 1.5;
 }
 blockquote {
 	border-left: 4px solid var(--accent);
@@ -125,7 +114,7 @@ blockquote {
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--secondary);
 }
 @media (max-width: 720px) {
 	body {

@@ -1,0 +1,87 @@
+---
+interface Props {
+	variant?: 'primary' | 'secondary' | 'outline';
+	href?: string;
+	class?: string;
+}
+
+const { variant = 'primary', href, class: className, ...props } = Astro.props;
+const Element = href ? 'a' : 'button';
+---
+
+<Element href={href} class:list={['button', `button-${variant}`, className]} {...props}>
+	<slot />
+</Element>
+
+<style>
+	.button {
+		display: inline-block;
+		padding: 0.5em 1em;
+		font-size: 0.9em;
+		font-weight: 700;
+		text-decoration: none;
+		border-radius: 10px;
+		border: none;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		font-family: inherit;
+		position: relative;
+		border-bottom: 2px solid transparent;
+		transform: translateY(0);
+	}
+
+	.button:active {
+		transform: translateY(1px);
+		border-bottom-width: 1px;
+	}
+
+	.button-primary {
+		background-color: var(--accent);
+		color: var(--bg-primary);
+		border-bottom-color: var(--accent-dark);
+		box-shadow: 0 2px 0 var(--accent-dark);
+	}
+
+	.button-primary:hover {
+		background-color: var(--accent);
+		filter: brightness(1.1);
+	}
+
+	.button-primary:active {
+		box-shadow: 0 1px 0 var(--accent-dark);
+	}
+
+	.button-secondary {
+		background-color: var(--secondary);
+		color: rgb(var(--text-primary));
+		border-bottom-color: #E09B6B;
+		box-shadow: 0 2px 0 #E09B6B;
+	}
+
+	.button-secondary:hover {
+		background-color: var(--secondary);
+		filter: brightness(1.05);
+	}
+
+	.button-secondary:active {
+		box-shadow: 0 1px 0 #E09B6B;
+	}
+
+	.button-outline {
+		background-color: var(--bg-primary);
+		color: var(--accent);
+		border: 2px solid var(--accent);
+		border-bottom-color: var(--accent-dark);
+		box-shadow: 0 2px 0 var(--accent-dark);
+		border-bottom-width: 3px;
+	}
+
+	.button-outline:hover {
+		filter: brightness(0.95);
+	}
+
+	.button-outline:active {
+		box-shadow: 0 1px 0 var(--accent-dark);
+		border-bottom-width: 2px;
+	}
+</style>
