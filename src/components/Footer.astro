@@ -120,29 +120,31 @@ const today = new Date();
 					const secondRightEye = svgElement.querySelector('#second-right-eye');
 					
 					const eyes = [
-						{ element: leftEye, originalCx: parseFloat(leftEye?.getAttribute('cx') || 0), originalCy: parseFloat(leftEye?.getAttribute('cy') || 0) },
-						{ element: rightEye, originalCx: parseFloat(rightEye?.getAttribute('cx') || 0), originalCy: parseFloat(rightEye?.getAttribute('cy') || 0) },
-						{ element: secondLeftEye, originalCx: parseFloat(secondLeftEye?.getAttribute('cx') || 0), originalCy: parseFloat(secondLeftEye?.getAttribute('cy') || 0) },
-						{ element: secondRightEye, originalCx: parseFloat(secondRightEye?.getAttribute('cx') || 0), originalCy: parseFloat(secondRightEye?.getAttribute('cy') || 0) }
+						{ element: leftEye, originalCx: parseFloat(leftEye?.getAttribute('cx') || '0'), originalCy: parseFloat(leftEye?.getAttribute('cy') || '0') },
+						{ element: rightEye, originalCx: parseFloat(rightEye?.getAttribute('cx') || '0'), originalCy: parseFloat(rightEye?.getAttribute('cy') || '0') },
+						{ element: secondLeftEye, originalCx: parseFloat(secondLeftEye?.getAttribute('cx') || '0'), originalCy: parseFloat(secondLeftEye?.getAttribute('cy') || '0') },
+						{ element: secondRightEye, originalCx: parseFloat(secondRightEye?.getAttribute('cx') || '0'), originalCy: parseFloat(secondRightEye?.getAttribute('cy') || '0') }
 					].filter(eye => eye.element);
-					
+
 					if (eyes.length === 0) return;
 					
 					const maxMovement = 2;
 					
 					document.addEventListener('mousemove', (e) => {
 						eyes.forEach(eye => {
-							const eyeRect = eye.element.getBoundingClientRect();
-							const eyeCenterX = eyeRect.left + eyeRect.width / 2;
-							const eyeCenterY = eyeRect.top + eyeRect.height / 2;
-							
-							const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-							
-							const newCx = eye.originalCx + Math.cos(angle) * maxMovement;
-							const newCy = eye.originalCy + Math.sin(angle) * maxMovement;
-							
-							eye.element.setAttribute('cx', newCx);
-							eye.element.setAttribute('cy', newCy);
+							if (eye.element) {
+								const eyeRect = eye.element.getBoundingClientRect();
+								const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+								const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+								const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+
+								const newCx = (eye.originalCx + Math.cos(angle) * maxMovement).toString();
+								const newCy = (eye.originalCy + Math.sin(angle) * maxMovement).toString();
+
+								eye.element.setAttribute('cx', newCx);
+								eye.element.setAttribute('cy', newCy);
+							}
 						});
 					});
 				}
