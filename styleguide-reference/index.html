@@ -1,0 +1,52 @@
+<!DOCTYPE html><style>.button[data-astro-cid-vnzlvqnm]{display:inline-block;padding:.5em 1em;font-size:.9em;font-weight:700;text-decoration:none;border-radius:10px;border:none;cursor:pointer;transition:all .15s ease;font-family:inherit;position:relative;border-bottom:2px solid transparent;transform:translateY(0)}.button[data-astro-cid-vnzlvqnm]:active{transform:translateY(1px);border-bottom-width:1px}.button-primary[data-astro-cid-vnzlvqnm]{background-color:var(--accent);color:var(--bg-primary);border-bottom-color:var(--accent-dark);box-shadow:0 2px 0 var(--accent-dark)}.button-primary[data-astro-cid-vnzlvqnm]:hover{background-color:var(--accent);filter:brightness(1.1)}.button-primary[data-astro-cid-vnzlvqnm]:active{box-shadow:0 1px 0 var(--accent-dark)}.button-secondary[data-astro-cid-vnzlvqnm]{background-color:var(--secondary);color:rgb(var(--text-primary));border-bottom-color:#e09b6b;box-shadow:0 2px #e09b6b}.button-secondary[data-astro-cid-vnzlvqnm]:hover{background-color:var(--secondary);filter:brightness(1.05)}.button-secondary[data-astro-cid-vnzlvqnm]:active{box-shadow:0 1px #e09b6b}.button-outline[data-astro-cid-vnzlvqnm]{background-color:var(--bg-primary);color:var(--accent);border:2px solid var(--accent);border-bottom-color:var(--accent-dark);box-shadow:0 2px 0 var(--accent-dark);border-bottom-width:3px}.button-outline[data-astro-cid-vnzlvqnm]:hover{filter:brightness(.95)}.button-outline[data-astro-cid-vnzlvqnm]:active{box-shadow:0 1px 0 var(--accent-dark);border-bottom-width:2px}
+</style><h1>🧑‍🚀 Hello, Astronaut!</h1> <p>
+Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
+	serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
+	website, blog, or portfolio with Astro.
+</p> <h2>Button Component Examples</h2> <p>Here are some button variants using our custom color palette:</p> <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;"> <button data-astro-cid-vnzlvqnm="true" class="button button-primary"> Primary Button </button>  <button data-astro-cid-vnzlvqnm="true" class="button button-secondary"> Secondary Button </button>  <button data-astro-cid-vnzlvqnm="true" class="button button-outline"> Outline Button </button>  </div> <h3>Usage Example</h3> <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="astro"><code><span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Button </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '../components/Button.astro'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">Button</span><span style="color:#B392F0"> variant</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"primary"</span><span style="color:#E1E4E8">>Click Me&#x3C;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">Button</span><span style="color:#B392F0"> variant</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"secondary"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/blog"</span><span style="color:#E1E4E8">>Go to Blog&#x3C;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">Button</span><span style="color:#B392F0"> variant</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"outline"</span><span style="color:#E1E4E8">>Outlined&#x3C;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">></span></span></code></pre> <h3>Color Palette Variables</h3> <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#B392F0">:root</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  --bg-primary</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#FFF4E0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  --accent</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#B46060</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  --accent-dark</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#8B4545</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  --secondary</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#FFBF9B</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  --text-primary</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">77</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">77</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">77</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre> <h3>JavaScript Example</h3> <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Simple greeting function</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> greetUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> greeting</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> `Hello, ${</span><span style="color:#E1E4E8">name</span><span style="color:#9ECBFF">}!`</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(greeting);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> greeting;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Object with methods</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> Blog</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  posts: [],</span></span>
+<span class="line"><span style="color:#B392F0">  addPost</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">title</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.posts.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">({ </span></span>
+<span class="line"><span style="color:#E1E4E8">      id: Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">(), </span></span>
+<span class="line"><span style="color:#E1E4E8">      title, </span></span>
+<span class="line"><span style="color:#E1E4E8">      content,</span></span>
+<span class="line"><span style="color:#E1E4E8">      published: </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Date</span><span style="color:#E1E4E8">() </span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#B392F0">  getPosts</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.posts.</span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">a</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">b</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> b.published </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> a.published);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Example usage</span></span>
+<span class="line"><span style="color:#B392F0">greetUser</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Astronaut"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">Blog.</span><span style="color:#B392F0">addPost</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"My First Post"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Welcome to my blog!"</span><span style="color:#E1E4E8">);</span></span></code></pre> <p>
+This template comes with a few integrations already configured in your
+<code>astro.config.mjs</code> file. You can customize your setup with
+<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
+	React, or Vue to your project.
+</p> <p>Here are a few ideas on how to get started with the template:</p> <ul> <li>Edit this page in <code>src/pages/index.astro</code></li> <li>Edit the site header items in <code>src/components/Header.astro</code></li> <li>Add your name to the footer in <code>src/components/Footer.astro</code></li> <li>Check out the included blog posts in <code>src/content/blog/</code></li> <li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li> </ul> <p>
+Have fun! If you get stuck, remember to
+<a href="https://docs.astro.build/">read the docs</a>
+or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+</p>
