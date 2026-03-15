@@ -6,6 +6,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+	base: 'https://yelyty.github.io/frontend-cozy-corner/',
 	site: 'https://frontendcozycorner.com',
 	integrations: [mdx(), sitemap()],
 	markdown: {
