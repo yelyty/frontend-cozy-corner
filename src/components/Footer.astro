@@ -1,7 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import plantswitheyes from '../assets/plantswitheyes.svg';
 const today = new Date();
 ---
 
+<div class="banana-decoration" id="plant-container">
+	<Image src={plantswitheyes} alt="" aria-hidden="true" />
+</div> 
 <footer>
 	&copy; {today.getFullYear()} Your name here. All rights reserved.
 	<div class="social-links">
@@ -56,7 +61,92 @@ const today = new Date();
 		text-decoration: none;
 		color: rgb(var(--gray));
 	}
+	.banana-decoration {
+		position: fixed;
+		bottom: 20px;
+		right: 50px;
+		width: 300px;
+		height: auto;
+		z-index: 100;
+		pointer-events: none;
+		opacity: 0.9;
+	}
+	.banana-decoration img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+	@media (max-width: 720px) {
+		.banana-decoration {
+			width: 60px;
+			bottom: 15px;
+			right: 15px;
+		}
+	}
 	.social-links a:hover {
 		color: rgb(var(--gray-dark));
 	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const container = document.getElementById('plant-container');
+		if (!container) return;
+		
+		// Load the SVG and access its content
+		const img = container.querySelector('img');
+		if (!img) return;
+		
+		// Wait for image to load, then fetch and replace with inline SVG
+		fetch(img.src)
+			.then(response => response.text())
+			.then(svgText => {
+				const parser = new DOMParser();
+				const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+				const svgElement = svgDoc.querySelector('svg');
+				
+				if (svgElement) {
+					// Preserve size
+					svgElement.style.width = '100%';
+					svgElement.style.height = 'auto';
+					
+					// Replace img with inline SVG
+					img.replaceWith(svgElement);
+					
+					// Now add eye tracking for all eyes
+					const leftEye = svgElement.querySelector('#left-eye');
+					const rightEye = svgElement.querySelector('#right-eye');
+					const secondLeftEye = svgElement.querySelector('#second-left-eye');
+					const secondRightEye = svgElement.querySelector('#second-right-eye');
+					
+					const eyes = [
+						{ element: leftEye, originalCx: parseFloat(leftEye?.getAttribute('cx') || 0), originalCy: parseFloat(leftEye?.getAttribute('cy') || 0) },
+						{ element: rightEye, originalCx: parseFloat(rightEye?.getAttribute('cx') || 0), originalCy: parseFloat(rightEye?.getAttribute('cy') || 0) },
+						{ element: secondLeftEye, originalCx: parseFloat(secondLeftEye?.getAttribute('cx') || 0), originalCy: parseFloat(secondLeftEye?.getAttribute('cy') || 0) },
+						{ element: secondRightEye, originalCx: parseFloat(secondRightEye?.getAttribute('cx') || 0), originalCy: parseFloat(secondRightEye?.getAttribute('cy') || 0) }
+					].filter(eye => eye.element);
+					
+					if (eyes.length === 0) return;
+					
+					const maxMovement = 2;
+					
+					document.addEventListener('mousemove', (e) => {
+						eyes.forEach(eye => {
+							const eyeRect = eye.element.getBoundingClientRect();
+							const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+							const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+							
+							const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+							
+							const newCx = eye.originalCx + Math.cos(angle) * maxMovement;
+							const newCy = eye.originalCy + Math.sin(angle) * maxMovement;
+							
+							eye.element.setAttribute('cx', newCx);
+							eye.element.setAttribute('cy', newCy);
+						});
+					});
+				}
+			})
+			.catch(err => console.error('Error loading SVG:', err));
+	});
+</script>
