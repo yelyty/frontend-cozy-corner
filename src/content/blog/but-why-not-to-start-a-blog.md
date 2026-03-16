@@ -1,5 +1,6 @@
 ---
 title: 'But why not to start a blog?'
+description: 'First article'
 pubDate: 'Mar 15 2026'
 
 ---
