@@ -14,7 +14,21 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+			}
+
 			main {
+				flex: 1 0 auto;
+				display: flex;
+				flex-direction: column;
 				width: calc(100% - 2em);
 				max-width: 100%;
 				margin: 0;
@@ -25,6 +39,7 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--text-primary));
+				text-align: justify;
 			}
 			.title {
 				margin-bottom: 1em;
@@ -42,6 +57,10 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 			}
 			.last-updated-on {
 				font-style: italic;
+			}
+			footer {
+				flex-shrink: 0;
+				margin-top: auto;
 			}
 		</style>
 	</head>

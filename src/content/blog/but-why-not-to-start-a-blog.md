@@ -12,12 +12,8 @@ What a weird timeline to live in... Code, books and articles are written by AI. 
 The idea to start a blog came to me very randomly, on a boring day in the office, while waiting for AI Agent to complete the task I prompted it to do. What if I combine learning new technologies with building fun stuff and I write about it along the way. So, ideas started flowing. The name for the blog was an obvious choice. I love frontend and everything related to it and I have a "cozy corner" at home, the comfy armchair surrounded by indoor plants where I read books in the evening. I want to make an equivalent of my "cozy corner" online. I am not going to write how-to articles, share some lists with tools we should use or best practices we must follow. In fact I would like to write essays. Let's look, the word essay comes from french "essayer" and it means "to try" or "to attempt". An essay should not be perfect, should not have some end goal or solution. It may not be even interesting to anyone. But it will give me a chance to think, to structure my ideas and organize an abundance of information I consume every day whether I want it or not.
 
 Anyway, a few evenings were spent on choosing colors, looking for a reference images to draw plants I like, and learning how to make an SVG image. It was such a great time spent. There are so many things I want to add to this website. So, let the journey begin. 
-
-
-
+	
 ~~Dance like no one's watching.~~ Write like no one's reading. 
-
-
 
 What I used to built the blog?
 
