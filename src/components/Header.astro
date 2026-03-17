@@ -1,66 +1,76 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
+import logo from "../assets/logo.svg";
 ---
 
 <header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-	</nav>
+  <nav>
+    <a href="/" class="logo-link"
+      ><img src={logo.src} alt={SITE_TITLE} class="logo" /></a
+    >
+    <div class="internal-links">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+  </nav>
 </header>
 <style>
-	header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		background: var(--bg-primary);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-primary);
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .logo {
+    height: 60px;
+    width: auto;
+  }
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.internal-links {
-		display: flex;
-		justify-content: center;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: rgb(var(--text-primary));
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
-	}
-	body {
-		margin: 0;
-		padding-top: 60px;
-		overflow-x: hidden;
-	}
+  h2 a,
+  h2 a.active {
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .internal-links {
+    display: flex;
+    justify-content: center;
+  }
+  nav a {
+    padding: 1em 0.5em;
+    color: rgb(var(--text-primary));
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
+  }
+  nav a.active {
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+  }
+  .social-links,
+  .social-links a {
+    display: flex;
+  }
+  @media (max-width: 720px) {
+    .social-links {
+      display: none;
+    }
+  }
+  body {
+    margin: 0;
+    padding-top: 60px;
+    overflow-x: hidden;
+  }
 </style>
