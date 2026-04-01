@@ -2,13 +2,15 @@
 import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
 import logo from "../assets/logo.svg";
+import logodark from "../assets/logodark.svg";
 ---
 
 <header>
   <nav>
-    <a href="/" class="logo-link"
-      ><img src={logo.src} alt={SITE_TITLE} class="logo" /></a
-    >
+    <a href="/" class="logo-link">
+      <img src={logo.src} alt={SITE_TITLE} class="logo logo-light" />
+      <img src={logodark.src} alt={SITE_TITLE} class="logo logo-dark" />
+    </a>
     <div class="internal-links">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
@@ -30,8 +32,20 @@ import logo from "../assets/logo.svg";
     text-decoration: none;
   }
   .logo {
-    height: 60px;
+    height: 70px;
     width: auto;
+    display: block;
+  }
+  .logo-dark {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .logo-light {
+      display: none;
+    }
+    .logo-dark {
+      display: block;
+    }
   }
 
   h2 a,
