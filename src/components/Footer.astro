@@ -29,9 +29,10 @@ const today = new Date();
   }
   .banana-decoration {
     position: fixed;
-    bottom: 20px;
-    right: 50px;
-    width: 300px;
+    bottom: clamp(12px, 3vw, 20px);
+    right: clamp(12px, 5vw, 50px);
+    width: clamp(84px, 20vw, 300px);
+    max-width: 32vw;
     height: auto;
     z-index: 100;
     pointer-events: none;
@@ -44,9 +45,16 @@ const today = new Date();
   }
   @media (max-width: 720px) {
     .banana-decoration {
-      width: 60px;
-      bottom: 15px;
-      right: 15px;
+      width: min(34vw, 132px);
+      max-width: 132px;
+    }
+  }
+  @media (max-width: 420px) {
+    .banana-decoration {
+      width: min(38vw, 110px);
+      right: 10px;
+      bottom: 10px;
+      opacity: 0.82;
     }
   }
   .social-links a:hover {
