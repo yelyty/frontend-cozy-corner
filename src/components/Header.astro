@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import logo from "../assets/logo.svg";
 import logodark from "../assets/logodark.svg";
 ---
@@ -23,26 +24,12 @@ import logodark from "../assets/logodark.svg";
       <span></span>
       <span></span>
     </button>
-    <div class="internal-links drawer" id="nav-menu">
+    <div class="internal-link drawer" id="nav-menu">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">About me</HeaderLink>
-      <button
-        class="theme-toggle theme-toggle-mobile"
-        id="theme-toggle-mobile"
-        aria-label="Toggle dark mode"
-        style="display: none;"
-      >
-        <span class="theme-icon" id="theme-icon-mobile">🌙</span>
-      </button>
+      <HeaderLink href="/about">About</HeaderLink>
+      <ThemeToggle/>
     </div>
-    <button
-      class="theme-toggle theme-toggle-desktop"
-      id="theme-toggle"
-      aria-label="Toggle dark mode"
-    >
-      <span class="theme-icon" id="theme-icon">🌙</span>
-    </button>
   </nav>
   <script type="module" is:inline>
     // Burger menu
@@ -54,87 +41,10 @@ import logodark from "../assets/logodark.svg";
       navMenu?.classList.toggle("open");
       burger.classList.toggle("open");
     });
-
-    // Dark theme toggle (desktop and mobile)
-    const themeToggleDesktop = document.getElementById("theme-toggle");
-    const themeIconDesktop = document.getElementById("theme-icon");
-    const themeToggleMobile = document.getElementById("theme-toggle-mobile");
-    const themeIconMobile = document.getElementById("theme-icon-mobile");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    function setTheme(theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-      if (theme === "dark") {
-        if (themeIconDesktop) themeIconDesktop.textContent = "☀️";
-        if (themeIconMobile) themeIconMobile.textContent = "☀️";
-      } else {
-        if (themeIconDesktop) themeIconDesktop.textContent = "🌙";
-        if (themeIconMobile) themeIconMobile.textContent = "🌙";
-      }
-    }
-    // Initial theme
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (prefersDark.matches) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-    themeToggleDesktop?.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-    themeToggleMobile?.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-    // Listen for system changes
-    prefersDark.addEventListener("change", (e) => {
-      if (!localStorage.getItem("theme")) {
-        setTheme(e.matches ? "dark" : "light");
-      }
-    });
   </script>
 </header>
 <style>
-  .theme-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.7em;
-    margin-left: 1em;
-    display: flex;
-    align-items: center;
-    z-index: 1002;
-  }
-  .theme-toggle-mobile {
-    margin: 2em auto 0 auto;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  .theme-toggle-desktop {
-    display: flex;
-  }
-  .theme-icon {
-    pointer-events: none;
-    user-select: none;
-    transition: color 0.2s;
-  }
-  @media (max-width: 900px) {
-    .theme-toggle-desktop {
-      display: none !important;
-    }
-    .theme-toggle-mobile {
-      display: flex !important;
-    }
-    .theme-toggle {
-      margin-left: 0;
-    }
-  }
-  <style > header {
+  header {
     position: fixed;
     top: 0;
     left: 0;
@@ -144,6 +54,7 @@ import logodark from "../assets/logodark.svg";
   .logo-link {
     display: flex;
     align-items: center;
+	flex:1;
     text-decoration: none;
   }
   .logo {
@@ -176,19 +87,25 @@ import logodark from "../assets/logodark.svg";
   nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
+	border-bottom-style: solid;
+	border-bottom-color: var(--accent);
+	border-bottom-width: 1px;
   }
   .internal-links {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 1em;
     width: 100%;
     transition:
       max-height 0.3s ease,
       opacity 0.3s ease;
+  }
+  .internal-link {
+	display: flex;
+	align-items: center;
   }
   .drawer {
     transition:
@@ -200,7 +117,7 @@ import logodark from "../assets/logodark.svg";
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    width: 40px;b
     height: 40px;
     background: none;
     border: none;
@@ -229,12 +146,11 @@ import logodark from "../assets/logodark.svg";
   nav a {
     padding: 1em 0.5em;
     color: rgb(var(--text-primary));
-    border-bottom: 4px solid transparent;
     text-decoration: none;
   }
   nav a.active {
     text-decoration: none;
-    border-bottom-color: var(--accent);
+	color: var(--accent)
   }
   .social-links,
   .social-links a {
