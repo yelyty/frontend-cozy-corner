@@ -9,16 +9,59 @@ import profilePhoto from "../assets/me.jpeg";
   showTitle={false}
   showDate={false}
 >
-  <div class="profile-photo-frame">
-    <img class="profile-photo" src={profilePhoto.src} alt="Portrait of Liza" />
+  <div class="profile">
+    <div class="profile-photo-frame">
+      <img
+        class="profile-photo"
+        src={profilePhoto.src}
+        alt="Portrait of Liza"
+      />
+    </div>
+
+    <p>
+      Hi, I am Liza, a frontend developer with over 6 years of experience in the
+      industry. When I'm not coding, you can find me hiking in the mountains,
+      reading literature, or exploring new places.
+    </p>
   </div>
+  <section class="timeline-section">
+    <p class="section-label">Things I've professionally worked on</p>
 
-  <p>
-    Hi, I am Liza, a frontend developer. With over 5 years of experience in the
-    industry. When I'm not coding, you can find me hiking in the mountains,
-    reading literature, or exploring new places.
-  </p>
+    <div class="timeline">
+      <article class="stop">
+        <span class="dot"></span>
+        <div class="when">Where it started</div>
+        <h3>A social app for sport clubs</h3>
+        <p>
+          A social network for sport clubs and events that shipped on web. I
+          built the social feed and a personal profile with an achievements &
+          results dashboard.
+        </p>
+      </article>
 
+      <article class="stop">
+        <span class="dot"></span>
+        <div class="when">Then</div>
+        <h3>To the railways</h3>
+        <p>
+          A custom service-center platform for the railway industry, where
+          manufacturers and their customers share one system to track equipment,
+          schedule service, and file warranty claims.
+        </p>
+      </article>
+
+      <article class="stop">
+        <span class="dot"></span>
+        <div class="when">Across time zones</div>
+        <h3>Senior care</h3>
+        <p>
+          An American startup connecting senior-care providers with families.
+          It's also where I got to stretch the most, building across a handful
+          of very different screens.
+        </p>
+      </article>
+    </div>
+  </section>
   <hr class="divider" />
   <div class="social-links-wrapper">
     <p class="social-title">See also</p>
@@ -54,10 +97,15 @@ import profilePhoto from "../assets/me.jpeg";
     </div>
   </div>
   <style>
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
     .profile-photo-frame {
-      width: min(100%, 320px);
-      aspect-ratio: 1;
-      margin: 0 auto 1.5rem;
+      flex-shrink: 0;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       overflow: hidden;
     }
@@ -67,16 +115,23 @@ import profilePhoto from "../assets/me.jpeg";
       height: 100%;
       object-fit: cover;
     }
+    .profile p {
+      flex: 1;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(var(--text-primary), 0.85);
+      margin: 0;
+    }
     .social-links-wrapper {
       display: flex;
       flex: 1;
       flex-direction: column;
       justify-content: center;
-	  align-items: center;
+      align-items: center;
     }
-	.social-title {
-		margin-bottom: 0.5rem;
-	}
+    .social-title {
+      margin-bottom: 0.5rem;
+    }
     .social-links {
       display: flex;
       gap: 10px;
@@ -120,8 +175,95 @@ import profilePhoto from "../assets/me.jpeg";
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
-	.divider {
-		border-top-color: var(--accent);
-	}
+    .divider {
+      border-top-color: var(--accent);
+      margin-top: 3rem;
+    }
+    .section-label {
+      font-style: italic;
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      padding-left: 2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 34px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--accent);
+    }
+
+    .stop {
+      position: relative;
+      margin-bottom: 2.2rem;
+    }
+
+    .stop:last-child {
+      margin-bottom: 0;
+    }
+
+    .dot {
+      position: absolute;
+      left: -36px;
+      top: 4px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 4px solid var(--bg-primary);
+      box-shadow: 0 0 0 1px rgba(var(--text-primary), 0.12);
+    }
+
+    .when {
+      font-size: 12.5px;
+      color: rgba(var(--text-primary), 0.55);
+      letter-spacing: 0.03em;
+      margin-bottom: 3px;
+    }
+
+    .stop h3 {
+      font-weight: 500;
+      font-size: 19px;
+      color: rgb(var(--text-primary));
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .stop h3 a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--secondary);
+      transition: border-color 0.2s ease;
+    }
+
+    .stop h3 a:hover {
+      border-color: var(--accent);
+    }
+
+    .stop > p {
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
   </style>
 </Layout>
