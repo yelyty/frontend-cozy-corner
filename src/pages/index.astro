@@ -13,10 +13,233 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   <body>
     <Header />
     <main>
-      <h1>Welcome to</h1>
-      <h1>{SITE_TITLE}</h1>
-      <p>To be added</p>
+      <section class="hero">
+        <p class="hero-kicker">Frontend developer</p>
+        <h1 class="hero-title">
+          I build <span class="accent">cozy</span> and <span class="accent"
+            >fun
+          </span> interfaces
+        </h1>
+        <p class="hero-sub">
+          Hi, I'm Liza. I make things for the web, and try to write about it as
+          I go.
+        </p>
+        <div class="hero-ctas">
+          <a href="/blog" class="cta cta-primary">Read the blog →</a>
+          <a href="/about" class="cta cta-outlined">About me</a>
+        </div>
+      </section>
+      <hr class="divider" />
+      <section class="posts-section">
+        <div class="posts-head">
+          <h2 class="posts-title">Latest writing</h2>
+          <a href="/blog" class="posts-all">All posts →</a>
+        </div>
+
+        <div class="posts-list">
+          <a class="post-card" href="/blog/but-why-not-to-start-a-blog/">
+            <div class="post-meta">
+              <span class="post-date">Mar 15</span>
+              <span class="post-tag">Mumbling</span>
+            </div>
+            <h3 class="post-card-title">But why not to start a blog?</h3>
+            <p class="post-excerpt">An into to the blog</p>
+          </a>
+        </div>
+      </section>	
     </main>
     <Footer />
   </body>
 </html>
+<style>
+  .divider {
+    border-top-color: var(--accent);
+    margin-top: 3rem;
+  }
+  .hero {
+    text-align: center;
+    padding: 3rem 2rem 3.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hero-kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+    font-weight: 500;
+    color: rgb(var(--text-primary));
+    line-height: 1.15;
+    margin: 0 0 16px;
+  }
+
+  .hero-title .accent {
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(var(--text-primary), 0.72);
+    max-width: 34ch;
+    margin: 0 auto 1.75rem;
+    line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.25s ease;
+  }
+
+  .cta-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+
+  .cta-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+  }
+
+  .cta-outlined {
+    background: transparent;
+    border: 1px solid rgba(var(--text-primary), 0.2);
+    color: rgb(var(--text-primary));
+  }
+
+  .cta-outlined:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 520px) {
+    .hero {
+      padding: 2rem 1.25rem 2.5rem;
+    }
+    .hero-title {
+      font-size: 30px;
+    }
+    .hero-sub {
+      font-size: 16px;
+    }
+  }
+  .posts-section {
+    padding: 2.5rem 2rem 3rem;
+  }
+
+  .posts-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .posts-title {
+    font-size: 21px;
+    font-weight: 500;
+    color: rgb(var(--text-primary));
+    margin: 0;
+  }
+
+  .posts-all {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .posts-all:hover {
+    color: var(--accent-dark);
+  }
+
+  .posts-list {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .post-card {
+    display: block;
+    background: var(--bg-primary);
+    border: 1px solid rgba(var(--text-primary), 0.1);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(var(--text-primary), 0.08);
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .post-date {
+    font-size: 12px;
+    color: rgba(var(--text-primary), 0.55);
+  }
+
+  .post-tag {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-dark);
+    color: var(--accent-dark);
+  }
+
+  .post-card-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(var(--text-primary));
+    margin: 0 0 4px;
+    line-height: 1.35;
+  }
+
+  .post-excerpt {
+    font-size: 14px;
+    color: rgba(var(--text-primary), 0.7);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 520px) {
+    .posts-section {
+      padding: 2rem 1.25rem 2.5rem;
+    }
+    .posts-head {
+      margin-bottom: 1rem;
+    }
+    .post-card {
+      padding: 1rem 1.1rem;
+    }
+  }
+</style>
