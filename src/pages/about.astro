@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/BlogPost.astro";
+import Divider from "../components/Divider.astro";
 import profilePhoto from "../assets/me.jpeg";
 ---
 
@@ -62,7 +63,7 @@ import profilePhoto from "../assets/me.jpeg";
       </article>
     </div>
   </section>
-  <hr class="divider" />
+  <Divider />
   <div class="social-links-wrapper">
     <p class="social-title">See also</p>
     <div class="social-links">
@@ -174,10 +175,6 @@ import profilePhoto from "../assets/me.jpeg";
     .social-links a:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
-    }
-    .divider {
-      border-top-color: var(--accent);
-      margin-top: 3rem;
     }
     .section-label {
       font-style: italic;
