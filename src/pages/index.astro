@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Divider from "../components/Divider.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import SocialLinks from "../components/SocialLinks.astro";
 ---
 
 <!doctype html>
@@ -17,7 +18,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       <section class="hero">
         <p class="hero-kicker">Frontend developer</p>
         <h1 class="hero-title">
-          I build <span class="accent">cozy</span> and <span class="accent"
+          I build <span class="accent">cozy</span> and <span
+            class="accent"
             >fun
           </span> interfaces
         </h1>
@@ -47,12 +49,14 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             <p class="post-excerpt">An into to the blog</p>
           </a>
         </div>
-      </section>	
+      </section>
+	  <Divider />
+	  <SocialLinks />
     </main>
     <Footer />
   </body>
 </html>
-<style>
+<style>	
   .divider {
     border-top-color: var(--accent);
     margin-top: 3rem;
