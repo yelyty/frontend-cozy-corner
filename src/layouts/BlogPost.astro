@@ -4,21 +4,24 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import Tag from '../components/Tag.astro';
+import Divider from '../components/Divider.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
 	description: string;
 	showTitle?: boolean;
 	showDate?: boolean;
+	tag: string;
 };
 
 const {
 	title,
 	description,
 	pubDate,
-	updatedDate,
 	showTitle = true,
 	showDate = true,
+	tag,
 } = Astro.props;
 ---
 
@@ -55,25 +58,35 @@ const {
 				text-align: justify;
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
+				padding: 1rem 0;
 				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
+				font-size: 3rem;
 			}
 			.date {
-				margin-bottom: 0.5em;
 				color: rgb(var(--text-primary));
 				opacity: 0.7;
-			}
-			.last-updated-on {
-				font-style: italic;
+				font-size: 1rem;
 			}
 			footer {
 				flex-shrink: 0;
 				margin-top: auto;
+			}
+			.data {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+				gap: 10px;
+			}
+			.all-posts {
+				display: block;
+				text-decoration: none;
+				font-size: 1rem;
+				margin-bottom: 20px;
+			}
+
+			.all-posts:hover {
+				text-decoration: underline;
 			}
 		</style>
 	</head>
@@ -83,26 +96,25 @@ const {
 		<main>
 			<article>
 				<div class="prose">
-					{showTitle && (
-						<div class="title">
-							{showDate && pubDate && (
+					<a href="/blog" class="all-posts">&larr; All posts</a>
+					<div class="data">
+						<Tag>{tag}</Tag>
+						{showDate && pubDate && (
 								<div class="date">
 									<FormattedDate date={pubDate} />
-									{
-										updatedDate && (
-											<div class="last-updated-on">
-												Last updated on <FormattedDate date={updatedDate} />
-											</div>
-										)
-									}
 								</div>
 							)}
-							<h1>{title}</h1>
-							<hr />
-						</div>
+					</div>
+					{showTitle && (
+						
+							<h1 class="title">{title}</h1>
+							<Divider />
+					
 					)}
 					<slot />
+							<Divider />
 				</div>
+				
 			</article>
 		</main>
 		<Footer />
