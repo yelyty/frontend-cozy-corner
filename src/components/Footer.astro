@@ -1,12 +1,9 @@
 ---
-import { Image } from "astro:assets";
-import plantswitheyes from "../assets/plantswitheyes.svg";
+import PlantsWithGooglyEyes from "./PlantsWithGooglyEyes.astro";
 const today = new Date();
 ---
 
-<div class="banana-decoration" id="plant-container">
-  <Image src={plantswitheyes} alt="" aria-hidden="true" />
-</div>
+<PlantsWithGooglyEyes />
 <footer>
   &copy; {today.getFullYear()} Frontend Cozy Corner. All rights reserved.
 </footer>
@@ -16,129 +13,6 @@ const today = new Date();
     background: linear-gradient(var(--gray-gradient)) no-repeat;
     color: rgb(var(--gray));
     text-align: center;
-	font-size: 0.8rem;
-  }
-  .banana-decoration {
-    position: fixed;
-    bottom: clamp(12px, 3vw, 20px);
-    right: clamp(12px, 5vw, 50px);
-    width: clamp(84px, 20vw, 300px);
-    max-width: 32vw;
-    height: auto;
-    z-index: 100;
-    pointer-events: none;
-    opacity: 0.9;
-  }
-  .banana-decoration img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  @media (max-width: 720px) {
-    .banana-decoration {
-      width: min(34vw, 132px);
-      max-width: 132px;
-    }
-  }
-  @media (max-width: 420px) {
-    .banana-decoration {
-      width: min(38vw, 110px);
-      right: 10px;
-      bottom: 10px;
-      opacity: 0.82;
-    }
-  }
-  .social-links a:hover {
-    color: rgb(var(--gray-dark));
+    font-size: 0.8rem;
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("plant-container");
-    if (!container) return;
-
-    // Load the SVG and access its content
-    const img = container.querySelector("img");
-    if (!img) return;
-
-    // Wait for image to load, then fetch and replace with inline SVG
-    fetch(img.src)
-      .then((response) => response.text())
-      .then((svgText) => {
-        const parser = new DOMParser();
-        const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
-        const svgElement = svgDoc.querySelector("svg");
-
-        if (svgElement) {
-          // Preserve size
-          svgElement.style.width = "100%";
-          svgElement.style.height = "auto";
-
-          // Replace img with inline SVG
-          img.replaceWith(svgElement);
-
-          // Now add eye tracking for all eyes
-          const leftEye = svgElement.querySelector("#left-eye");
-          const rightEye = svgElement.querySelector("#right-eye");
-          const secondLeftEye = svgElement.querySelector("#second-left-eye");
-          const secondRightEye = svgElement.querySelector("#second-right-eye");
-
-          const eyes = [
-            {
-              element: leftEye,
-              originalCx: parseFloat(leftEye?.getAttribute("cx") || "0"),
-              originalCy: parseFloat(leftEye?.getAttribute("cy") || "0"),
-            },
-            {
-              element: rightEye,
-              originalCx: parseFloat(rightEye?.getAttribute("cx") || "0"),
-              originalCy: parseFloat(rightEye?.getAttribute("cy") || "0"),
-            },
-            {
-              element: secondLeftEye,
-              originalCx: parseFloat(secondLeftEye?.getAttribute("cx") || "0"),
-              originalCy: parseFloat(secondLeftEye?.getAttribute("cy") || "0"),
-            },
-            {
-              element: secondRightEye,
-              originalCx: parseFloat(secondRightEye?.getAttribute("cx") || "0"),
-              originalCy: parseFloat(secondRightEye?.getAttribute("cy") || "0"),
-            },
-          ].filter((eye) => eye.element);
-
-          if (eyes.length === 0) return;
-
-          const maxMovement = 2;
-
-          document.addEventListener("mousemove", (e) => {
-            eyes.forEach((eye) => {
-              if (eye.element) {
-                const eyeRect = eye.element.getBoundingClientRect();
-                const eyeCenterX = eyeRect.left + eyeRect.width / 2;
-                const eyeCenterY = eyeRect.top + eyeRect.height / 2;
-
-                const angle = Math.atan2(
-                  e.clientY - eyeCenterY,
-                  e.clientX - eyeCenterX,
-                );
-
-                const newCx = (
-                  eye.originalCx +
-                  Math.cos(angle) * maxMovement
-                ).toString();
-                const newCy = (
-                  eye.originalCy +
-                  Math.sin(angle) * maxMovement
-                ).toString();
-
-                eye.element.setAttribute("cx", newCx);
-                eye.element.setAttribute("cy", newCy);
-              }
-            });
-          });
-        }
-      })
-      .catch((err) => console.error("Error loading SVG:", err));
-  });
-</script>
