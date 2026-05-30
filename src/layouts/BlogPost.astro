@@ -12,7 +12,8 @@ type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	description: string;
 	showTitle?: boolean;
 	showDate?: boolean;
-	tag: string;
+	tag?: string;
+	goBack?: boolean;
 };
 
 const {
@@ -22,6 +23,7 @@ const {
 	showTitle = true,
 	showDate = true,
 	tag,
+	goBack = false,
 } = Astro.props;
 ---
 
@@ -96,9 +98,9 @@ const {
 		<main>
 			<article>
 				<div class="prose">
-					<a href="/blog" class="all-posts">&larr; All posts</a>
+					{goBack && <a href="/blog" class="all-posts">&larr; All posts</a>}
 					<div class="data">
-						<Tag>{tag}</Tag>
+						{tag && <Tag>{tag}</Tag>}
 						{showDate && pubDate && (
 								<div class="date">
 									<FormattedDate date={pubDate} />
