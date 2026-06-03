@@ -1,5 +1,4 @@
 ---
-import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Logo from "./Logo.astro";
@@ -8,39 +7,61 @@ import Logo from "./Logo.astro";
 <header>
   <nav>
     <a href="/" class="logo-link">
-		<Logo />
+      <Logo />
     </a>
 
-    <button
-      class="burger"
-      id="burger"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="nav-menu"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <div class="internal-link drawer" id="nav-menu">
+    <div class="menu" id="nav-menu">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
-      <ThemeToggle/>
+    </div>
+
+    <div class="nav-controls">
+      <ThemeToggle />
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
   <script type="module" is:inline>
-    // Burger menu
     const burger = document.getElementById("burger");
     const navMenu = document.getElementById("nav-menu");
+
+    function setMenu(open) {
+      if (!burger || !navMenu) return;
+      burger.setAttribute("aria-expanded", String(open));
+      burger.classList.toggle("open", open);
+      navMenu.classList.toggle("open", open);
+    }
+
     burger?.addEventListener("click", () => {
-      const expanded = burger.getAttribute("aria-expanded") === "true";
-      burger.setAttribute("aria-expanded", String(!expanded));
-      navMenu?.classList.toggle("open");
-      burger.classList.toggle("open");
+      const isOpen = burger.getAttribute("aria-expanded") === "true";
+      setMenu(!isOpen);
+    });
+    document.addEventListener("click", (e) => {
+      if (burger?.getAttribute("aria-expanded") !== "true") return;
+      if (!navMenu?.contains(e.target) && !burger?.contains(e.target)) {
+        setMenu(false);
+      }
+    });
+    navMenu
+      ?.querySelectorAll("a")
+      .forEach((link) => link.addEventListener("click", () => setMenu(false)));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
     });
   </script>
 </header>
+
 <style>
   header {
     position: fixed;
@@ -52,66 +73,47 @@ import Logo from "./Logo.astro";
   .logo-link {
     display: flex;
     align-items: center;
-	flex:1;
+    flex: 1;
     text-decoration: none;
   }
-
-  /* @media (prefers-color-scheme: dark) {
-    .logo-light {
-      display: none;
-    }
-    .logo-dark {
-      display: block;
-    }
-  }
-  [data-theme="dark"] .logo-light {
-    display: none;
-  }
-  [data-theme="dark"] .logo-dark {
-    display: block;
-  } */
 
   h2 a,
   h2 a.active {
     text-decoration: none;
   }
+
   nav {
     display: flex;
     align-items: center;
+    gap: 1em;
     padding-left: 30px;
     padding-right: 30px;
+    position: relative;
   }
-  .internal-links {
+
+  .menu {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     gap: 1em;
-    width: 100%;
-    transition:
-      max-height 0.3s ease,
-      opacity 0.3s ease;
   }
-  .internal-link {
-	display: flex;
-	align-items: center;
+
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
   }
-  .drawer {
-    transition:
-      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.3s;
-  }
+
   .burger {
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40px;b
+    width: 40px;
     height: 40px;
     background: none;
     border: none;
     cursor: pointer;
     z-index: 1001;
-    margin-left: 1em;
   }
   .burger span {
     display: block;
@@ -120,17 +122,20 @@ import Logo from "./Logo.astro";
     margin: 4px 0;
     background: var(--accent);
     border-radius: 2px;
-    transition: 0.3s;
+    transition:
+      transform 0.3s ease,
+      opacity 0.2s ease;
   }
   .burger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(11px) rotate(45deg);
   }
   .burger.open span:nth-child(2) {
     opacity: 0;
   }
   .burger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-11px) rotate(-45deg);
   }
+
   nav a {
     padding: 1em 0.5em;
     color: rgb(var(--text-primary));
@@ -138,12 +143,9 @@ import Logo from "./Logo.astro";
   }
   nav a.active {
     text-decoration: none;
-	color: var(--accent)
+    color: var(--accent);
   }
-  .social-links,
-  .social-links a {
-    display: flex;
-  }
+
   @media (max-width: 900px) {
     nav {
       padding-left: 10px;
@@ -152,42 +154,40 @@ import Logo from "./Logo.astro";
     .burger {
       display: flex;
     }
-    .drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: 100vw;
-      max-width: 400px;
-      background: var(--bg-primary);
+    .menu {
+      position: absolute;
+      top: 100%;
+      right: 10px;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transform: translateX(100%);
-      opacity: 0;
-      pointer-events: none;
-      box-shadow: -2px 0 16px rgba(0, 0, 0, 0.15);
+      align-items: stretch;
+      gap: 0;
+      min-width: 200px;
+      background: var(--bg-primary);
+      border-radius: 10px;
+      border: 1px solid var(--accent-dark);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 0.5em 0;
       z-index: 2000;
-      gap: 2em;
-      padding-top: 80px;
-      padding-bottom: 2em;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
     }
-    .drawer.open {
-      transform: translateX(0);
+    .menu.open {
       opacity: 1;
+      transform: translateY(0);
       pointer-events: auto;
     }
-    .drawer a {
-      padding: 1em 2em;
-      width: 100%;
+    .menu a {
       display: block;
-      font-size: 1.2em;
-      text-align: center;
-    }
-    body {
-      overflow-x: hidden;
+      width: 100%;
+      padding: 0.85em 1.5em;
+      text-align: left;
     }
   }
+
   body {
     margin: 0;
     overflow-x: hidden;
