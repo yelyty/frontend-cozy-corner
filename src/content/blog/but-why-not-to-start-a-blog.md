@@ -1,6 +1,6 @@
 ---
 title: 'But why not to start a blog?'
-description: 'First article'
+description: 'Intro to the blog'
 pubDate: 'Mar 15 2026'
 tag: 'Mumbling'
 
