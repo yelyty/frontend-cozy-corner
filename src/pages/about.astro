@@ -127,6 +127,12 @@ import Tag from "../components/Tag.astro";
       color: rgba(var(--text-primary), 0.85);
       margin: 0;
     }
+
+    @media (max-width: 520px) {
+      .profile {
+        flex-direction: column;
+      }
+    }
     .social-links-wrapper {
       display: flex;
       flex: 1;

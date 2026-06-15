@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import BlogCard from "../../components/BlogCard.astro";
 import Divider from "../../components/Divider.astro";
 
@@ -22,7 +22,7 @@ const posts = (await getCollection("blog")).sort(
     <main>
       <header class="blog-header">
         <p class="blog-kicker">Blog</p>
-        <h1 class="blog-title">Notes from the keyboard</h1>
+        <h1 class="hero-title">Notes from the keyboard</h1>
       </header>
       <section>
         <ul>
@@ -100,13 +100,5 @@ const posts = (await getCollection("blog")).sort(
     text-transform: uppercase;
     color: var(--accent);
     margin: 0 0 10px;
-  }
-
-  .blog-title {
-    font-size: 4rem;
-    font-weight: 500;
-    color: rgb(var(--text-primary));
-    line-height: 1.15;
-    margin: 0 0 16px;
   }
 </style>

@@ -18,8 +18,7 @@ import SocialLinks from "../components/SocialLinks.astro";
       <section class="hero">
         <p class="hero-kicker">Frontend developer</p>
         <h1 class="hero-title">
-          I build <span class="accent">cozy</span> and <span
-            class="accent"
+          I build <span class="accent">cozy</span> and <span class="accent"
             >fun
           </span> interfaces
         </h1>
@@ -50,13 +49,13 @@ import SocialLinks from "../components/SocialLinks.astro";
           </a>
         </div>
       </section>
-	  <Divider />
-	  <SocialLinks />
+      <Divider />
+      <SocialLinks />
     </main>
     <Footer />
   </body>
 </html>
-<style>	
+<style>
   .divider {
     border-top-color: var(--accent);
     margin-top: 3rem;
@@ -74,14 +73,6 @@ import SocialLinks from "../components/SocialLinks.astro";
     text-transform: uppercase;
     color: var(--accent);
     margin: 0 0 12px;
-  }
-
-  .hero-title {
-    font-size: 4rem;
-    font-weight: 500;
-    color: rgb(var(--text-primary));
-    line-height: 1.15;
-    margin: 0 0 16px;
   }
 
   .hero-title .accent {
@@ -135,17 +126,6 @@ import SocialLinks from "../components/SocialLinks.astro";
     transform: translateY(-2px);
   }
 
-  @media (max-width: 520px) {
-    .hero {
-      padding: 2rem 1.25rem 2.5rem;
-    }
-    .hero-title {
-      font-size: 30px;
-    }
-    .hero-sub {
-      font-size: 16px;
-    }
-  }
   .posts-section {
     padding: 2.5rem 2rem 3rem;
   }

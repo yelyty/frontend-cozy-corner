@@ -27,8 +27,7 @@
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
     --box-shadow:
-      0 2px 6px rgba(0, 0, 0, 0.4),
-      0 8px 24px rgba(0, 0, 0, 0.5),
+      0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.5),
       0 16px 32px rgba(0, 0, 0, 0.6);
   }
 }
@@ -41,8 +40,7 @@
   --secondary-rgb: 204, 143, 109;
   --text-primary: 230, 220, 210;
   --box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.4),
-    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.5),
     0 16px 32px rgba(0, 0, 0, 0.6);
 }
 html,
@@ -197,3 +195,23 @@ footer {
   color: white;
   text-align: center;
 }
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 500;
+  color: rgb(var(--text-primary));
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+ @media (max-width: 520px) {
+    .hero {
+      padding: 2rem 1.25rem 2.5rem;
+    }
+    .hero-title {
+      font-size: 30px;
+    }
+    .hero-sub {
+      font-size: 16px;
+    }
+  }
