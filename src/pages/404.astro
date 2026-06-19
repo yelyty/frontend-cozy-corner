@@ -19,6 +19,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         width: 100%;
         align-items: center;
         justify-content: center;
+        text-align: center;
+      }
+      @media (max-width: 520px) {
+        .title {
+          font-size: 30px;
+        }
       }
     </style></head
   >
@@ -27,7 +33,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <Header />
     <main>
       <div class="plants-wrapper">
-        <h1>Could be a typo, could be me. Let's try the homepage.</h1>
+        <h1 class="title">
+          Could be a typo, could be me. Let's try the homepage.
+        </h1>
         <PlantsWithGooglyEyes position="static" />
       </div>
     </main>
