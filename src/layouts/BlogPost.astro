@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import ArrowLeft from "phosphor-astro/ArrowLeftBold.astro";
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -63,7 +64,17 @@ const {
 				padding: 1rem 0;
 				line-height: 1;
 				font-size: 3rem;
+				text-align: center;
 			}
+			 @media (max-width: 520px) {
+
+    .title {
+      font-size: 30px;
+    }
+
+  }
+
+
 			.date {
 				color: rgb(var(--text-primary));
 				opacity: 0.7;
@@ -81,10 +92,12 @@ const {
 				gap: 10px;
 			}
 			.all-posts {
-				display: block;
+				display: flex;
+				align-items: center;
 				text-decoration: none;
 				font-size: 1rem;
 				margin-bottom: 20px;
+				gap: 0.5rem;
 			}
 
 			.all-posts:hover {
@@ -98,7 +111,7 @@ const {
 		<main>
 			<article>
 				<div class="prose">
-					{goBack && <a href="/blog" class="all-posts">&larr; All posts</a>}
+					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
 					<div class="data">
 						{tag && <Tag>{tag}</Tag>}
 						{showDate && pubDate && (
