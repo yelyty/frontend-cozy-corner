@@ -7,6 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
+import PlantsWithGooglyEyes from '../components/PlantsWithGooglyEyes.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -132,6 +133,7 @@ const {
 				
 			</article>
 		</main>
+		<PlantsWithGooglyEyes />
 		<Footer />
 	</body>
 </html>
