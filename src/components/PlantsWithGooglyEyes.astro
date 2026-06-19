@@ -1,4 +1,8 @@
-<div class="banana-decoration" id="plant-container">
+---
+const { position = "fixed" } = Astro.props;
+---
+
+<div class="banana-decoration" id="plant-container" data-position={position}>
   <svg
     width="100%"
     height="100%"
@@ -898,6 +902,11 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+  .banana-decoration[data-position="static"] {
+    position: static;
+    bottom: auto;
+    right: auto;
   }
   @media (max-width: 720px) {
     .banana-decoration {
