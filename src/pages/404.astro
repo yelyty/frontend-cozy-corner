@@ -10,11 +10,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
+    <style>
+      .plants-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+      }
+    </style></head
+  >
+
   <body>
     <Header />
     <main>
-      <PlantsWithGooglyEyes />
+      <div class="plants-wrapper">
+        Could be a typo, could be me. Let's try the homepage.
+        <PlantsWithGooglyEyes />
+      </div>
     </main>
     <Footer />
   </body>
