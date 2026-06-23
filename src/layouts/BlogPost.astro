@@ -61,6 +61,10 @@ const {
 				color: rgb(var(--text-primary));
 				text-align: justify;
 			}
+
+		 .prose :global(li)::marker {
+    color: var(--accent);
+  }
 			.title {
 				padding: 1rem 0;
 				line-height: 1;
@@ -74,7 +78,21 @@ const {
     }
 
   }
-
+.prose :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+    background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 0% 1.5px;
+    transition: background-size 0.3s ease;
+    padding-bottom: 2px;
+  }
+  .prose :global(a:hover) {
+    background-size: 100% 1.5px;
+  }
+  .prose :global(a:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 
 			.date {
 				color: rgb(var(--text-primary));
