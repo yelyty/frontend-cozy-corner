@@ -1,14 +1,20 @@
 ---
-const { size = "large" } = Astro.props;
+const { size = "small" } = Astro.props;
 ---
 
-<span class="tag" data-size="small"><slot /></span>
+<span class="tag" data-size={size}><slot /></span>
 <style>
   .tag {
-    font-size: 11px;
-    padding: 2px 9px;
     border-radius: 999px;
     border: 1px solid var(--accent-dark);
     color: var(--accent-dark);
+  }
+  .tag[data-size="small"] {
+    font-size: 11px;
+    padding: 2px 9px;
+  }
+  .tag[data-size="large"] {
+    font-size: 14px;
+    padding: 4px 14px;
   }
 </style>

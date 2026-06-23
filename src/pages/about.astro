@@ -1,4 +1,5 @@
 ---
+import ArrowRight from "phosphor-astro/ArrowRightBold.astro";
 import Layout from "../layouts/BlogPost.astro";
 import Divider from "../components/Divider.astro";
 import profilePhoto from "../assets/me.jpeg";
@@ -41,7 +42,7 @@ import Tag from "../components/Tag.astro";
           events in the city, to meet like-minded people for sport activities,
           with a built-in attendance system for event organizers.
         </p>
-        <ul>
+        <ul class="achievements-list">
           <li>Built the social feed</li>
           <li>
             Built a personal profile with an achievements & results dashboard
@@ -49,11 +50,13 @@ import Tag from "../components/Tag.astro";
           <li>Maintained existing features</li>
         </ul>
         <div>
-          <Tag>React</Tag>
-          <Tag>JavaScript</Tag>
-          <Tag>Sass</Tag>
-          <Tag>Bootstrap</Tag>
-          <Tag>Redux</Tag>
+          <Tag size="large">React</Tag>
+          <Tag size="large">JavaScript</Tag>
+          <Tag size="large">Sass</Tag>
+          <Tag size="large">Bootstrap</Tag>
+          <Tag size="large">Redux</Tag>
+          <Tag size="large">Apollo</Tag>
+          <Tag size="large">GraphQL</Tag>
         </div>
       </article>
 
@@ -66,11 +69,24 @@ import Tag from "../components/Tag.astro";
           industry, where manufacturers and their customers share one system to
           track equipment, schedule service, and file warranty claims.
         </p>
-        <p>Front-end setup. Project full of tables, dashboards and forms.</p>
+        <ul class="achievements-list">
+          <li>Front-end setup</li>
+          <li>Build a lot of tables and long forms</li>
+          <li>And, of course, dashboards</li>
+        </ul>
+        <a
+          class="project-link"
+          href="https://astrumq.com/jak-jsme-vyvijeli-webovy-system-a-design-aplikace-pro-lokomotivy-cz-loko/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read the case study <ArrowRight width="16" />
+        </a>
         <div>
-          <Tag>React</Tag>
-          <Tag>JavaScript</Tag>
-          <Tag>Redux</Tag>
+          <Tag size="large">React</Tag>
+          <Tag size="large">JavaScript</Tag>
+          <Tag size="large">Redux</Tag>
+          <Tag size="large">And definetely something else I forgot</Tag>
         </div>
       </article>
 
@@ -88,14 +104,14 @@ import Tag from "../components/Tag.astro";
         <p>Digital Signage app for Android TV</p>
         <p>Supporting app for digital signage</p>
         <div>
-          <Tag>NextJs</Tag>
-          <Tag>Tailwind</Tag>
-          <Tag>React</Tag>
-          <Tag>React Native</Tag>
-          <Tag>TypeScript</Tag>
-          <Tag>MUI</Tag>
-          <Tag>Urql</Tag>
-          <Tag>Storybook</Tag>
+          <Tag size="large">NextJs</Tag>
+          <Tag size="large">Tailwind</Tag>
+          <Tag size="large">React</Tag>
+          <Tag size="large">React Native</Tag>
+          <Tag size="large">TypeScript</Tag>
+          <Tag size="large">MUI</Tag>
+          <Tag size="large">Urql</Tag>
+          <Tag size="large">Storybook</Tag>
         </div>
       </article>
     </div>
@@ -106,6 +122,10 @@ import Tag from "../components/Tag.astro";
     <SocialLinks />
   </div>
   <style>
+    .project-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
     .profile {
       display: flex;
       align-items: center;
@@ -242,9 +262,13 @@ import Tag from "../components/Tag.astro";
       content: "\25C6";
       position: absolute;
       left: 0;
-      top: 2;
+      top: 3px;
       color: var(--accent);
       font-size: 0.7em;
+    }
+
+    .achievements-list {
+      padding-left: 0;
     }
   </style>
 </Layout>
