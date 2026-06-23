@@ -1026,7 +1026,7 @@ const { position = "fixed" } = Astro.props;
   }
 </style>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const plant = document.querySelector<HTMLElement>(".plant");
 
     const CYCLE = 1350;
