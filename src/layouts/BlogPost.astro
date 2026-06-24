@@ -8,6 +8,7 @@ import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
 import PlantsWithGooglyEyes from '../components/PlantsWithGooglyEyes.astro';
+import ShareButtons from "../components/ShareButtons.astro";
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -27,6 +28,8 @@ const {
 	tag,
 	goBack = true,
 } = Astro.props;
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <html lang="en">
@@ -147,6 +150,7 @@ const {
 					)}
 					<slot />
 							<Divider />
+							<ShareButtons title={title} url={url} />
 				</div>
 				
 			</article>
