@@ -1,0 +1,61 @@
+---
+import SwatchCard from "../SwatchCard.astro";
+import Swatches from "../Swatches.astro";
+---
+
+<Swatches label="Buttons example">
+  <SwatchCard label=":default">
+    <button class="btn">Save</button>
+  </SwatchCard>
+  <SwatchCard label=":hover">
+    <button class="btn btn--hover">Save</button>
+  </SwatchCard>
+  <SwatchCard label=":focus-visible">
+    <button class="btn btn--focus">Save</button>
+  </SwatchCard>
+  <SwatchCard label="[disabled]">
+    <button class="btn" disabled>Save</button>
+  </SwatchCard>
+  <SwatchCard label="live">
+    <button class="btn btn--live">Click me!</button>
+  </SwatchCard>
+</Swatches>
+
+<style>
+  .btn {
+    border: none;
+    background: #b46060;
+    color: #fff6ec;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .btn--hover {
+    background: #8b4545;
+  }
+
+  .btn--focus {
+    outline: 3px solid rgba(180, 96, 96, 0.45);
+  }
+
+  .btn:disabled {
+    background: #e8d2c2;
+    color: #ffe9d6;
+    cursor: not-allowed;
+  }
+  .btn--live:hover {
+    background: #8b4545;
+  }
+
+  .btn--live:focus-visible {
+    outline: 3px solid rgba(180, 96, 96, 0.45);
+  }
+
+  .btn--live:active {
+    background: #8b4545;
+    transform: translateY(1px);
+  }
+</style>

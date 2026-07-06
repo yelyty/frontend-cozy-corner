@@ -1,0 +1,60 @@
+---
+import SwatchCard from "../SwatchCard.astro";
+import Swatches from "../Swatches.astro";
+---
+
+<Swatches>
+  <SwatchCard label=":focus">
+    <div
+      style="display:flex;align-items:center;background:#ffffff;border:1px solid #d7e0c9;border-radius:12px;padding:11px 14px;font-size:14px;color:#9aa788;"
+    >
+      Banana tree
+    </div>
+  </SwatchCard>
+  <SwatchCard label=":focus · typing"
+    ><div
+      style="display:flex;align-items:center;background:#ffffff;border:1px solid #7e9a5c;border-radius:12px;padding:11px 14px;font-size:14px;color:#3f5235;box-shadow:0 0 0 3px rgba(126,154,92,0.35);"
+    >
+      Banana tr<span
+        style="width:1px;height:16px;background:#7e9a5c;display:inline-block;margin-left:1px;"
+      ></span>
+    </div></SwatchCard
+  >
+  <SwatchCard label="[disabled]">
+    <div class="gh-mono" style="font-size:11.5px;color:#9aa788;margin-top:7px;">
+      [disabled]
+    </div>
+  </SwatchCard>
+  <SwatchCard label=":user-valid">
+    <div
+      style="display:flex;align-items:center;justify-content:space-between;background:#ffffff;border:1px solid #6f9a4f;border-radius:12px;padding:11px 14px;font-size:14px;color:#3f5235;"
+    >
+      Monstera<span
+        style="width:18px;height:18px;border-radius:50%;background:#5d7d4c;color:#f6f9ee;display:flex;align-items:center;justify-content:center;font-size:11px;"
+        >✓</span
+      >
+    </div>
+  </SwatchCard>
+  <SwatchCard label=":user-invalid">
+    <div
+      style="display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #cf9a4c;border-radius:12px;padding:11px 14px;font-size:14px;color:#9aa788;"
+    >
+      Required<span
+        style="width:18px;height:18px;border-radius:50%;background:#bb7b32;color:#f6f9ee;display:flex;align-items:center;justify-content:center;font-size:11px;"
+        >!</span
+      >
+    </div>
+    <div style="font-size:11.5px;color:#b07a36;margin-top:7px;">
+      A name is required
+    </div>
+  </SwatchCard>
+  <SwatchCard label="live">
+    <input
+      class="gh-live"
+      type="text"
+      placeholder="Type to focus…"
+      style="width:100%;background:#fff;border:1px solid #d7e0c9;border-radius:12px;padding:11px 14px;font-size:14px;color:#3f5235;outline:none;"
+      style-focus="border-color:#7e9a5c;box-shadow:0 0 0 3px rgba(126,154,92,0.35);"
+    />
+  </SwatchCard>
+</Swatches>

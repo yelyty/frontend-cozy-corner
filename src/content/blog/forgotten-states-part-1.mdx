@@ -1,0 +1,79 @@
+---
+title: 'Forgotten states: a reminder for pet projects (part 1)'
+description: 'Why I will not leave my projects in a happy path'
+pubDate: 'July 1 2026'
+tag: 'HMTL & CSS'
+---
+import BlockQuote from "../../components/BlockQuote.astro";
+import ArticleSummary from "../../components/ArticleSummary.astro";
+import ButtonStates from "../../components/Examples/ButtonStates.astro";
+import InputStates from "../../components/Examples/InputStates.astro";
+import CheckboxStates from "../../components/Examples/CheckboxStates.astro";
+
+
+For sure this topic was covered by hundreds of blog posts and youtube videos. 
+But for me to remember it I need to write it myself. 
+
+### Feel the click
+
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
+
+<ButtonStates />
+
+```css
+.btn { background:#b46060; color:#fff6ec; }
+.btn:hover { background:#8b4545; }
+.btn:focus-visible { box-shadow:0 0 0 3px #b4606073; }
+.btn:active { transform:translateY(1px); }
+.btn:disabled { background:#e8d2c2; cursor:not-allowed; }
+```
+
+
+### The life of an input 
+
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
+
+<InputStates />
+
+```css
+input:focus-visible { box-shadow:0 0 0 3px #b460605c; }
+input:user-valid { border-color:#6f9a4f; }
+input:user-invalid { border-color:#cf9a4c; }
+input:disabled { background:#ffe9d6; cursor:not-allowed; }
+```
+
+
+### A checkbox has three states, not two
+
+On and off are the obvious pair. The one everyone forgets is indeterminate — the "some, but not all" state a parent checkbox shows when its children disagree. There's no HTML attribute for it; you can only set it in JavaScript. A switch looks like a cousin but makes a different promise: it acts the moment you flip it, where a checkbox waits for you to submit.
+
+<CheckboxStates />
+
+```css
+input[type=checkbox]   { accent-color:#b46060; }
+input:checked
+input:indeterminate
+input:disabled         { cursor:not-allowed; }
+
+box.indeterminate = true;   
+```
+
+<ArticleSummary title="The forgotten-state checklist" list={[
+	"Every button — hover, focus-visible, active, disabled, busy.",
+	"Every input — focus, valid, invalid with a message, disabled, required.",
+	"Every checkbox — checked, unchecked, and the indeterminate middle nobody sets.",
+	"Every toggle & nav — the state in the markup, not just the colour.",
+	"Every surface — the right cursor for what it does.",
+	"Every disclosure — aria-expanded."
+]}>
+</ArticleSummary>
+
+### The reminder
+You don't need all of these on day one. A pet project is allowed to be rough. But the forgotten states are precisely the line between something that feels like a demo and something that feels considered — and they cost minutes, not days.
+
+So next time the happy path looks done, don't ship it yet. Hover it. Tab through it. Empty it out. Unplug the wifi and reload. The little cracks you find are just the project asking, politely, to be finished.
+
+
+##### Resources
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)

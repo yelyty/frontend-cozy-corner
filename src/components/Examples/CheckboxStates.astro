@@ -1,0 +1,169 @@
+---
+import SwatchCard from "../SwatchCard.astro";
+import Swatches from "../Swatches.astro";
+---
+
+<Swatches
+  label="Checkbox example"
+  note="Two are live — click the last checkbox and the switch. Note the indeterminate box: a state with no HTML attribute."
+>
+  <SwatchCard label=":default">
+    <span class="box" aria-hidden="true"></span>
+  </SwatchCard>
+  <SwatchCard label=":checked">
+    <span class="box is-checked" aria-hidden="true"></span>
+  </SwatchCard>
+  <SwatchCard label=":indeterminate">
+    <span class="box is-indeterminate" aria-hidden="true"></span>
+  </SwatchCard>
+  <SwatchCard label=":focus-visible">
+    <span class="box is-focus" aria-hidden="true"></span>
+  </SwatchCard>
+  <SwatchCard label="[disabled]">
+    <span class="box is-checked is-disabled" aria-hidden="true"></span>
+  </SwatchCard>
+  <SwatchCard label="switch · off">
+    <span class="switch" aria-hidden="true"></span>
+  </SwatchCard>
+  <SwatchCard label="live">
+    <input class="box" type="checkbox" aria-label="live checkbox" />
+  </SwatchCard>
+  <SwatchCard label="switch · live">
+    <input
+      class="switch"
+      type="checkbox"
+      role="switch"
+      checked
+      aria-label="switch"
+    />
+  </SwatchCard>
+</Swatches>
+
+<style>
+  /* checkboxes — pseudo-class = real input, .is-* = presentational */
+  .box {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    border: 2px solid #d8c4ad;
+    border-radius: 8px;
+    background: #fffdf9;
+    display: inline-grid;
+    place-content: center;
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  input.box {
+    cursor: pointer;
+  }
+
+  .box::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    transform: scale(0);
+    transition: transform 0.12s ease;
+    background: #fff;
+    clip-path: polygon(14% 44%, 0 60%, 40% 100%, 100% 22%, 84% 8%, 38% 66%);
+  }
+
+  .box:checked,
+  .box.is-checked {
+    background: #b46060;
+    border-color: #b46060;
+  }
+  .box:checked::before,
+  .box.is-checked::before {
+    transform: scale(1);
+  }
+
+  /* indeterminate — a dash, not a check */
+  .box:indeterminate,
+  .box.is-indeterminate {
+    background: #b46060;
+    border-color: #b46060;
+  }
+  .box:indeterminate::before,
+  .box.is-indeterminate::before {
+    transform: scale(1);
+    clip-path: none;
+    width: 14px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  /* focus ring — real for the live input, faked for the swatch */
+  .box:focus-visible,
+  .box.is-focus {
+    outline: none;
+    border-color: #b46060;
+    box-shadow: 0 0 0 4px rgba(180, 96, 96, 0.35);
+  }
+
+  /* disabled — comes after :checked so the grey wins */
+  .box:disabled,
+  .box.is-disabled {
+    cursor: not-allowed;
+    border-color: #d8cbba;
+    background: #e5dccc;
+    opacity: 0.75;
+  }
+  .box:disabled::before,
+  .box.is-disabled::before {
+    background: #b7ab99;
+  }
+
+  /* switches — also checkboxes underneath */
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 62px;
+    height: 32px;
+    border-radius: 999px;
+    background: #e7dcc8;
+    position: relative;
+    transition: background 0.2s ease;
+  }
+  input.switch {
+    cursor: pointer;
+  }
+
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(70, 45, 40, 0.25);
+    transition: transform 0.2s ease;
+  }
+  .switch:checked,
+  .switch.is-checked {
+    background: #b46060;
+  }
+  .switch:checked::after,
+  .switch.is-checked::after {
+    transform: translateX(30px);
+  }
+  .switch:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(180, 96, 96, 0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .box,
+    .box::before,
+    .switch,
+    .switch::after {
+      transition: none;
+    }
+  }
+</style>

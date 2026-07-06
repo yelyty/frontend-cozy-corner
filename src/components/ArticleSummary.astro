@@ -1,0 +1,52 @@
+---
+type ListItem = string;
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  list: Array<ListItem>;
+}
+
+const { title, subtitle, list } = Astro.props;
+---
+
+<section class="summary-box">
+  <h5 class="title">{title}</h5>
+  <p>{subtitle}</p>
+  <ul>
+    {
+      list.map((item) => {
+        return <li class="summary-item">{item}</li>;
+      })
+    }
+  </ul>
+  <slot />
+</section>
+<style>
+  .title {
+    color: var(--accent);
+  }
+  .summary-box {
+    padding: 30px;
+    background-color: #2b2521;
+    border-radius: 30px;
+  }
+  .summary-item {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    line-height: 1.55;
+  }
+  .summary-item:before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    color: var(--accent);
+    font-size: 0.7em;
+  }
+</style>
