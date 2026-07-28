@@ -1,0 +1,32 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="card">
+  <slot />
+  <span class="label">{label}</span>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #fff1e2;
+    border: 1px solid #f0ddc9;
+    border-radius: 14px;
+    padding: 18px 16px;
+    min-width: 124px;
+  }
+
+  .label {
+    font-family: monospace;
+    font-size: 11px;
+    color: #a04f4f;
+  }
+</style>

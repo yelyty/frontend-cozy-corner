@@ -1,0 +1,115 @@
+---
+import SwatchCard from "../SwatchCard.astro";
+import Swatches from "../Swatches.astro";
+---
+
+<Swatches>
+  <SwatchCard label=":focus · typing">
+    <div class="input input--filled input--focus">
+      Banana tree<span class="input__caret"></span>
+    </div>
+  </SwatchCard>
+
+  <SwatchCard label="[disabled]">
+    <div class="input input--disabled">Banana tree</div>
+  </SwatchCard>
+
+  <SwatchCard label=":user-valid">
+    <div class="input input--filled input--valid input--split">
+      Monstera<span class="input__badge">✓</span>
+    </div>
+  </SwatchCard>
+
+  <SwatchCard label=":user-invalid">
+    <div class="input input--invalid input--split">
+      <span class="fake-placeholder">Required</span><span class="input__badge"
+        >!</span
+      >
+    </div>
+  </SwatchCard>
+
+  <SwatchCard label="live">
+    <input
+      class="input input--fillled input--live"
+      type="text"
+      placeholder="Type to focus…"
+    />
+  </SwatchCard>
+</Swatches>
+
+<style>
+  .input {
+    --input-border: #b4606073;
+    --input-accent: #b46060;
+    --input-text: black;
+
+    display: flex;
+    width: 150px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    padding: 11px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--input-text);
+  }
+
+  .input--inputlled {
+    --input-text: #3f5235;
+  }
+  .input--split {
+    justify-content: space-between;
+  }
+
+  .input--focus {
+    border-color: var(--input-accent);
+    outline: 3px solid #b4606073;
+  }
+  .input--valid {
+    --input-border: #6f9a4f;
+    --input-badge: #5d7d4c;
+    border-width: 2px;
+  }
+  .input--invalid {
+    --input-border: #cf9a4c;
+    --input-badge: #bb7b32;
+    border-width: 2px;
+  }
+  .fake-placeholder {
+    color: grey;
+  }
+  .input--disabled {
+    background: #f8faf3;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .input--live {
+    outline: none;
+  }
+  .input--live:focus {
+    border-color: var(--input-accent);
+    outline: 3px solid #b4606073;
+  }
+
+  .input__caret {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    margin-left: 1px;
+    background: var(--input-accent);
+  }
+
+  .input__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    color: #f6f9ee;
+    background: var(--input-badge);
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+title: "Forgotten states: a reminder for pet projects (part 1)"
+description: "Why I will not leave my projects in a happy path"
+pubDate: "July 28 2026"
+tag: "HMTL & CSS"
+---
+
+import { Code } from "astro:components";
+import BlockQuote from "../../components/BlockQuote.astro";
+import ArticleSummary from "../../components/ArticleSummary.astro";
+import ButtonStates from "../../components/Examples/ButtonStates.astro";
+import InputStates from "../../components/Examples/InputStates.astro";
+import CheckboxStates from "../../components/Examples/CheckboxStates.astro";
+
+A few days ago I was thinking about why pet projects never feel like a real, finished product. Sure, you could say every great product has a team of designers and UX people behind it, and that's what's missing. Fair. But that's not the gap I'm interested in.
+
+Every pet project lives on the happy path. Some of the gaps are big, like empty states and error states. But most are tiny, and none of them need a team of designers. The button that's missing a hover state. The input with no label. And who's testing their text fields with anything longer than 'John Doe'?
+
+The good news: web developers already have everything they need for this. Most of things are just forgotten. Especially at work, where a ready to use UI library has already solved these nitpicks for you out of the box.
+
+I'm starting a series of cheatsheets for myself to return to every time I start a new project, before I actually remember all of this.
+In the Part 1, we wil look at buttons, inputs and checkboxes.
+
+### Feel the click
+
+We all know that if we don't add any custom styles to a button, it looks different in every browser and is pretty hideous (no offense).
+So when we style one, we override as much as possible to leave no trace of the ugly default CSS.
+
+The :hover state and 'pointer' cursor are the most obvious ones, so I am not covering them.
+But there is a subtle detail that is very often overlooked: the 'not-allowed' cursor on a disabled button.
+A disabled button with no cursor change can read as "broken" rather than "not yet available." The not-allowed cursor tells the user the state is intentional.
+
+Another problematic bit of browser CSS is the focus ring, and very often developers reach for <code>:focus \{ outline: none; \}</code> to get rid of it.
+It is best not to remove the default focus ring entirely. If you do override the button styles, make sure the focus state still has enough contrast.
+:focus applies whenever an element has focus, whether from a mouse click, a tap, or the keyboard. :focus-visible only applies when the browser thinks a focus ring should be shown, which is mainly during keyboard navigation (not mouse clicks, except on text inputs).
+
+And a cherry on top: it takes almost nothing to add a slight jump to the button on click, mimicking the press of a physical button.
+
+<ButtonStates />
+
+<Code
+  lang="css"
+  class="code"
+  theme="horizon"
+  code={`button:hover { background:#8b4545; }
+button:disabled { cursor:not-allowed; }
+button:focus-visible { outline: 3px solid #b4606073; }
+button:active { transform:translateY(1px); }
+`}
+/>
+
+### The life of an input
+
+At work I'm used to a built component library, where validation and error states are already handled for me without much thinking.
+So I'll admit I was surprised these validation pseudo-classes exist for inputs at all. They saved me real time on my latest project, the one I finally took seriously and will publish soon.
+I was already planning to write some complicated custom React input to cover all the cases. Then I read the docs, and realized I just like making my life harder.
+
+<InputStates />
+<Code
+  lang="css"
+  class="code"
+  theme="horizon"
+  code={`input:focus-visible { outline: 3px solid #b4606073;  }
+input:disabled { background:#f8faf3; cursor:not-allowed; }
+input:user-valid { border-color:#6f9a4f; }
+input:user-invalid { border-color:#cf9a4c; }
+`}
+/>
+
+### A checkbox has three states, not two
+
+And the last one for today. The checkbox. The component that's just begging for custom styles.
+What many people don't know is that it has three states: checked, unchecked, and indeterminate. 
+That last one is the "some, but not all" state a parent checkbox shows when its children disagree. 
+There's no HTML attribute for it. You can only set it from JavaScript.
+A switch looks like a cousin, but it makes a different promise. It acts the moment you flip it. A checkbox waits for you to submit.
+But whichever you use, it deserves the same treatment as everything else. Every state, focus, and the right cursors, just like any other component in your app.
+
+<CheckboxStates />
+<Code
+  lang="css"
+  class="code"
+  theme="horizon"
+  code={`input[type=checkbox] { accent-color:#b46060; }
+input:checked
+input:indeterminate
+input:focus-visible { outline: 3px solid #b4606073; }
+input:disabled { cursor:not-allowed; }
+
+`}
+/>
+
+### The reminder
+
+You may say that nowadays you don't need to know any of these. AI will solve it for you. And a pet project is allowed to be rough anyway.
+But I think knowing the small details you can add yourself always makes a project feel considered. The best of it, they cost only minutes.
+And the result is a more polished product. So next time the happy path looks done, don't ship it yet. Hover it. Tab through it. Empty it out.
+The little cracks you find are just the project asking, politely, to be finished.
+
+##### Resources
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)

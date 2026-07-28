@@ -20,7 +20,7 @@ export default defineConfig({
 			//   dark: 'github-dark',
 			// },
 			// Add custom languages
-			// Note: Shiki has countless langs built-in, including .astro!
+			// Note: Shiki has countless langs built-in, including .astro!	
 			// https://shiki.style/languages
 			langs: [],
 			// Enable word wrap to prevent horizontal scrolling
