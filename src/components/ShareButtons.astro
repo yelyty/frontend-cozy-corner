@@ -32,8 +32,14 @@ const links = [
 ];
 ---
 
-<p class="share-title">Share <ShareFat width="16" /></p>
 <div class="share-links">
+  <button
+    class="share-button"
+    id="share-button"
+    data-title={title}
+    data-url={url}
+    ><ShareFat width="16" />Share
+  </button>
   {
     links.map((l) => (
       <a href={l.href} target="_blank" rel="noopener noreferrer">
@@ -76,12 +82,55 @@ const links = [
     label.textContent = "Copied!";
     setTimeout(() => (label.textContent = prev), 1500);
   });
+
+  const shareButton = document.getElementById("share-button");
+
+  if (shareButton) {
+    const shareData = {
+      title: shareButton.dataset.title!,
+      // temporary text
+      text: "Visit Frontend Cozy Corner",
+      url: shareButton.dataset.url!,
+    };
+
+    if (!navigator.canShare?.(shareData)) {
+      shareButton.hidden = true;
+    } else {
+      shareButton.addEventListener("click", async () => {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if ((err as Error).name !== "AbortError") console.error(err);
+        }
+      });
+    }
+  }
 </script>
 
 <style>
-  .share-title {
-    text-align: center;
+  .wrapper {
+    display: flex;
+    width: 100%;
     align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: var(--bg-primary);
+    border: 1px solid rgba(var(--text-primary), 0.15);
+    color: rgb(var(--text-primary));
+    text-decoration: none;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.25s ease;
   }
   .share-links {
     display: flex;
