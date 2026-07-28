@@ -3,10 +3,7 @@ import SwatchCard from "../SwatchCard.astro";
 import Swatches from "../Swatches.astro";
 ---
 
-<Swatches
-  label="Checkbox example"
-  note="Two are live — click the last checkbox and the switch. Note the indeterminate box: a state with no HTML attribute."
->
+<Swatches label="Checkbox example">
   <SwatchCard label=":default">
     <span class="box" aria-hidden="true"></span>
   </SwatchCard>
@@ -28,7 +25,7 @@ import Swatches from "../Swatches.astro";
   <SwatchCard label="live">
     <input class="box" type="checkbox" aria-label="live checkbox" />
   </SwatchCard>
-  <SwatchCard label="switch · live">
+  <SwatchCard label="live">
     <input
       class="switch"
       type="checkbox"
@@ -40,14 +37,13 @@ import Swatches from "../Swatches.astro";
 </Swatches>
 
 <style>
-  /* checkboxes — pseudo-class = real input, .is-* = presentational */
   .box {
     appearance: none;
     -webkit-appearance: none;
     width: 28px;
     height: 28px;
     margin: 0;
-    border: 2px solid #d8c4ad;
+    border: 3px solid #d8c4ad;
     border-radius: 8px;
     background: #fffdf9;
     display: inline-grid;
@@ -81,7 +77,6 @@ import Swatches from "../Swatches.astro";
     transform: scale(1);
   }
 
-  /* indeterminate — a dash, not a check */
   .box:indeterminate,
   .box.is-indeterminate {
     background: #b46060;
@@ -96,15 +91,12 @@ import Swatches from "../Swatches.astro";
     border-radius: 2px;
   }
 
-  /* focus ring — real for the live input, faked for the swatch */
   .box:focus-visible,
   .box.is-focus {
-    outline: none;
     border-color: #b46060;
-    box-shadow: 0 0 0 4px rgba(180, 96, 96, 0.35);
+    outline: 3px solid #b4606073;
   }
 
-  /* disabled — comes after :checked so the grey wins */
   .box:disabled,
   .box.is-disabled {
     cursor: not-allowed;
@@ -117,7 +109,6 @@ import Swatches from "../Swatches.astro";
     background: #b7ab99;
   }
 
-  /* switches — also checkboxes underneath */
   .switch {
     appearance: none;
     -webkit-appearance: none;
@@ -142,7 +133,6 @@ import Swatches from "../Swatches.astro";
     height: 24px;
     border-radius: 50%;
     background: #fff;
-    box-shadow: 0 2px 4px rgba(70, 45, 40, 0.25);
     transition: transform 0.2s ease;
   }
   .switch:checked,
@@ -154,16 +144,7 @@ import Swatches from "../Swatches.astro";
     transform: translateX(30px);
   }
   .switch:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(180, 96, 96, 0.35);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .box,
-    .box::before,
-    .switch,
-    .switch::after {
-      transition: none;
-    }
+    border-color: #b46060;
+    outline: 3px solid #b4606073;
   }
 </style>

@@ -4,17 +4,17 @@ import Swatches from "../Swatches.astro";
 ---
 
 <Swatches label="Buttons example">
-  <SwatchCard label=":default">
+  <SwatchCard label="default">
     <button class="btn">Save</button>
   </SwatchCard>
   <SwatchCard label=":hover">
     <button class="btn btn--hover">Save</button>
   </SwatchCard>
-  <SwatchCard label=":focus-visible">
-    <button class="btn btn--focus">Save</button>
-  </SwatchCard>
   <SwatchCard label="[disabled]">
     <button class="btn" disabled>Save</button>
+  </SwatchCard>
+  <SwatchCard label=":focus-visible">
+    <button class="btn btn--focus">Save</button>
   </SwatchCard>
   <SwatchCard label="live">
     <button class="btn btn--live">Click me!</button>
@@ -38,7 +38,7 @@ import Swatches from "../Swatches.astro";
   }
 
   .btn--focus {
-    outline: 3px solid rgba(180, 96, 96, 0.45);
+    outline: 3px solid #b4606073;
   }
 
   .btn:disabled {
@@ -51,7 +51,7 @@ import Swatches from "../Swatches.astro";
   }
 
   .btn--live:focus-visible {
-    outline: 3px solid rgba(180, 96, 96, 0.45);
+    outline: 3px solid #b4606073;
   }
 
   .btn--live:active {
