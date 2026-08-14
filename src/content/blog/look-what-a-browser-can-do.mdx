@@ -1,0 +1,51 @@
+---
+title: 'Look what a browser can do'
+description: 'Overview of Web APIs'
+pubDate: 'Aug 14 2026'
+tag: 'Web'
+---
+import BlockQuote from "../../components/BlockQuote.astro";
+
+Some weeks ago, after I broke responsive styles in my blog, I asked my husband to check how does it look on his phone. 
+The broken part actually was "Share" section under the blog post. I've added popular social media developers usually use.
+Just in case someone ever wants to share my scribbles. (ha-ha) So he looked at it and asked why didn't I add Web Share API, 
+so it is easier to share from the phone. Hmm, good question.
+
+I've never used it before at work. I guess there was no need for it. So my own blog, where I am a designer, 
+a developer and a product manager all at once, is a perfect place to try it. I quickly added on more button with the feature,
+even though I am not quite sure in the actual timeline. Usually it takes some time for me to add something to the blog, 
+because I tend to overthink a lot if I do it right, like I have millions of readers here. Anyway, it, hopefully, works now.
+
+But this was not enough. I decided to look what else I am missing but could be cool to add. That's how an idea for this article was born.
+
+### First, the pattern that makes all of this safe.
+
+A couple of years ago, when I was still fresh and young developer, I created a bug, pushed it to production, closed the laptop 
+and went to the conference with the whole team. That was a lesson for the whole life to always take a laptop with me. No, 
+but seriously, the lesson was to check if you actually can use something. 
+
+The bug caused React Native app crash on startup. The bug was access to window object in the code that was shared between React
+web app and React Native app. And of course it was undefined for mobile app.
+
+Web APIs are similar story. Some aren't available in Safari, other only exist on the phone, some need a permission the user can refuse.
+
+<BlockQuote>
+Ask the browser what it has, use it if it's there, and keep the boring path working if it isn't.
+</BlockQuote>
+
+Below you can see what your browser support. Green means the feature is available, red means the feature is not available. 
+
+
+### Share to anywhere
+
+
+
+### Read it out loud 
+
+### Keep it in sync
+
+### Open and save files
+
+### Respect the setting user chose
+
+### A few more worth checking out
