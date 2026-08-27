@@ -47,24 +47,25 @@ import { SITE_TITLE } from "../consts";
         navMenu.classList.toggle("open", open);
         if (open) navMenu.querySelector("a")?.focus();
       }
+
+      burger.addEventListener("click", () => {
+        setMenu(burger.getAttribute("aria-expanded") !== "true");
+      });
+      document.addEventListener("click", (e) => {
+        if (burger.getAttribute("aria-expanded") !== "true") return;
+        if (!navMenu?.contains(e.target) && !burger.contains(e.target)) {
+          setMenu(false);
+        }
+      });
+      navMenu
+        ?.querySelectorAll("a")
+        .forEach((link) =>
+          link.addEventListener("click", () => setMenu(false)),
+        );
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setMenu(false);
+      });
     }
-
-    burger.addEventListener("click", () => {
-      setMenu(burger.getAttribute("aria-expanded") !== "true");
-    });
-    document.addEventListener("click", (e) => {
-      if (burger.getAttribute("aria-expanded") !== "true") return;
-      if (!navMenu?.contains(e.target) && !burger.contains(e.target)) {
-        setMenu(false);
-      }
-    });
-    navMenu
-      ?.querySelectorAll("a")
-      .forEach((link) => link.addEventListener("click", () => setMenu(false)));
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setMenu(false);
-    });
-
     document.addEventListener("astro:page-load", initMenu);
   </script>
 </header>
