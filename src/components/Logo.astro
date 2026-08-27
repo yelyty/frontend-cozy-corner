@@ -341,29 +341,6 @@
     </g>
   </g>
 </svg>
-
-<script>
-  function applyTheme() {
-    const theme =
-      document.documentElement.getAttribute("data-theme") ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
-
-    const light = document.getElementById("light");
-    if (light) {
-      light.style.display = theme === "dark" ? "block" : "none";
-    }
-  }
-
-  applyTheme();
-
-  new MutationObserver(applyTheme).observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"],
-  });
-</script>
-
 <style>
   .logo {
     height: 70px;

@@ -143,38 +143,6 @@
   </span>
 </button>
 
-<script is:inline>
-  (function () {
-    const btn = document.getElementById("theme-toggle");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-    function setTheme(theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      try {
-        localStorage.setItem("theme", theme);
-      } catch (e) {}
-      if (btn) btn.setAttribute("aria-checked", String(theme === "dark"));
-    }
-
-    const saved = localStorage.getItem("theme");
-    if (saved) setTheme(saved);
-    else setTheme(prefersDark.matches ? "dark" : "light");
-
-    btn?.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      setTheme(current === "dark" ? "light" : "dark");
-      btn.classList.remove("tg-squish");
-      void btn.offsetWidth;
-      btn.classList.add("tg-squish");
-    });
-
-    prefersDark.addEventListener("change", (e) => {
-      if (!localStorage.getItem("theme"))
-        setTheme(e.matches ? "dark" : "light");
-    });
-  })();
-</script>
-
 <style>
   @keyframes tg-twinkle {
     0%,
