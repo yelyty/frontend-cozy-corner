@@ -9,10 +9,7 @@
   --secondary-rgb: 255, 191, 155;
   --text-primary: 59,46,40;
   --bg-tint: #f9ead2;
-  --box-shadow:
-    0 2px 6px rgba(var(--text-primary), 0.1),
-    0 8px 24px rgba(var(--text-primary), 0.15),
-    0 16px 32px rgba(var(--text-primary), 0.15);
+--corner-w: 14rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,9 +23,6 @@
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
 	  --bg-tint: #2b2521;
-    --box-shadow:
-      0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.5),
-      0 16px 32px rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -42,9 +36,6 @@
   --secondary-rgb: 204, 143, 109;
     --bg-tint: #2b2521;
   --text-primary: 230, 220, 210;
-  --box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.5),
-    0 16px 32px rgba(0, 0, 0, 0.6);
 }
 
 html{
@@ -218,3 +209,16 @@ svg text {
 [data-theme="dark"] #light {
 	display: block;
 }
+
+
+/* Let the light glow */
+[dark-theme="dark"] body {
+	background: radial-gradient(60rem 40rem at 8% -10%, rgba(209,135,135, .10), transparent 60%);
+}
+
+
+@media(min-width: 58rem) {
+	header, .shell, footer {
+		padding-right: var(--corner-w);
+	}
+} 

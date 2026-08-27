@@ -7,6 +7,7 @@ import Header from "../../components/Header.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import Divider from "../../components/Divider.astro";
 import PlantsWithGooglyEyes from "../../components/PlantsWithGooglyEyes.astro";
+import CozyCorner from "../../components/CozyCorner.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -26,10 +27,11 @@ const posts = (await getCollection("blog")).sort(
     <main>
       <header class="blog-header">
         <h1 class="hero-title">Notes from the keyboard</h1>
-        <h3 class="lede">
+        <h2 class="lede">
           Half-formed thoughts about building for the web, finished just enough
           to be published.
-        </h3>
+        </h2>
+        <p>By Liza. <a href="/about">More about me</a></p>
       </header>
       <section>
         <ul>
@@ -53,9 +55,10 @@ const posts = (await getCollection("blog")).sort(
         That's everything so far. More when there is something worth writing
         down.
       </p>
+      <a>Subscribe by RSS</a>
     </main>
 
-    <PlantsWithGooglyEyes />
+    <CozyCorner />
     <Footer />
   </body>
 </html>

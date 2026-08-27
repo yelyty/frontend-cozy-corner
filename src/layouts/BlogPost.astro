@@ -9,6 +9,7 @@ import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
 import PlantsWithGooglyEyes from '../components/PlantsWithGooglyEyes.astro';
 import ShareButtons from "../components/ShareButtons.astro";
+import CozyCorner from '../components/CozyCorner.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -154,7 +155,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				
 			</article>
 		</main>
-		<PlantsWithGooglyEyes />
+		<CozyCorner />
 		<Footer />
 	</body>
 </html>
