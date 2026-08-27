@@ -1,5 +1,6 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
+import Tag from "./Tag.astro";
 
 interface Props {
   url: string;
@@ -15,7 +16,7 @@ const { url, postedDate, title, tag, description } = Astro.props;
 <a class="post-card" href={url}>
   <div class="post-meta">
     <span class="post-date"><FormattedDate date={postedDate} /></span>
-    {tag && <span class="post-tag">{tag}</span>}
+    {tag && <Tag size="small">HTML & CSS</Tag>}
   </div>
   <h3 class="post-card-title">{title}</h3>
   {description && <p class="post-excerpt">{description}</p>}

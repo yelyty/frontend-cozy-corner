@@ -5,16 +5,22 @@ const { size = "small" } = Astro.props;
 <span class="tag" data-size={size}><slot /></span>
 <style>
   .tag {
+    display: inline;
+    line-height: 1;
+    font-family: "Raleway", system-ui, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     border-radius: 999px;
-    border: 1px solid var(--accent-dark);
     color: var(--accent-text);
+    background: var(--bg-tint);
   }
   .tag[data-size="small"] {
-    font-size: 11px;
-    padding: 2px 9px;
+    font-size: 13px;
+    padding: 0.3rem 0.6rem;
   }
   .tag[data-size="large"] {
     font-size: 14px;
-    padding: 4px 14px;
+    padding: 0.4rem 0.75rem;
   }
 </style>
