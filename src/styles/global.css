@@ -12,7 +12,7 @@
   --secondary-rgb: 255, 191, 155;
   --text-primary: 59, 46, 40;
   --bg-tint: #f9ead2;
-  --corner-w: 14rem;
+  --corner-w: 0rem;
 
   --line: rgba(var(--text-primary), 0.12);
 
@@ -254,21 +254,14 @@ svg text {
   );
 }
 
-@media (min-width: 58rem) {
-  header,
-  .shell,
-  footer {
-    padding-right: var(--corner-w);
-  }
-}
 
 @media (min-width: 75rem) {
   :root {
-    --corner-w: 22rem;
+    --corner-w: clamp(12rem, (100vw - 50rem) / 2, 26rem);
   }
-}
-@media (min-width: 100rem) {
-  :root {
-    --corner-w: 26rem;
+  header,
+  .shell,
+  footer {
+    padding-inline: var(--corner-w);
   }
 }
