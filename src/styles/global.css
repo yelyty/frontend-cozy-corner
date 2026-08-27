@@ -65,9 +65,9 @@ body {
 main {
   width: 800px;
   max-width: calc(100% - 2em);
-  margin: auto;
+  margin-inline: auto;
   margin-top: 111px;
-  padding: 3em 1em;
+  padding: 2em 0em;
   flex: 1;
 }
 
@@ -195,26 +195,6 @@ footer {
   color: white;
   text-align: center;
 }
-
-.hero-title {
-  font-size: 4rem;
-  font-weight: 500;
-  color: rgb(var(--text-primary));
-  line-height: 1.15;
-  margin: 0 0 16px;
-}
-
- @media (max-width: 520px) {
-    .hero {
-      padding: 2rem 1.25rem 2.5rem;
-    }
-    .hero-title {
-      font-size: 30px;
-    }
-    .hero-sub {
-      font-size: 16px;
-    }
-  }
 
 .code {
 	margin-bottom: 5rem;

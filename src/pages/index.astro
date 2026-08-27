@@ -18,7 +18,6 @@ import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
     <Header />
     <main>
       <section class="hero">
-        <p class="hero-kicker">Software engineer</p>
         <h1 class="hero-title">
           I build <span class="accent">cozy</span> and <span class="accent"
             >fun
@@ -30,9 +29,9 @@ import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
         </p>
         <div class="hero-ctas">
           <a href="/blog" class="cta cta-primary"
-            >Read the blog <ArrowRight width="16" />
+            >Read my writings <ArrowRight width="16" />
           </a>
-          <a href="/about" class="cta cta-outlined">About me</a>
+          <a href="/about" class="cta cta-outlined">About</a>
         </div>
       </section>
       <Divider />
@@ -57,14 +56,6 @@ import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
               Small details that you may miss in your personal projects
             </p>
           </a>
-          <a class="post-card" href="/blog/but-why-not-to-start-a-blog/">
-            <div class="post-meta">
-              <span class="post-date">Mar 15</span>
-              <span class="post-tag">Mumbling</span>
-            </div>
-            <h3 class="post-card-title">But why not to start a blog?</h3>
-            <p class="post-excerpt">An into to the blog</p>
-          </a>
         </div>
       </section>
       <Divider />
@@ -82,16 +73,8 @@ import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
   .hero {
     text-align: center;
     padding: 3rem 2rem 3.5rem;
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: 0 auto;
-  }
-
-  .hero-kicker {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 12px;
   }
 
   .hero-title .accent {

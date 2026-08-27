@@ -16,13 +16,15 @@ const posts = (await getCollection("blog")).sort(
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={`Notes from the keyboard | ${SITE_TITLE}`}
+      description={"Notes on front-end"}
+    />
   </head>
   <body>
     <Header />
     <main>
       <header class="blog-header">
-        <p class="blog-kicker">Blog</p>
         <h1 class="hero-title">Notes from the keyboard</h1>
       </header>
       <section>
@@ -50,7 +52,7 @@ const posts = (await getCollection("blog")).sort(
 </html>
 <style>
   main {
-    width: 960px;
+    width: 800px;
   }
   ul {
     display: flex;
@@ -95,13 +97,5 @@ const posts = (await getCollection("blog")).sort(
     padding: 2.5rem 2rem 0;
     max-width: 620px;
     margin: 0 auto;
-  }
-
-  .blog-kicker {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 10px;
   }
 </style>

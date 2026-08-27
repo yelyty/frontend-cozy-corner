@@ -5,15 +5,19 @@ import Divider from "../components/Divider.astro";
 import profilePhoto from "../assets/me.jpeg";
 import SocialLinks from "../components/SocialLinks.astro";
 import Tag from "../components/Tag.astro";
+import { SITE_TITLE } from "../consts";
 ---
 
 <Layout
-  title="About me"
-  description="Learn more about me, the author of this blog."
+  title={`About | ${SITE_TITLE} `}
+  description="Learn more about me, the author of this blog. Software engineer with 6+ years across frontend and backend, happiest in the frontend and pretty UIs"
   showTitle={false}
   showDate={false}
   goBack={false}
 >
+  <div class="hero">
+    <h1>Frontend by choice, backend when asked</h1>
+  </div>
   <div class="profile">
     <div class="profile-photo-frame">
       <img
@@ -22,7 +26,6 @@ import Tag from "../components/Tag.astro";
         alt="Portrait of Liza"
       />
     </div>
-
     <p>
       Hi, I am Liza, a software engineer with over 6 years of experience in the
       industry. While working both on frontend and backend, I love and enjoy
@@ -274,6 +277,11 @@ import Tag from "../components/Tag.astro";
 
     .achievements-list {
       padding-left: 0;
+    }
+    .hero {
+      text-align: center;
+      padding: 1rem 2rem 2rem;
+      margin: 0 auto;
     }
   </style>
 </Layout>

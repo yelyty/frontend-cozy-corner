@@ -12,7 +12,7 @@ import Logo from "./Logo.astro";
 
     <div class="menu" id="nav-menu">
       <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/blog">Writings</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
     </div>
 
@@ -87,8 +87,8 @@ import Logo from "./Logo.astro";
     display: flex;
     align-items: center;
     gap: 1em;
-    padding-left: 30px;
-    padding-right: 30px;
+    width: min(100% - 48px, 800px);
+    margin-inline: auto;
     position: relative;
   }
 
@@ -96,6 +96,25 @@ import Logo from "./Logo.astro";
     display: flex;
     align-items: center;
     gap: 1em;
+  }
+
+  .menu a {
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .menu a:hover {
+    background: rgba(var(--text-primary), 0.06);
+  }
+
+  .menu a.active {
+    color: var(--accent);
+    background: rgba(var(--text-primary), 0.06);
   }
 
   .nav-controls {
@@ -139,18 +158,15 @@ import Logo from "./Logo.astro";
 
   nav a {
     padding: 1em 0.5em;
-    color: rgb(var(--text-primary));
-    text-decoration: none;
   }
-  nav a.active {
+  /* nav a.active {
     text-decoration: none;
     color: var(--accent);
-  }
+  } */
 
   @media (max-width: 900px) {
     nav {
-      padding-left: 10px;
-      padding-right: 10px;
+      width: (100% - 20px, 600px);
     }
     .burger {
       display: flex;
@@ -182,10 +198,14 @@ import Logo from "./Logo.astro";
       pointer-events: auto;
     }
     .menu a {
+      background-color: none;
       display: block;
       width: 100%;
       padding: 0.85em 1.5em;
       text-align: left;
+    }
+    .menu a.active {
+      background: none;
     }
   }
 
