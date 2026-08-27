@@ -265,3 +265,19 @@ svg text {
     padding-inline: var(--corner-w);
   }
 }
+
+
+@media(max-width: 58rem) {
+	.layout {
+		grid-template-columns: minmax(0, 1fr);
+		padding-block: 2.5rem 3rem;
+	}
+	.layout > * {grid-column: 1;}
+}
+
+@media(max-width: 26rem) {
+	.layout, body > header nav,
+	footer > div {
+		width: min(100% - 1.5rem, 44rem);
+	}
+}
