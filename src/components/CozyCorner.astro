@@ -11,7 +11,7 @@ import PlantsWithGooglyEyes from "./PlantsWithGooglyEyes.astro";
     right: 1.5rem;
     bottom: 1.5rem;
     z-index: 1;
-    width: calc(var(--corner-w) - 3rem);
+    width: min(calc(var(--corner-w) - 3rem), var(--plant-max));
     pointer-events: none;
   }
 

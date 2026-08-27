@@ -13,6 +13,7 @@
   --text-primary: 59, 46, 40;
   --bg-tint: #f9ead2;
   --corner-w: 0rem;
+  --plant-max: 18rem;
 
   --line: rgba(var(--text-primary), 0.12);
 
