@@ -60,19 +60,6 @@ const ogImage = new URL(image, Astro.site);
 <ClientRouter />
 
 <script is:inline>
-  import { quotelessJson } from "astro:schema";
-
-  (() => {
-    let stored = null;
-    try {
-      stored = localStorage.getItem("theme");
-    } catch (e) {}
-    document.documentElement.dataset.theme =
-      stored ??
-      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  })();
-</script>
-<script is:inline>
   function applyTheme() {
     let saved = null;
     try {
@@ -98,9 +85,11 @@ const ogImage = new URL(image, Astro.site);
     if (!btn) {
       return;
     }
-    const next = (document.documentElement.dataset.theme = "dark"
-      ? "light"
-      : "dark");
+    const next =
+      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
     applyTheme();
     btn.classList.remove("tg-squish");
     void btn.offsetWidth;
