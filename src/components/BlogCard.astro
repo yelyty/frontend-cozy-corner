@@ -28,38 +28,53 @@ const Heading = headingLevel;
     <span class="post-date"><FormattedDate date={postedDate} /></span>
     {tag && <Tag size="large">{tag}</Tag>}
   </div>
-  <Heading class="post-title"><a href={url}>{title}</a></Heading>
-  {description && <p class="post-excerpt">{description}</p>}
+  <div class="post-body">
+    <Heading class="post-title"><a href={url}>{title}</a></Heading>
+    {description && <p class="post-excerpt">{description}</p>}
+  </div>
 </article>
 
 <style>
   .post-row {
-    padding: 1.9rem 0;
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 34rem);
+    column-gap: 2rem;
+    padding-block: 2rem;
+    position: relative;
   }
 
   .post-row:not(:first-child) {
-    border-top: 1px solid rgb(var(--text-primary), 0.12);
+    border-top: 1px solid var(--line);
   }
 
   .post-meta {
+    grid-column: 1;
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    font-family: system-ui;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-top: 0.35rem;
+    text-align: right;
   }
 
   .post-date {
-    font-size: 13px;
+    font-size: var(--t-meta);
+    line-height: 1.25;
     color: rgba(var(--text-primary), 0.8);
     font-variant-numeric: tabular-nums;
+    font-family: "Raleway", system-ui, sans-serif;
+  }
+
+  .post-body {
+    grid-column: 2;
   }
 
   .post-title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 0.45rem 0 0.3rem;
-    line-height: 1.3;
+    font-size: var(--t-title);
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    line-height: var(--lh-title);
+    text-wrap: balance;
   }
 
   .post-title a {
@@ -69,13 +84,33 @@ const Heading = headingLevel;
 
   .post-title a:hover {
     color: var(--accent-text-hover);
+    text-decoration: underline;
   }
 
   .post-excerpt {
-    font-size: 1rem;
+    font-size: var(--t-small);
     color: rgba(var(--text-primary), 0.8);
     margin: 0;
-    max-width: 28rem;
-    line-height: 1.55;
+    max-width: 62ch;
+    line-height: var(--lh-small);
+  }
+
+  @media (max-width: 58rem) {
+    .post-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .post-meta,
+    .post-body {
+      grid-column: 1;
+    }
+    .post-meta {
+      flex-direction: row;
+      align-items: center;
+      justify-self: flex-start;
+      text-align: left;
+      gap: 0.6rem;
+      padding-top: 0;
+      margin-bottom: 0.5rem;
+    }
   }
 </style>

@@ -1,12 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { SITE_TITLE } from "../../consts";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import Divider from "../../components/Divider.astro";
-import PlantsWithGooglyEyes from "../../components/PlantsWithGooglyEyes.astro";
 import CozyCorner from "../../components/CozyCorner.astro";
 
 const posts = (await getCollection("blog")).sort(
@@ -24,67 +23,62 @@ const posts = (await getCollection("blog")).sort(
   </head>
   <body>
     <Header />
-    <main>
-      <header class="blog-header">
-        <h1 class="hero-title">Notes from the keyboard</h1>
-        <h2 class="lede">
-          Half-formed thoughts about building for the web, finished just enough
-          to be published.
-        </h2>
-        <p>By Liza. <a href="/about">More about me</a></p>
-      </header>
-      <section>
-        <ul>
+    <main class="shell" id="main">
+      <div class="layout">
+        <div class="page-head">
+          <h1>Notes from the keyboard</h1>
+          <p class="lede">
+            Half-formed thoughts about building for the web, finished just
+            enough to be published.
+          </p>
+          <p class="byline">By Liza. <a href="/about">More about me</a></p>
+        </div>
+        <ol class="posts">
           {
             posts.map((post) => (
-              <li>
-                <BlogCard
-                  url={`/blog/${post.id}/`}
-                  title={post.data.title}
-                  tag={post.data.tag}
-                  postedDate={post.data.pubDate}
-                  description={post.data.description}
-                />
-              </li>
+              <BlogCard
+                url={`/blog/${post.id}/`}
+                title={post.data.title}
+                tag={post.data.tag}
+                postedDate={post.data.pubDate}
+                description={post.data.description}
+                headingLevel="h2"
+              />
             ))
           }
-        </ul>
-      </section>
-      <Divider />
-      <p class="endnote">
-        That's everything so far. More when there is something worth writing
-        down.
-      </p>
-      <a href="/rss.xml">Subscribe by RSS</a>
+        </ol>
+        <div class="tail">
+          <Divider />
+          <p class="endnote">
+            That's everything so far. More when there is something worth writing
+            down.
+          </p>
+          <p class="tail-actions">
+            <a href="/rss.xml">Subscribe by RSS</a>
+            <a href="/about">About me</a>
+          </p>
+        </div>
+      </div>
+      <CozyCorner />
     </main>
 
-    <CozyCorner />
     <Footer />
   </body>
 </html>
 <style>
-  main {
-    width: 800px;
+  .page-head,
+  .tail {
+    grid-column: 2;
   }
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    list-style-type: none;
+  .page-head h1 {
     margin: 0;
-    margin-top: 5rem;
-    padding: 0;
+    font-size: var(--t-display);
+    line-height: var(--lh-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
   }
-  ul li {
-    width: 100%;
-  }
-  ul li * {
-    text-decoration: none;
-    transition: 0.2s ease;
-  }
-  ul li a {
-    display: block;
-  }
+
   .title {
     margin: 0;
     color: rgb(var(--text-primary));
@@ -95,15 +89,6 @@ const posts = (await getCollection("blog")).sort(
     color: rgb(var(--text-primary));
     opacity: 0.7;
   }
-  ul li a:hover h4,
-  ul li a:hover .date {
-    color: var(--accent);
-  }
-  @media (max-width: 720px) {
-    ul {
-      gap: 1rem;
-    }
-  }
   .blog-header {
     text-align: center;
     padding: 2.5rem 2rem 0;
@@ -111,15 +96,68 @@ const posts = (await getCollection("blog")).sort(
     margin: 0 auto;
   }
   .endnote {
-    max-width: 28rem;
-    font-size: 1rem;
-    color: rgb(var(--text-primary));
+    max-width: 34ch;
+    margin: 0;
+    font-size: var(--t-small);
+    line-height: var(--lh-small);
+    color: rgba(var(--text-primary), 0.8);
   }
   .lede {
     text-wrap: pretty;
     margin: 1rem 0 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: var(--t-body);
+    line-height: var(--lh-body);
     color: rgba(var(--text-primary), 0.8);
+    max-width: 34ch;
+    font-weight: 400;
+  }
+  .byline {
+    margin: 1.5rem 0 0;
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: var(--t-meta);
+  }
+  .byline a {
+    color: var(--accent-text);
+    text-underline-offset: 0.02em;
+  }
+
+  .byline a:hover {
+    color: var(--accent-text-hover);
+  }
+
+  .posts {
+    grid-column: 1 / span 2;
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+  }
+
+  .tail {
+    margin-top: 3rem;
+  }
+
+  .tail-actions {
+    margin: 1rem 0 0;
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: var(--t-meta);
+    letter-spacing: 0.02em;
+  }
+
+  .tail-actions a {
+    color: var(--accent-text);
+    text-decoration: none;
+  }
+  .tail-actions a:hover {
+    color: var(--accent-text-hover);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 58rem) {
+    .posts {
+      grid-column: 1;
+    }
   }
 </style>

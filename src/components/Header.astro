@@ -34,32 +34,38 @@ import { SITE_TITLE } from "../consts";
   </nav>
 
   <script type="module" is:inline>
-    const burger = document.getElementById("burger");
-    const navMenu = document.getElementById("nav-menu");
+    function initMenu() {
+      const burger = document.getElementById("burger");
+      const navMenu = document.getElementById("nav-menu");
 
-    function setMenu(open) {
-      if (!burger || !navMenu) return;
-      burger.setAttribute("aria-expanded", String(open));
-      burger.classList.toggle("open", open);
-      navMenu.classList.toggle("open", open);
+      if (burger || !navMenu) return;
+
+      function setMenu(open) {
+        burger.setAttribute("aria-expanded", String(open));
+        burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        burger.classList.toggle("open", open);
+        navMenu.classList.toggle("open", open);
+        if (open) navMenu.querySelector("a")?.focus();
+      }
     }
 
-    burger?.addEventListener("click", () => {
-      const isOpen = burger.getAttribute("aria-expanded") === "true";
-      setMenu(!isOpen);
+    burger.addEventListener("click", () => {
+      setMenu(burger.getAttribute("aria-expanded") !== "true");
     });
     document.addEventListener("click", (e) => {
-      if (burger?.getAttribute("aria-expanded") !== "true") return;
-      if (!navMenu?.contains(e.target) && !burger?.contains(e.target)) {
+      if (burger.getAttribute("aria-expanded") !== "true") return;
+      if (!navMenu.contains(e.target) && !burger.contains(e.target)) {
         setMenu(false);
       }
     });
     navMenu
-      ?.querySelectorAll("a")
+      .querySelectorAll("a")
       .forEach((link) => link.addEventListener("click", () => setMenu(false)));
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setMenu(false);
     });
+
+    document.addEventListener("astro:page-load", initMenu);
   </script>
 </header>
 
@@ -79,16 +85,11 @@ import { SITE_TITLE } from "../consts";
     text-decoration: none;
   }
 
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
-  }
-
   nav {
     display: flex;
     align-items: center;
     gap: 1em;
-    width: min(100% - 48px, 800px);
+    width: min(100% - 3rem, 44rem);
     margin-inline: auto;
     position: relative;
   }
@@ -114,7 +115,7 @@ import { SITE_TITLE } from "../consts";
   }
 
   .menu a.active {
-    color: var(-accent-text);
+    color: var(--accent-text);
     background: rgba(var(--text-primary), 0.06);
   }
 
@@ -162,7 +163,7 @@ import { SITE_TITLE } from "../consts";
   }
   @media (max-width: 900px) {
     nav {
-      width: min(100% - 20px, 600px);
+      width: min(100% - 20px);
     }
     .burger {
       display: flex;
@@ -204,10 +205,5 @@ import { SITE_TITLE } from "../consts";
     .menu a.active {
       background: transparent;
     }
-  }
-
-  body {
-    margin: 0;
-    overflow-x: hidden;
   }
 </style>
