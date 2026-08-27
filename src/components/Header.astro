@@ -74,8 +74,8 @@ import { SITE_TITLE } from "../consts";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    background: var(--bg-primary);
+    right: 0;
+    background-color: var(--bg-primary);
     z-index: 100;
   }
   .logo-link {
@@ -162,9 +162,6 @@ import { SITE_TITLE } from "../consts";
     padding: 1em 0.5em;
   }
   @media (max-width: 900px) {
-    nav {
-      width: min(100% - 20px);
-    }
     .burger {
       display: flex;
     }

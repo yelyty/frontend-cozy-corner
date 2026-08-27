@@ -23,7 +23,7 @@ const {
 const Heading = headingLevel;
 ---
 
-<article class="post-row">
+<li class="post-row">
   <div class="post-meta">
     <span class="post-date"><FormattedDate date={postedDate} /></span>
     {tag && <Tag size="large">{tag}</Tag>}
@@ -32,7 +32,7 @@ const Heading = headingLevel;
     <Heading class="post-title"><a href={url}>{title}</a></Heading>
     {description && <p class="post-excerpt">{description}</p>}
   </div>
-</article>
+</li>
 
 <style>
   .post-row {

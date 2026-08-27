@@ -33,7 +33,7 @@ const posts = (await getCollection("blog")).sort(
           </p>
           <p class="byline">By Liza. <a href="/about">More about me</a></p>
         </div>
-        <ol class="posts">
+        <ol class="posts" role="list">
           {
             posts.map((post) => (
               <BlogCard
