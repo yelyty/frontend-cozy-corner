@@ -37,10 +37,16 @@ const Heading = headingLevel;
 <style>
   .post-row {
     display: grid;
+    position: relative;
     grid-template-columns: 8rem minmax(0, 34rem);
     column-gap: 2rem;
     padding-block: 2rem;
     position: relative;
+    transition: background 0.12s ease;
+  }
+
+  .post-row:hover {
+    background-color: rgba(var(--text-primary), 0.035);
   }
 
   .post-row:not(:first-child) {

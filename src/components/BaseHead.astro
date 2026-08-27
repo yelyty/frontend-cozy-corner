@@ -96,3 +96,10 @@ const ogImage = new URL(image, Astro.site);
     btn.classList.add("tg-squish");
   });
 </script>
+<script>
+  var onScroll = function () {
+    document.documentElement.toggleAttribute("data-scrolled", scrollY > 8);
+  };
+  onScroll();
+  addEventListener("scroll", onScroll, { passive: true });
+</script>

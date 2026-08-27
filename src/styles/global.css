@@ -101,7 +101,6 @@ main {
 :where(a, button):focus-visible {
   outline: 2px solid var(--accent-text);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 h1,
@@ -281,4 +280,13 @@ svg text {
 	footer > div {
 		width: min(100% - 1.5rem, 44rem);
 	}
+}
+
+header {
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.2s ease;
+}
+
+[data-scrolled] header {
+	border-bottom-color: var(--line);
 }
