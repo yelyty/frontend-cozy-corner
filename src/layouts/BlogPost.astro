@@ -65,7 +65,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			}
 
 		 .prose :global(li)::marker {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 			.title {
 				padding: 1rem 0;
@@ -81,7 +81,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 
   }
 .prose a {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: none;
     background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 0% 1.5px;
     transition: background-size 0.3s ease;

@@ -22,6 +22,8 @@
   :root {
     --bg-primary: #1f1a17;
     --accent: #d18787;
+	--accent-text: #d18787;
+	--accent-text-hover: #e8adad;
     --accent-dark: #a65c5c;
     --secondary: #cc8f6d;
     --secondary-rgb: 204, 143, 109;
@@ -35,6 +37,8 @@
 [data-theme="dark"] {
   --bg-primary: #1f1a17;
   --accent: #d18787;
+  	--accent-text: #d18787;
+	--accent-text-hover: #e8adad;
   --accent-dark: #a65c5c;
   --secondary: #cc8f6d;
   --secondary-rgb: 204, 143, 109;
@@ -107,10 +111,10 @@ b {
   font-weight: 700;
 }
 a {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 a:hover {
-  color: var(--accent-dark);
+  color: var(--accent-text-hover);
 }
 p {
   margin-bottom: 1em;
@@ -134,7 +138,7 @@ img {
 }
 code {
   padding: 2px 5px;
-  background-color: var(--secondary);
+  background-color: rgba(var(--secondary, 0.3));
   border-radius: 2px;
   font-size: 0.9em;
 }
@@ -152,7 +156,7 @@ pre > code {
   line-height: 1.5;
 }
 blockquote {
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--accent-text);
   padding: 0 0 0 20px;
   margin: 0;
   font-size: 1.333em;
