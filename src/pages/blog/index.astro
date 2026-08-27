@@ -26,6 +26,10 @@ const posts = (await getCollection("blog")).sort(
     <main>
       <header class="blog-header">
         <h1 class="hero-title">Notes from the keyboard</h1>
+        <h3 class="lede">
+          Half-formed thoughts about building for the web, finished just enough
+          to be published.
+        </h3>
       </header>
       <section>
         <ul>
@@ -45,7 +49,12 @@ const posts = (await getCollection("blog")).sort(
         </ul>
       </section>
       <Divider />
+      <p class="endnote">
+        That's everything so far. More when there is something worth writing
+        down.
+      </p>
     </main>
+
     <PlantsWithGooglyEyes />
     <Footer />
   </body>
@@ -97,5 +106,17 @@ const posts = (await getCollection("blog")).sort(
     padding: 2.5rem 2rem 0;
     max-width: 620px;
     margin: 0 auto;
+  }
+  .endnote {
+    max-width: 28rem;
+    font-size: 1rem;
+    color: rgb(var(--text-primary));
+  }
+  .lede {
+    text-wrap: pretty;
+    margin: 1rem 0 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: rgba(var(--text-primary), 0.8);
   }
 </style>
