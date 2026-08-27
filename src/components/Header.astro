@@ -2,11 +2,12 @@
 import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Logo from "./Logo.astro";
+import { SITE_TITLE } from "../consts";
 ---
 
 <header>
   <nav>
-    <a href="/" class="logo-link">
+    <a href="/" class="logo-link" aria-label={SITE_TITLE}>
       <Logo />
     </a>
 
@@ -161,12 +162,13 @@ import Logo from "./Logo.astro";
   }
   @media (max-width: 900px) {
     nav {
-      width: (100% - 20px, 600px);
+      width: min(100% - 20px, 600px);
     }
     .burger {
       display: flex;
     }
     .menu {
+      visibility: hidden;
       position: absolute;
       top: 100%;
       right: 10px;
@@ -191,16 +193,16 @@ import Logo from "./Logo.astro";
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
+      visibility: visible;
     }
     .menu a {
-      background-color: none;
       display: block;
       width: 100%;
       padding: 0.85em 1.5em;
       text-align: left;
     }
     .menu a.active {
-      background: none;
+      background: transparent;
     }
   }
 

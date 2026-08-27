@@ -6,6 +6,7 @@ import Header from "../components/Header.astro";
 import Divider from "../components/Divider.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import SocialLinks from "../components/SocialLinks.astro";
+import Tag from "../components/Tag.astro";
 import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
 ---
 
@@ -47,7 +48,7 @@ import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
           <a class="post-card" href="/blog/forgotten-states-part-1/">
             <div class="post-meta">
               <span class="post-date">Jul 28</span>
-              <span class="post-tag">HTML & CSS</span>
+              <Tag size="small">HTML & CSS</Tag>
             </div>
             <h3 class="post-card-title">
               Forgotten states: a reminder for pet projects (part 1)
@@ -159,7 +160,7 @@ import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
   }
 
   .posts-all:hover {
-    color: var(--accent-text);
+    color: var(--accent-text-hover);
   }
 
   .posts-list {
