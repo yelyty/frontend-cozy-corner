@@ -240,17 +240,6 @@ svg text {
   display: block;
 }
 
-/* Let the light glow */
-[data-theme="dark"] body, [data-theme="dark"] header {
-	background-color: var(--bg-primary);
-	background-attachment: fixed;
-  background-image: radial-gradient(
-    60rem 40rem at 6% -6%,
-    rgba(209, 135, 135, 0.12),
-    transparent 62%
-  );
-}
-
 @media (min-width: 58rem) {
   header,
   .shell,
