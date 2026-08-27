@@ -38,7 +38,7 @@ import { SITE_TITLE } from "../consts";
       const burger = document.getElementById("burger");
       const navMenu = document.getElementById("nav-menu");
 
-      if (burger || !navMenu) return;
+      if (!burger || !navMenu) return;
 
       function setMenu(open) {
         burger.setAttribute("aria-expanded", String(open));
@@ -54,12 +54,12 @@ import { SITE_TITLE } from "../consts";
     });
     document.addEventListener("click", (e) => {
       if (burger.getAttribute("aria-expanded") !== "true") return;
-      if (!navMenu.contains(e.target) && !burger.contains(e.target)) {
+      if (!navMenu?.contains(e.target) && !burger.contains(e.target)) {
         setMenu(false);
       }
     });
     navMenu
-      .querySelectorAll("a")
+      ?.querySelectorAll("a")
       .forEach((link) => link.addEventListener("click", () => setMenu(false)));
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setMenu(false);
