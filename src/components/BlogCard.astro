@@ -26,7 +26,7 @@ const Heading = headingLevel;
 <article class="post-row">
   <div class="post-meta">
     <span class="post-date"><FormattedDate date={postedDate} /></span>
-    {tag && <Tag size="large">HTML & CSS</Tag>}
+    {tag && <Tag size="large">{tag}</Tag>}
   </div>
   <Heading class="post-title"><a href={url}>{title}</a></Heading>
   {description && <p class="post-excerpt">{description}</p>}
@@ -46,7 +46,7 @@ const Heading = headingLevel;
     align-items: center;
     gap: 0.6rem;
     flex-wrap: wrap;
-    font-family: "Raleway", sustem-ui, sans-serif;
+    font-family: "Raleway", system-ui, sans-serif;
   }
 
   .post-date {
@@ -65,6 +65,10 @@ const Heading = headingLevel;
   .post-title a {
     color: rgb(var(--text-primary));
     text-decoration: none;
+  }
+
+  .post-title a:hover {
+    color: var(--accent-text-hover);
   }
 
   .post-excerpt {
