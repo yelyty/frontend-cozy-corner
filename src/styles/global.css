@@ -155,9 +155,6 @@ select,
 textarea {
   font-family: inherit;
 }
-table {
-  width: 100%;
-}
 img {
   max-width: 100%;
   height: auto;
@@ -175,6 +172,8 @@ pre {
   background-color: rgba(var(--secondary-rgb), 0.3);
   overflow-x: auto;
   border: 1px solid var(--secondary);
+  font-size: var(--t-small);
+  line-height: var(--lh-small);
 }
 pre > code {
   all: unset;

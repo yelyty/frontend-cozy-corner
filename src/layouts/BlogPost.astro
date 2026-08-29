@@ -7,7 +7,6 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
-import PlantsWithGooglyEyes from '../components/PlantsWithGooglyEyes.astro';
 import ShareButtons from "../components/ShareButtons.astro";
 import CozyCorner from '../components/CozyCorner.astro';
 
@@ -36,9 +35,45 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
+		
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="prose">
+					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
+					
+					{showTitle && (
+						
+							<h1 class="title">{title}</h1>
+							<div class="data">
+						
+						{showDate && pubDate && (
+								<div class="date">
+									<FormattedDate date={pubDate} />
+								</div>
+							)}
+							{tag && <Tag>{tag}</Tag>}
+							<span class="readmeta">N min read</span>
+					</div>
+							<Divider />
+					
+					)}
+					<slot />
+							<Divider />
+							<!-- <ShareButtons title={title} url={url} /> -->
+				</div>
+				
+			</article>
+		</main>
+		<CozyCorner />
+		<Footer />
+	</body>
+</html>
+<style>
 			html, body {
-				height: 100%;
 				margin: 0;
 			}
 
@@ -46,23 +81,31 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				display: flex;
 				flex-direction: column;
 				min-height: 100vh;
+				font-size-adjust: 0.44;
 			}
 
 			main {
 				flex: 1 0 auto;
 				display: flex;
 				flex-direction: column;
-				width: calc(100% - 2em);
+				width:100%;
 				margin: 0;
 				margin-top: 111px;	
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
+				width: min(100% - 3rem, 44rem);
+				margin-inline: auto;
+				padding: 0;
 				color: rgb(var(--text-primary));
-				text-align: justify;
+				text-align: left;
+				text-wrap: pretty;
+				hyphens: auto;
+			}
+			.prose > * {
+				max-width: var(--measure);
+			}
+			.prose p {
+				margin: 0 0 1.15rem;
 			}
 
 		 .prose :global(li)::marker {
@@ -71,16 +114,23 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			.title {
 				padding: 1rem 0;
 				line-height: 1;
-				font-size: 3rem;
-				text-align: center;
+				font-size: var(--t-display);
+				line-height: var(--lh-display);
+				font-weight: 700;
+				text-align: left;
+				margin: 0.5rem 0 0.6rem;
+				padding: 0;
+				max-width: 22ch;
+
 			}
-			 @media (max-width: 520px) {
-
-    .title {
-      font-size: 30px;
-    }
-
-  }
+			.prose :global(h2){
+				font-weight: 700;
+				letter-spacing: -0.015rem;
+				text-align: left;
+				font-size: var(--t-title);
+				line-height: var(--lh-title);
+				margin 2.2em 0 0.5em;
+			}
 .prose a {
     color: var(--accent-text);
     text-decoration: none;
@@ -100,7 +150,8 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			.date {
 				color: rgb(var(--text-primary));
 				opacity: 0.7;
-				font-size: 1rem;
+				font-size: var(--t-meta);
+				font-variant-numeric: tabular-nums;
 			}
 			footer {
 				flex-shrink: 0;
@@ -111,51 +162,24 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				flex-direction: row;
 				justify-content: flex-start;
 				align-items: center;
-				gap: 10px;
+				gap: 0.6rem;
+				flex-wrap: wrap;
+				margin: 0 0 1.5rem;
 			}
-			.all-posts {
-				display: flex;
+			.all-posts{
+				display: inline-flex;
 				align-items: center;
 				text-decoration: none;
-				font-size: 1rem;
+				font-size: var(--t-meta);
 				margin-bottom: 20px;
 				gap: 0.5rem;
+				width: auto;
 			}
 
-			.all-posts:hover {
+			.all-posts a:hover {
 				text-decoration: underline;
 			}
+			.readmeta {
+				font-size: var(--t-meta);
+			}
 		</style>
-	</head>
-
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
-					<div class="data">
-						{tag && <Tag>{tag}</Tag>}
-						{showDate && pubDate && (
-								<div class="date">
-									<FormattedDate date={pubDate} />
-								</div>
-							)}
-					</div>
-					{showTitle && (
-						
-							<h1 class="title">{title}</h1>
-							<Divider />
-					
-					)}
-					<slot />
-							<Divider />
-							<ShareButtons title={title} url={url} />
-				</div>
-				
-			</article>
-		</main>
-		<CozyCorner />
-		<Footer />
-	</body>
-</html>
