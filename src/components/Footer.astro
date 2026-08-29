@@ -3,14 +3,21 @@ const today = new Date();
 ---
 
 <footer>
-  &copy; {today.getFullYear()} Liza - Frontend Cozy Corner
+  <span>&copy; {today.getFullYear()} Liza - Frontend Cozy Corner</span>
+  <span
+    ><a href="/rss.xml">RSS</a>&#183;<a
+      href="https://linkedin.com/in/lizatymoshenko">LinkedIn</a
+    >
+  </span>
 </footer>
 <style>
   footer {
     padding: 2em 1em 2em 1em;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    background: var(--bg-color);
     color: rgb(var(--gray));
     text-align: center;
     font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
   }
 </style>
