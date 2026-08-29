@@ -218,14 +218,6 @@ hr {
   white-space: nowrap;
 }
 
-footer {
-  margin-top: auto;
-  padding: 1em;
-  background: var(--accent);
-  color: white;
-  text-align: center;
-}
-
 .code {
   margin-bottom: 5rem;
 }

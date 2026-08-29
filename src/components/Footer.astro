@@ -12,12 +12,16 @@ const today = new Date();
 </footer>
 <style>
   footer {
-    padding: 2em 1em 2em 1em;
     background: var(--bg-color);
-    color: rgb(var(--gray));
-    text-align: center;
-    font-size: 0.8rem;
+    color: rgba(var(--text-primary), 0.7);
+    font-size: var(--t-meta);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: min(100% - 3rem, 44rem);
+    margin-inline: auto;
+    padding: 1.6rem 0;
   }
 </style>
