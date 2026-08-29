@@ -31,7 +31,6 @@ const posts = (await getCollection("blog")).sort(
             Half-formed thoughts about building for the web, finished just
             enough to be published.
           </p>
-          <p class="byline">By Liza. <a href="/about">More about me</a></p>
         </div>
         <ol class="posts" role="list">
           {
@@ -111,20 +110,6 @@ const posts = (await getCollection("blog")).sort(
     max-width: 45ch;
     font-weight: 400;
   }
-  .byline {
-    margin: 1.5rem 0 0;
-    font-family: "Raleway", system-ui, sans-serif;
-    font-size: var(--t-meta);
-  }
-  .byline a {
-    color: var(--accent-text);
-    text-underline-offset: 0.02em;
-  }
-
-  .byline a:hover {
-    color: var(--accent-text-hover);
-  }
-
   .posts {
     grid-column: 1 / span 2;
     list-style: none;

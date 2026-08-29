@@ -80,7 +80,6 @@ body {
 }
 
 main {
-  margin-top: 111px;
   padding-block: 2em;
   flex: 1;
 }
@@ -190,14 +189,6 @@ blockquote {
 hr {
   border: none;
   border-top: 1px solid var(--secondary);
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 18px;
-  }
-  main {
-    padding: 1em;
-  }
 }
 
 .sr-only {
