@@ -15,16 +15,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        height: 100%;
-        width: 100%;
+        height: 56vh;
+        width: min(100% - 2 * var(--gutter), var(--shell));
         align-items: center;
         justify-content: center;
         text-align: center;
       }
-      @media (max-width: 520px) {
-        .title {
-          font-size: 30px;
-        }
+      .plants-wrapper .title {
+        font-size: var(--t-display);
+        line-height: var(--lh-display);
+        max-width: 22ch;
+        margin: 0;
       }
     </style></head
   >

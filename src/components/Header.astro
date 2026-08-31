@@ -6,7 +6,7 @@ import { SITE_TITLE } from "../consts";
 ---
 
 <header>
-  <nav>
+  <nav aria-label="Primary">
     <a href="/" class="logo-link" aria-label={SITE_TITLE}>
       <Logo />
     </a>
@@ -78,7 +78,6 @@ import { SITE_TITLE } from "../consts";
     left: 0;
     right: 0;
     background-color: var(--bg-primary);
-    z-index: 100;
     padding-block: 1.1rem;
   }
   .logo-link {

@@ -42,7 +42,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 
 	<body>
 		<Header />
-		<main>
+		<main id="main">
 			<article>
 				<div class="prose">
 					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
