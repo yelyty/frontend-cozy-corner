@@ -30,6 +30,18 @@
   --lh-display: 1.15;
 
   --measure: 44rem;
+  --gutter: 1.5rem;
+  --shell: 44rem;
+
+  /* Spacing */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
 }
 
 @media (prefers-color-scheme: dark) {
