@@ -72,6 +72,11 @@ const latestPost = (await getCollection("blog"))
   </body>
 </html>
 <style>
+  .hero,
+  .layout > :global(.plant-divider) {
+    grid-column: 1 / span 2;
+  }
+
   .hero h1 {
     margin: 0;
     font-size: var(--t-display);
@@ -79,6 +84,7 @@ const latestPost = (await getCollection("blog"))
     font-weight: 700;
     letter-spacing: -0.015em;
     text-wrap: balance;
+    max-width: 36rem;
   }
 
   .hero-title .accent {
@@ -90,7 +96,7 @@ const latestPost = (await getCollection("blog"))
     line-height: var(--lh-body);
     text-wrap: pretty;
     color: rgba(var(--text-primary), 0.8);
-    max-width: var(--measure);
+    max-width: 25rem;
     margin: 1rem 0 0;
   }
 
@@ -176,15 +182,11 @@ const latestPost = (await getCollection("blog"))
     color: var(--accent-text-hover);
   }
 
-  @media (max-width: 520px) {
-    .posts-section {
-      padding: 2rem 0 2.5rem;
-    }
-    .posts-head {
-      margin-bottom: 1rem;
-    }
-    .post-card {
-      padding: 1rem 1.1rem;
+  @media (max-width: 58rem) {
+    .hero,
+    .posts,
+    .layout > :global(.plant-divider) {
+      grid-column: 1;
     }
   }
 </style>
