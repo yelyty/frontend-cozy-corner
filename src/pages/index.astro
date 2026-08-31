@@ -64,7 +64,6 @@ const latestPost = (await getCollection("blog"))
           }
         </ol>
         <Divider />
-        <SocialLinks />
       </div>
     </main>
     <CozyCorner />
@@ -158,12 +157,13 @@ const latestPost = (await getCollection("blog"))
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1rem;
+    grid-column: 1 / span 2;
   }
 
   .posts-title {
-    font-size: 21px;
-    font-weight: 500;
+    font-size: var(--t-title);
+    font-weight: 600;
     color: rgb(var(--text-primary));
     margin: 0;
   }
@@ -185,6 +185,7 @@ const latestPost = (await getCollection("blog"))
   @media (max-width: 58rem) {
     .hero,
     .posts,
+    .posts-head,
     .layout > :global(.plant-divider) {
       grid-column: 1;
     }
