@@ -31,7 +31,11 @@ import Footer from "../components/Footer.astro";
             <img
               class="profile-photo"
               src={profilePhoto.src}
+              width={profilePhoto.width}
+              height={profilePhoto.height}
               alt="Portrait of Liza"
+              decoding="async"
+              loading="lazy"
             />
           </div>
           <p>

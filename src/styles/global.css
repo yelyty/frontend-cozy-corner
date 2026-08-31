@@ -183,7 +183,7 @@ img {
 }
 code {
   padding: 2px 5px;
-  background-color: rgba(var(--secondary-rgb, 0.3));
+  background-color: rgba(var(--secondary-rgb), 0.3);
   border-radius: 2px;
   font-size: 0.9em;
 }
@@ -286,4 +286,12 @@ header {
 
 [data-scrolled] header {
 	border-bottom-color: var(--line);
+}
+
+footer a, .posts-all, .all-posts, .tail-actions a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 24px;
+	min-width: 24px;
 }
