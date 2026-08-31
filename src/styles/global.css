@@ -28,6 +28,8 @@
   --lh-small: 1.5;
   --lh-title: 1.36;
   --lh-display: 1.15;
+
+  --measure: 44rem;
 }
 
 @media (prefers-color-scheme: dark) {

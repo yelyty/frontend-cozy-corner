@@ -15,20 +15,20 @@ import { SITE_TITLE } from "../consts";
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Writings</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
-      <div class="nav-controls">
-        <ThemeToggle />
-        <button
-          class="burger"
-          id="burger"
-          aria-label="Open menu"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+    </div>
+    <div class="nav-controls">
+      <ThemeToggle />
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
@@ -111,6 +111,7 @@ import { SITE_TITLE } from "../consts";
     gap: 0.2em;
     font-family: "Raleway", system-ui, sans-serif;
     font-size: var(--t-small);
+    margin-left: auto;
   }
 
   .menu a {
@@ -214,6 +215,9 @@ import { SITE_TITLE } from "../consts";
     }
     .menu a.active {
       background: transparent;
+    }
+    .logo {
+      height: 44px;
     }
   }
 </style>

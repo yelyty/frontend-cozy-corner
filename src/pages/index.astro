@@ -8,6 +8,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import SocialLinks from "../components/SocialLinks.astro";
 import Tag from "../components/Tag.astro";
 import CozyCorner from "../components/CozyCorner.astro";
+import { getCollection } from "astro:content";
+
+const latestPost = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 1);
 ---
 
 <!doctype html>
@@ -17,65 +22,69 @@ import CozyCorner from "../components/CozyCorner.astro";
   </head>
   <body>
     <Header />
-    <main>
-      <section class="hero">
-        <h1 class="hero-title">
-          I build <span class="accent">cozy</span> and <span class="accent"
-            >fun
-          </span> interfaces
-        </h1>
-        <p class="hero-sub">
-          Hi, I'm Liza. I make things for the web, and try to write about it as
-          I go.
-        </p>
-        <div class="hero-ctas">
-          <a href="/blog" class="cta cta-primary"
-            >Read my writings <ArrowRight width="16" />
-          </a>
-          <a href="/about" class="cta cta-outlined">About</a>
-        </div>
-      </section>
-      <Divider />
-      <section class="posts-section">
-        <div class="posts-head">
-          <h2 class="posts-title">Latest writing</h2>
-          <a href="/blog" class="posts-all"
-            >All posts <ArrowRight width="16" /></a
-          >
-        </div>
+    <main class="shell">
+      <div class="layout">
+        <section class="hero">
+          <h1 class="hero-title">
+            I build <span class="accent">cozy</span> and <span class="accent"
+              >fun
+            </span> interfaces
+          </h1>
+          <p class="hero-sub">
+            Hi, I'm Liza. I make things for the web, and try to write about it
+            as I go.
+          </p>
+          <div class="hero-ctas">
+            <a href="/blog" class="cta cta-primary"
+              >Read my writings <ArrowRight width="16" />
+            </a>
+            <a href="/about" class="cta cta-outlined">About</a>
+          </div>
+        </section>
+        <Divider />
+        <section class="posts-section">
+          <div class="posts-head">
+            <h2 class="posts-title">Latest writing</h2>
+            <a href="/blog" class="posts-all"
+              >All posts <ArrowRight width="16" /></a
+            >
+          </div>
 
-        <div class="posts-list">
-          <a class="post-card" href="/blog/forgotten-states-part-1/">
-            <div class="post-meta">
-              <span class="post-date">Jul 28</span>
-              <Tag size="small">HTML & CSS</Tag>
-            </div>
-            <h3 class="post-card-title">
-              Forgotten states: a reminder for pet projects (part 1)
-            </h3>
-            <p class="post-excerpt">
-              Small details that you may miss in your personal projects
-            </p>
-          </a>
-        </div>
-      </section>
-      <Divider />
-      <SocialLinks />
+          <div class="posts-list">
+            <a class="post-card" href="/blog/forgotten-states-part-1/">
+              <div class="post-meta">
+                <span class="post-date">Jul 28</span>
+                <Tag size="small">HTML & CSS</Tag>
+              </div>
+              <h3 class="post-card-title">
+                Forgotten states: a reminder for pet projects (part 1)
+              </h3>
+              <p class="post-excerpt">
+                Small details that you may miss in your personal projects
+              </p>
+            </a>
+          </div>
+        </section>
+        <Divider />
+        <SocialLinks />
+      </div>
     </main>
     <CozyCorner />
     <Footer />
   </body>
 </html>
 <style>
-  .divider {
-    border-top-color: var(--accent);
-    margin-top: 3rem;
-  }
   .hero {
-    text-align: center;
-    padding: 3rem 2rem 3.5rem;
-    /* max-width: 600px; */
-    margin: 0 auto;
+    grid-column: 2;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-size: var(--t-display);
+    line-height: var(--lh-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
   }
 
   .hero-title .accent {
@@ -83,50 +92,53 @@ import CozyCorner from "../components/CozyCorner.astro";
   }
 
   .hero-sub {
-    font-size: 18px;
+    font-size: var(--t-body);
+    line-height: var(--lh-body);
+    text-wrap: pretty;
     color: rgba(var(--text-primary), 0.8);
-    max-width: 34ch;
-    margin: 0 auto 1.75rem;
-    line-height: 1.6;
+    max-width: var(--measure);
+    margin: 1rem 0 0;
   }
 
   .hero-ctas {
     display: flex;
-    gap: 12px;
-    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
     flex-wrap: wrap;
+    margin: 2rem 0 0;
   }
 
   .cta {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    font-family: "Raleway", system-ui, sans-serif;
     padding: 9px 18px;
     border-radius: 999px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: var(--t-small);
     transition: all 0.25s ease;
   }
 
   .cta-primary {
-    background: var(--accent);
+    background: var(--accent-dark);
     color: var(--bg-primary);
   }
 
   .cta-primary:hover {
-    background: var(--accent-dark);
+    background: var(--accent-text-hover);
     transform: translateY(-2px);
   }
 
   .cta-outlined {
     background: transparent;
-    border: 1px solid rgba(var(--text-primary), 0.2);
+    border: 1px solid rgba(var(--text-primary), 0.35);
     color: rgb(var(--text-primary));
   }
 
   .cta-outlined:hover {
-    border-color: var(--accent);
-    color: var(--accent-text-hover);
+    border-color: var(--accent-text);
+    color: var(--accent-text);
     transform: translateY(-2px);
   }
 
