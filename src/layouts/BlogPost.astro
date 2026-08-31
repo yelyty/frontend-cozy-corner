@@ -103,6 +103,9 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			}
 			.prose > :global(:where(p, ul, ol, blockquote)) {
 				max-width: var(--measure);
+				text-align: justify;
+				text-justify: inter-word;
+				hyphens: auto;
 			}
 		 .prose :global(li)::marker {
     color: var(--accent-text);
