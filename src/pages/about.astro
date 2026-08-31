@@ -7,6 +7,8 @@ import Tag from "../components/Tag.astro";
 import { SITE_TITLE } from "../consts";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
+import CozyCorner from "../components/CozyCorner.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -19,131 +21,143 @@ import Header from "../components/Header.astro";
   </head>
   <body>
     <Header />
-    <main class="shell">
-      <div class="hero">
-        <h1>Frontend by choice, backend when asked</h1>
-      </div>
-      <div class="profile">
-        <div class="profile-photo-frame">
-          <img
-            class="profile-photo"
-            src={profilePhoto.src}
-            alt="Portrait of Liza"
-          />
+    <main class="shell" id="main">
+      <div class="layout">
+        <div class="hero">
+          <h1>Frontend by choice, backend when asked</h1>
         </div>
-        <p>
-          Hi, I am Liza, a software engineer with over 6 years of experience in
-          the industry. While working both on frontend and backend, I love and
-          enjoy frontend the most. That's the reason I started that humble blog.
-          When I'm not coding, you can find me hiking in the mountains, reading
-          literature, or exploring new places.
-        </p>
-      </div>
-      <section class="timeline-section">
-        <h2 class="section-label">Things I've professionally worked on</h2>
-
-        <div class="timeline">
-          <article class="stop">
-            <span class="dot"></span>
-            <div class="when">Where it started</div>
-            <h3>A social app for sport clubs</h3>
-            <p>
-              Web application that helps users to find and join different sport
-              events in the city, to meet like-minded people for sport
-              activities, with a built-in attendance system for event
-              organizers.
-            </p>
-            <ul class="achievements-list">
-              <li>Built the social feed</li>
-              <li>Blog UI for articles</li>
-              <li>
-                Built a personal profile with an achievements & results
-                dashboard
-              </li>
-              <li>Maintained existing features</li>
-            </ul>
-            <div>
-              <Tag size="large">React</Tag>
-              <Tag size="large">JavaScript</Tag>
-              <Tag size="large">Sass</Tag>
-              <Tag size="large">Bootstrap</Tag>
-              <Tag size="large">Redux</Tag>
-              <Tag size="large">Apollo</Tag>
-              <Tag size="large">GraphQL</Tag>
-            </div>
-          </article>
-
-          <article class="stop">
-            <span class="dot"></span>
-            <div class="when">Then</div>
-            <h3>To the railways</h3>
-            <p>
-              Green-field project. A custom service-center platform for the
-              railway industry, where manufacturers and their customers share
-              one system to track equipment, schedule service, and file warranty
-              claims.
-            </p>
-            <ul class="achievements-list">
-              <li>Front-end setup</li>
-              <li>Build a lot of tables and long forms</li>
-              <li>And, of course, dashboards</li>
-            </ul>
-            <a
-              class="project-link"
-              href="https://astrumq.com/jak-jsme-vyvijeli-webovy-system-a-design-aplikace-pro-lokomotivy-cz-loko/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read the case study <ArrowRight width="16" />
-            </a>
-            <div>
-              <Tag size="large">React</Tag>
-              <Tag size="large">JavaScript</Tag>
-              <Tag size="large">Redux</Tag>
-              <Tag size="large">And definetely something else I forgot</Tag>
-            </div>
-          </article>
-
-          <article class="stop">
-            <span class="dot"></span>
-            <div class="when">Where I am now</div>
-            <h3>Senior care</h3>
-            <p>
-              An American startup connecting senior-care providers with
-              families. The whole projects consists of a few clients, and I have
-              been personally working on the following:
-            </p>
-            <p>
-              React Web application with messaging and administrative features.
-            </p>
-            <p>React Native mobile app for iOS and Android</p>
-            <p>
-              NextJs web app and React Native app for Android TV that provide
-              Digital Signage features
-            </p>
-            <div>
-              <Tag size="large">NextJs</Tag>
-              <Tag size="large">Tailwind</Tag>
-              <Tag size="large">React</Tag>
-              <Tag size="large">React Native</Tag>
-              <Tag size="large">TypeScript</Tag>
-              <Tag size="large">MUI</Tag>
-              <Tag size="large">Urql</Tag>
-              <Tag size="large">Storybook</Tag>
-            </div>
-          </article>
+        <div class="profile">
+          <div class="profile-photo-frame">
+            <img
+              class="profile-photo"
+              src={profilePhoto.src}
+              alt="Portrait of Liza"
+            />
+          </div>
+          <p>
+            Hi, I am Liza, a software engineer with over 6 years of experience
+            in the industry. While working both on frontend and backend, I love
+            and enjoy frontend the most. That's the reason I started that humble
+            blog. When I'm not coding, you can find me hiking in the mountains,
+            reading literature, or exploring new places.
+          </p>
         </div>
-      </section>
-      <Divider />
-      <div class="social-links-wrapper">
-        <h2 class="social-title">See also</h2>
-        <SocialLinks />
+        <section class="timeline-section">
+          <h2 class="section-label">Things I've professionally worked on</h2>
+
+          <div class="timeline">
+            <article class="stop">
+              <span class="dot"></span>
+              <div class="when">Where it started</div>
+              <h3>A social app for sport clubs</h3>
+              <p>
+                Web application that helps users to find and join different
+                sport events in the city, to meet like-minded people for sport
+                activities, with a built-in attendance system for event
+                organizers.
+              </p>
+              <ul class="achievements-list">
+                <li>Built the social feed</li>
+                <li>Blog UI for articles</li>
+                <li>
+                  Built a personal profile with an achievements & results
+                  dashboard
+                </li>
+                <li>Maintained existing features</li>
+              </ul>
+              <div>
+                <Tag size="large">React</Tag>
+                <Tag size="large">JavaScript</Tag>
+                <Tag size="large">Sass</Tag>
+                <Tag size="large">Bootstrap</Tag>
+                <Tag size="large">Redux</Tag>
+                <Tag size="large">Apollo</Tag>
+                <Tag size="large">GraphQL</Tag>
+              </div>
+            </article>
+
+            <article class="stop">
+              <span class="dot"></span>
+              <div class="when">Then</div>
+              <h3>To the railways</h3>
+              <p>
+                Green-field project. A custom service-center platform for the
+                railway industry, where manufacturers and their customers share
+                one system to track equipment, schedule service, and file
+                warranty claims.
+              </p>
+              <ul class="achievements-list">
+                <li>Front-end setup</li>
+                <li>Build a lot of tables and long forms</li>
+                <li>And, of course, dashboards</li>
+              </ul>
+              <a
+                class="project-link"
+                href="https://astrumq.com/jak-jsme-vyvijeli-webovy-system-a-design-aplikace-pro-lokomotivy-cz-loko/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the case study <ArrowRight width="16" />
+              </a>
+              <div>
+                <Tag size="large">React</Tag>
+                <Tag size="large">JavaScript</Tag>
+                <Tag size="large">Redux</Tag>
+                <Tag size="large">And definetely something else I forgot</Tag>
+              </div>
+            </article>
+
+            <article class="stop">
+              <span class="dot"></span>
+              <div class="when">Where I am now</div>
+              <h3>Senior care</h3>
+              <p>
+                An American startup connecting senior-care providers with
+                families. The whole projects consists of a few clients, and I
+                have been personally working on the following:
+              </p>
+              <p>
+                React Web application with messaging and administrative
+                features.
+              </p>
+              <p>React Native mobile app for iOS and Android</p>
+              <p>
+                NextJs web app and React Native app for Android TV that provide
+                Digital Signage features
+              </p>
+              <div>
+                <Tag size="large">NextJs</Tag>
+                <Tag size="large">Tailwind</Tag>
+                <Tag size="large">React</Tag>
+                <Tag size="large">React Native</Tag>
+                <Tag size="large">TypeScript</Tag>
+                <Tag size="large">MUI</Tag>
+                <Tag size="large">Urql</Tag>
+                <Tag size="large">Storybook</Tag>
+              </div>
+            </article>
+          </div>
+        </section>
+        <Divider />
+        <div class="social-links-wrapper">
+          <h2 class="social-title">See also</h2>
+          <SocialLinks />
+        </div>
       </div>
     </main>
+    <CozyCorner />
+    <Footer />
   </body>
 </html>
 
 <style>
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .layout > :global(*) {
+    grid-column: 1;
+  }
   .project-link {
     display: inline-block;
     margin-bottom: 2rem;
@@ -185,8 +199,10 @@ import Header from "../components/Header.astro";
     align-items: center;
   }
   .social-title {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
+    font-size: var(--t-section);
+    line-height: var(--t-title);
+    font-weight: 700;
+    margin: 0 0 var(--s-2);
   }
   .timeline {
     position: relative;
@@ -195,8 +211,11 @@ import Header from "../components/Header.astro";
   .section-label {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 20px;
+    gap: var(--s-2);
+    font-size: var(--t-section);
+    line-height: var(--lh-section);
+    font-weight: 700;
+    margin: 0 0 var(--s-5);
   }
 
   .section-label::after {
@@ -296,5 +315,31 @@ import Header from "../components/Header.astro";
   .hero {
     text-align: left;
     margin: 0;
+  }
+  .hero h1 {
+    font-size: var(--t-display);
+    line-height: var(--lh-display);
+    max-width: 22ch;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .layout a {
+    color: var(--accent-text);
+    text-decoration: none;
+    background-color: linean-gradient(var(--accent), var(--accent)) no-repeat 0
+      100% / 0% 1.5px;
+    transition: background-size 0.3s ease;
+    padding-bottom: 20px;
+  }
+
+  .layout a:hover {
+    background-size: 100% 1.5px;
+  }
+
+  .profile p,
+  .stop > p,
+  .achievements-list {
+    max-width: var(--measure);
   }
 </style>

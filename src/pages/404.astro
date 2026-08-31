@@ -14,12 +14,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       .plants-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
-        height: 56vh;
+        gap: var(--s-6);
+        min-height: 56vh;
         width: min(100% - 2 * var(--gutter), var(--shell));
         align-items: center;
         justify-content: center;
         text-align: center;
+        margin-inline: auto;
       }
       .plants-wrapper .title {
         font-size: var(--t-display);

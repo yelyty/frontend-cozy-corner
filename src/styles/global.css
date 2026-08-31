@@ -22,6 +22,7 @@
   --t-small: 1rem;
   --t-body: 1.25rem;
   --t-title: 1.5625rem;
+  --t-section: 1.953rem;
   --t-display: clamp(2.25rem, 6vw, 3.05rem);
 
   --lh-body: 1.6;
@@ -29,7 +30,7 @@
   --lh-title: 1.36;
   --lh-display: 1.15;
 
-  --measure: 44rem;
+  --measure: 34rem;
   --gutter: 1.5rem;
   --shell: 44rem;
 
@@ -105,7 +106,7 @@ main {
   display: grid;
   grid-template-columns: 8rem minmax(0, 34rem);
   column-gap: 2rem;
-  width: min(100% - 3rem, 44rem);
+  width: min(100% - 2 * var(--gutter), var(--shell));
   margin-inline: auto;
   padding-block: 4rem 5rem;
 }
@@ -167,7 +168,7 @@ p {
   margin-bottom: 1em;
 }
 .prose p {
-  margin-bottom: 2em;
+  margin-bottom: 1.5rem;
 }
 button,
 input,
@@ -276,13 +277,6 @@ svg text {
 		padding-block: 2.5rem 3rem;
 	}
 	.layout > * {grid-column: 1;}
-}
-
-@media(max-width: 26rem) {
-	.layout, body > header nav,
-	footer > div {
-		width: min(100% - 1.5rem, 44rem);
-	}
 }
 
 header {

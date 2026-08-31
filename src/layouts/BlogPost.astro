@@ -83,7 +83,6 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				display: flex;
 				flex-direction: column;
 				min-height: 100vh;
-				font-size-adjust: 0.44;
 			}
 
 			main {
@@ -92,10 +91,9 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				flex-direction: column;
 				width:100%;
 				margin: 0;
-				/* margin-top: 111px;	 */
 			}
 			.prose {
-				width: min(100% - 3rem, 44rem);
+				width: min(100% - 2 * var(--gutter), var(--shell));
 				margin-inline: auto;
 				padding: 0;
 				color: rgb(var(--text-primary));
@@ -103,16 +101,17 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				text-wrap: pretty;
 				hyphens: auto;
 			}
-			.prose > * {
+			.prose > :global(:where(p, ul, ol, blockquote)) {
 				max-width: var(--measure);
 			}
-			.prose p {
-				margin: 0 0 1.15rem;
-			}
-
 		 .prose :global(li)::marker {
     color: var(--accent-text);
   }
+  .title, .prose :global(:where(h2,h3,h4)){
+	hyphens: manual;
+	text-wrap: balance;
+  }
+
 			.title {
 				padding: 1rem 0;
 				line-height: 1;
@@ -125,13 +124,13 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				max-width: 22ch;
 
 			}
-			.prose :global(h2){
+			.prose :global(:where(h2,h3)){
 				font-weight: 700;
 				letter-spacing: -0.015rem;
 				text-align: left;
 				font-size: var(--t-title);
 				line-height: var(--lh-title);
-				margin 2.2em 0 0.5em;
+				margin var(--s-7) 0 var(--s-3);
 			}
 .prose a {
     color: var(--accent-text);
