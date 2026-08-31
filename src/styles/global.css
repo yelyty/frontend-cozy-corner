@@ -38,7 +38,7 @@
     --accent: #d18787;
     --accent-text: #d18787;
     --accent-text-hover: #e8adad;
-    --accent-dark: #a65c5c;
+    --accent-dark: #c47a7a;
     --secondary: #cc8f6d;
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
@@ -51,7 +51,7 @@
   --accent: #d18787;
   --accent-text: #d18787;
   --accent-text-hover: #e8adad;
-  --accent-dark: #a65c5c;
+  --accent-dark: #c47a7a;
   --secondary: #cc8f6d;
   --secondary-rgb: 204, 143, 109;
   --bg-tint: #2b2521;
@@ -98,9 +98,17 @@ main {
   padding-block: 4rem 5rem;
 }
 
+.layout > * {
+	grid-column: 2;
+}
+
 :where(a, button):focus-visible {
   outline: 2px solid var(--accent-text);
   outline-offset: 3px;
+}
+
+:where(a, button):active {
+  transform: translateY(1px);
 }
 
 h1,
