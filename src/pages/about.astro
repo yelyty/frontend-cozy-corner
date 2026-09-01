@@ -16,7 +16,7 @@ import Footer from "../components/Footer.astro";
   <head>
     <BaseHead
       title={`About | ${SITE_TITLE}`}
-      description="Learn more about me, the author of this blog. Software engineer with 6+ years across frontend and backend, happiest in the frontend and pretty UIs"
+      description="Software engineer with 6+ years across frontend and backend, happiest in the frontend and pretty UIs"
     />
   </head>
   <body>
@@ -33,27 +33,33 @@ import Footer from "../components/Footer.astro";
               src={profilePhoto.src}
               width={profilePhoto.width}
               height={profilePhoto.height}
-              alt="Portrait of Liza"
+              alt="Illustrated portrait of Liza"
               decoding="async"
               loading="lazy"
             />
           </div>
-          <p>
-            Hi, I am Liza, a software engineer with over 6 years of experience
-            in the industry. While working both on frontend and backend, I love
-            and enjoy frontend the most. That's the reason I started that humble
-            blog. When I'm not coding, you can find me hiking in the mountains,
-            reading literature, or exploring new places.
-          </p>
+          <div class="profile-text">
+            <p class="profile-lede">
+              Hi, I am Liza, a software engineer with over 6 years of experience
+              in the industry. While working both on frontend and backend, I
+              love and enjoy frontend the most. That's the reason I started that
+              humble blog.
+            </p>
+            <p class="profile-aside">
+              When I'm not coding, you can find me hiking in the mountains,
+              reading literature, or exploring new places.
+            </p>
+          </div>
         </div>
         <section class="timeline-section">
-          <h2 class="section-label">Things I've professionally worked on</h2>
+          <h2 class="section-label">Where I've been</h2>
 
           <div class="timeline">
             <article class="stop">
               <span class="dot"></span>
-              <div class="when">Where it started</div>
+
               <h3>A social app for sport clubs</h3>
+              <p class="when">Where it started</p>
               <p>
                 Web application that helps users to find and join different
                 sport events in the city, to meet like-minded people for sport
@@ -144,7 +150,10 @@ import Footer from "../components/Footer.astro";
         </section>
         <Divider />
         <div class="social-links-wrapper">
-          <h2 class="social-title">See also</h2>
+          <h2 class="social-title">Get in touch</h2>
+          <p class="social-note">
+            LinkedIn is where I answer. Github is where the code lives
+          </p>
           <SocialLinks />
         </div>
       </div>
@@ -168,8 +177,9 @@ import Footer from "../components/Footer.astro";
   }
   .profile {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
+    align-items: flex-start;
+    gap: var(--s-5);
+    margin-bottom: var(--s-8);
   }
   .profile-photo-frame {
     flex-shrink: 0;
@@ -240,7 +250,7 @@ import Footer from "../components/Footer.astro";
 
   .stop {
     position: relative;
-    margin-bottom: 2.2rem;
+    margin-bottom: var(--s-7);
   }
 
   .stop:last-child {
@@ -318,8 +328,9 @@ import Footer from "../components/Footer.astro";
   }
   .hero {
     text-align: left;
-    margin: 0;
+    margin: 0 0 var(--s-7);
   }
+
   .hero h1 {
     font-size: var(--t-display);
     line-height: var(--lh-display);
@@ -345,5 +356,26 @@ import Footer from "../components/Footer.astro";
   .stop > p,
   .achievements-list {
     max-width: var(--measure);
+  }
+
+  .profile-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .profile-lede {
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  .profile-aside {
+    margin: var(--s-4) 0 0;
+    color: rgba(var(--text-primary), 0.8);
+    font-style: italic;
+    line-height: 1.75;
+  }
+
+  .social-note {
+    margin: 0 0 var(--s-4);
+    color: rgba(var(--text-primary), 0.8);
   }
 </style>
