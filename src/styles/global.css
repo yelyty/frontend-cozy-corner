@@ -12,6 +12,7 @@
   --secondary-rgb: 255, 191, 155;
   --text-primary: 59, 46, 40;
   --bg-tint: #f9ead2;
+  --bg-floor: rgba(180,96,96,0.11);
   --corner-w: 0rem;
   --plant-max: 18rem;
 
@@ -56,6 +57,7 @@
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
     --bg-tint: #2b2521;
+	--bg-floor: rgba(209, 135,135,0.09);
   }
 }
 
@@ -69,6 +71,7 @@
   --secondary-rgb: 204, 143, 109;
   --bg-tint: #2b2521;
   --text-primary: 230, 220, 210;
+  	--bg-floor: rgba(209, 135,135,0.09);
 }
 
 html {
@@ -178,6 +181,7 @@ textarea {
 }
 img {
   max-width: 100%;
+
   height: auto;
   border-radius: 8px;
 }

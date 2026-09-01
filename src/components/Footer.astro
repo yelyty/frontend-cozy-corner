@@ -1,27 +1,166 @@
 ---
+import RssSimpleBold from "phosphor-astro/RssSimpleBold.astro";
+import LinkedinLogoBold from "phosphor-astro/LinkedinLogoBold.astro";
+import PlantSprout from "./PlantSprout.astro";
 const today = new Date();
 ---
 
-<footer>
-  <span>&copy; {today.getFullYear()} Liza - Frontend Cozy Corner</span>
-  <span
-    ><a href="/rss.xml">RSS</a>&#183;<a
-      href="https://linkedin.com/in/lizatymoshenko">LinkedIn</a
-    >
-  </span>
+<footer class="site-footer">
+  <div class="inner">
+    <span class="sprig"><PlantSprout /></span>
+    <p class="signoff">Thanks for stopping by the corner.</p>
+    <p class="signoff-sub">Take the feed with you, or find me on LinkedIn</p>
+    <div class="ways">
+      <nav class="pages" aria-label="footer">
+        <a href="/">Home</a>
+        <a href="/blog">Writings</a>
+        <a href="/about">About</a>
+      </nav>
+
+      <div class="elsewhere">
+        <a class="pill" href="/rss.xml"
+          ><RssSimpleBold width="16" height="16" /> RSS</a
+        >
+        <a
+          class="pill"
+          href="https://linkedin.com/in/lizatymoshenko"
+          target="_blank"
+          rel="noopener"><LinkedinLogoBold width="16" height="16" />LinkedIn</a
+        >
+      </div>
+    </div>
+    <div class="fineprint">
+      <span>&copy; {today.getFullYear()} Liza - Frontend Cozy Corner</span>
+      <span>Built with Astro.</span>
+    </div>
+  </div>
 </footer>
 <style>
-  footer {
-    background: var(--bg-color);
-    color: rgba(var(--text-primary), 0.7);
-    font-size: var(--t-meta);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .site-footer {
+    background: var(--bg-floor);
+    border-top: 1px solid var(--line);
+    color: rgba(var(--text-primary), 0.8);
+  }
+  .inner {
     width: min(100% - 3rem, 44rem);
     margin-inline: auto;
-    padding: 1.6rem 0;
+    padding-block: 3rem 2.25rem;
+  }
+
+  .sprig {
+    display: block;
+    width: 20px;
+    height: 26px;
+    margin-bottom: 1.1rem;
+  }
+
+  .signoff {
+    margin: 0;
+    font-size: var(--t-title);
+    text-wrap: balance;
+    line-height: var(--lh-title);
+    color: rgb(var(--text-primary));
+  }
+
+  .signoff-sub {
+    margin: 0.5rem 0 0;
+    max-width: 30rem;
+    font-size: var(--t-small);
+    line-height: var(--lh-small);
+    color: rgba(var(--text-primary), 0.8);
+    text-wrap: pretty;
+  }
+
+  .ways {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .pages,
+  .elsewhere {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pages {
+    margin-left: -0.7rem;
+  }
+
+  .pages a {
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: var(--t-small);
+    font-weight: 600;
+    color: rgba(var(--text-primary), 0.85);
+    text-decoration: none;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .pages a:hover {
+    background: rgba(var(--text-primary), 0.06);
+    color: rgb(var(--text-primary));
+    text-decoration: none;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--text-primary), 0.2);
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: 14px;
+    color: rgb(var(--text-primary));
+    text-decoration: none;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .pill :global(svg) {
+    flex: none;
+    color: var(--accent-text);
+    transition: color 0.25s ease;
+  }
+
+  .pill:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+  }
+
+  .pill:hover :global(svg) {
+    color: var(--bg-primary);
+  }
+
+  .fineprint {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: var(--t-meta);
+    letter-spacing: 0.02rem;
+    color: rgba(var(--text-primary), 0.75);
+  }
+  @media (max-width: 34rem) {
+    .ways {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
