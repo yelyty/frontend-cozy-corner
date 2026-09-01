@@ -1,0 +1,28 @@
+---
+import PlantsWithGooglyEyes from "./PlantsWithGooglyEyes.astro";
+---
+
+<div class="corner">
+  <PlantsWithGooglyEyes position="static" />
+</div>
+<style>
+  .corner {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1;
+    width: min(calc(var(--corner-w) - 3rem), var(--plant-max));
+    pointer-events: none;
+  }
+
+  .corner :global(.banana-decoration) {
+    width: 100%;
+  }
+  @media (max-width: 74.9375rem) {
+    .corner {
+      position: static;
+      width: 8rem;
+      margin: 3rem auto 0;
+    }
+  }
+</style>

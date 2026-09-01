@@ -2,25 +2,26 @@
 import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Logo from "./Logo.astro";
+import { SITE_TITLE } from "../consts";
 ---
 
 <header>
-  <nav>
-    <a href="/" class="logo-link">
+  <nav aria-label="Primary">
+    <a href="/" class="logo-link" aria-label={SITE_TITLE}>
       <Logo />
     </a>
 
     <div class="menu" id="nav-menu">
       <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/blog">Writings</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
     </div>
-
     <div class="nav-controls">
       <ThemeToggle />
       <button
         class="burger"
         id="burger"
+        type="button"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="nav-menu"
@@ -30,72 +31,109 @@ import Logo from "./Logo.astro";
         <span></span>
       </button>
     </div>
+    <div class="progress" aria-hidden="true"></div>
   </nav>
 
   <script type="module" is:inline>
-    const burger = document.getElementById("burger");
-    const navMenu = document.getElementById("nav-menu");
+    function initMenu() {
+      const burger = document.getElementById("burger");
+      const navMenu = document.getElementById("nav-menu");
 
-    function setMenu(open) {
       if (!burger || !navMenu) return;
-      burger.setAttribute("aria-expanded", String(open));
-      burger.classList.toggle("open", open);
-      navMenu.classList.toggle("open", open);
-    }
 
-    burger?.addEventListener("click", () => {
-      const isOpen = burger.getAttribute("aria-expanded") === "true";
-      setMenu(!isOpen);
-    });
-    document.addEventListener("click", (e) => {
-      if (burger?.getAttribute("aria-expanded") !== "true") return;
-      if (!navMenu?.contains(e.target) && !burger?.contains(e.target)) {
-        setMenu(false);
+      function setMenu(open) {
+        burger.setAttribute("aria-expanded", String(open));
+        burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        burger.classList.toggle("open", open);
+        navMenu.classList.toggle("open", open);
+        if (open) navMenu.querySelector("a")?.focus();
       }
-    });
-    navMenu
-      ?.querySelectorAll("a")
-      .forEach((link) => link.addEventListener("click", () => setMenu(false)));
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setMenu(false);
-    });
+
+      burger.addEventListener("click", () => {
+        setMenu(burger.getAttribute("aria-expanded") !== "true");
+      });
+      document.addEventListener("click", (e) => {
+        if (burger.getAttribute("aria-expanded") !== "true") return;
+        if (!navMenu?.contains(e.target) && !burger.contains(e.target)) {
+          setMenu(false);
+        }
+      });
+      navMenu
+        ?.querySelectorAll("a")
+        .forEach((link) =>
+          link.addEventListener("click", () => setMenu(false)),
+        );
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setMenu(false);
+      });
+    }
+    document.addEventListener("astro:page-load", initMenu);
   </script>
 </header>
 
 <style>
   header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
-    background: var(--bg-primary);
+    right: 0;
+    background-color: var(--bg-primary);
+    padding-block: 1.1rem;
     z-index: 100;
   }
   .logo-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    flex: 1;
+    gap: 0.6rem;
+    flex: none;
+    min-width: 0;
     text-decoration: none;
   }
 
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
+  .logo-link svg {
+    flex: none;
+    width: 2.1rem;
+    height: 2.1rem;
   }
 
   nav {
     display: flex;
     align-items: center;
-    gap: 1em;
-    padding-left: 30px;
-    padding-right: 30px;
-    position: relative;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    flex-wrap: wrap;
+    width: min(100% - 3rem, 44rem);
+    margin-inline: auto;
   }
 
   .menu {
     display: flex;
     align-items: center;
-    gap: 1em;
+    flex-wrap: wrap;
+    gap: 0.2em;
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: var(--t-small);
+    margin-left: auto;
+  }
+
+  .menu a {
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    color: rgb(var(--text-primary));
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .menu a:hover {
+    background: rgba(var(--text-primary), 0.06);
+  }
+
+  .menu a.active {
+    color: var(--accent-text);
+    background: none;
   }
 
   .nav-controls {
@@ -106,11 +144,12 @@ import Logo from "./Logo.astro";
 
   .burger {
     display: none;
+    position: static;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     cursor: pointer;
@@ -137,25 +176,12 @@ import Logo from "./Logo.astro";
     transform: translateY(-11px) rotate(-45deg);
   }
 
-  nav a {
-    padding: 1em 0.5em;
-    color: rgb(var(--text-primary));
-    text-decoration: none;
-  }
-  nav a.active {
-    text-decoration: none;
-    color: var(--accent);
-  }
-
   @media (max-width: 900px) {
-    nav {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
     .burger {
       display: flex;
     }
     .menu {
+      visibility: hidden;
       position: absolute;
       top: 100%;
       right: 10px;
@@ -180,6 +206,7 @@ import Logo from "./Logo.astro";
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
+      visibility: visible;
     }
     .menu a {
       display: block;
@@ -187,10 +214,45 @@ import Logo from "./Logo.astro";
       padding: 0.85em 1.5em;
       text-align: left;
     }
+    .menu a.active {
+      background: transparent;
+    }
+    .logo {
+      height: 44px;
+    }
   }
 
-  body {
-    margin: 0;
-    overflow-x: hidden;
+  .progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 3px;
+    width: 100%;
+    background: var(--accent-text);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    pointer-events: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    :root {
+      timeline-scope: --article;
+    }
+    :global(.prose) {
+      view-timeline: --article block;
+    }
+    .progress {
+      animation: progress-grow linear both;
+      animation-timeline: --article;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+  @keyframes progress-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 </style>

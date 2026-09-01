@@ -7,8 +7,8 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
-import PlantsWithGooglyEyes from '../components/PlantsWithGooglyEyes.astro';
-import ShareButtons from "../components/ShareButtons.astro";
+// import ShareButtons from "../components/ShareButtons.astro";
+import CozyCorner from '../components/CozyCorner.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -17,6 +17,7 @@ type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	showDate?: boolean;
 	tag?: string;
 	goBack?: boolean;
+	readingTime?: number;
 };
 
 const {
@@ -27,6 +28,7 @@ const {
 	showDate = true,
 	tag,
 	goBack = true,
+	readingTime
 } = Astro.props;
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
@@ -35,9 +37,45 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
+		
+	</head>
+
+	<body>
+		<Header />
+		<main id="main">
+			<article>
+				<div class="prose">
+					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
+					
+					{showTitle && (
+						
+							<h1 class="title">{title}</h1>
+							<div class="data">
+						
+						{showDate && pubDate && (
+								<div class="date">
+									<FormattedDate date={pubDate} />
+								</div>
+							)}
+							{tag && <Tag>{tag}</Tag>}
+							<span class="readmeta">{readingTime} min read</span>
+					</div>
+							<Divider />
+					
+					)}
+					<slot />
+							<Divider />
+							<!-- <ShareButtons title={title} url={url} /> -->
+				</div>
+				
+			</article>
+		</main>
+		<CozyCorner />
+		<Footer />
+	</body>
+</html>
+<style>
 			html, body {
-				height: 100%;
 				margin: 0;
 			}
 
@@ -51,38 +89,54 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				flex: 1 0 auto;
 				display: flex;
 				flex-direction: column;
-				width: calc(100% - 2em);
-				max-width: 100%;
+				width:100%;
 				margin: 0;
-				margin-top: 111px;	
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
+				width: min(100% - 2 * var(--gutter), var(--shell));
+				margin-inline: auto;
+				padding: 0;
 				color: rgb(var(--text-primary));
-				text-align: justify;
+				text-align: left;
+				text-wrap: pretty;
+				hyphens: auto;
 			}
-
+			.prose > :global(:where(p, ul, ol, blockquote)) {
+				max-width: var(--measure);
+				text-align: justify;
+				text-justify: inter-word;
+				hyphens: auto;
+			}
 		 .prose :global(li)::marker {
-    color: var(--accent);
+    color: var(--accent-text);
   }
+  .title, .prose :global(:where(h2,h3,h4)){
+	hyphens: manual;
+	text-wrap: balance;
+  }
+
 			.title {
 				padding: 1rem 0;
 				line-height: 1;
-				font-size: 3rem;
-				text-align: center;
+				font-size: var(--t-display);
+				line-height: var(--lh-display);
+				font-weight: 700;
+				text-align: left;
+				margin: 0.5rem 0 0.6rem;
+				padding: 0;
+				max-width: 22ch;
+
 			}
-			 @media (max-width: 520px) {
-
-    .title {
-      font-size: 30px;
-    }
-
-  }
+			.prose :global(:where(h2,h3)){
+				font-weight: 700;
+				letter-spacing: -0.015rem;
+				text-align: left;
+				font-size: var(--t-title);
+				line-height: var(--lh-title);
+				margin var(--s-7) 0 var(--s-3);
+			}
 .prose a {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: none;
     background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 0% 1.5px;
     transition: background-size 0.3s ease;
@@ -100,62 +154,36 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			.date {
 				color: rgb(var(--text-primary));
 				opacity: 0.7;
-				font-size: 1rem;
+				font-size: var(--t-meta);
+				font-variant-numeric: tabular-nums;
 			}
 			footer {
 				flex-shrink: 0;
-				margin-top: auto;
+				margin-top: auto;	
 			}
 			.data {
 				display: flex;
 				flex-direction: row;
 				justify-content: flex-start;
 				align-items: center;
-				gap: 10px;
+				gap: 0.6rem;
+				flex-wrap: wrap;
+				margin: 0 0 1.5rem;
 			}
-			.all-posts {
-				display: flex;
+			.all-posts{
+				display: inline-flex;
 				align-items: center;
 				text-decoration: none;
-				font-size: 1rem;
+				font-size: var(--t-meta);
 				margin-bottom: 20px;
 				gap: 0.5rem;
+				width: auto;
 			}
 
-			.all-posts:hover {
+			.all-posts a:hover {
 				text-decoration: underline;
 			}
+			.readmeta {
+				font-size: var(--t-meta);
+			}
 		</style>
-	</head>
-
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
-					<div class="data">
-						{tag && <Tag>{tag}</Tag>}
-						{showDate && pubDate && (
-								<div class="date">
-									<FormattedDate date={pubDate} />
-								</div>
-							)}
-					</div>
-					{showTitle && (
-						
-							<h1 class="title">{title}</h1>
-							<Divider />
-					
-					)}
-					<slot />
-							<Divider />
-							<ShareButtons title={title} url={url} />
-				</div>
-				
-			</article>
-		</main>
-		<PlantsWithGooglyEyes />
-		<Footer />
-	</body>
-</html>

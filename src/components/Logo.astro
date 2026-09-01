@@ -1,6 +1,8 @@
 <svg
   class="logo"
   viewBox="0 0 1314 570"
+  aria-hidden="true"
+  focusable="false"
   version="1.1"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -339,34 +341,17 @@
     </g>
   </g>
 </svg>
-
-<script>
-  function applyTheme() {
-    const theme =
-      document.documentElement.getAttribute("data-theme") ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
-
-    const light = document.getElementById("light");
-    if (light) {
-      light.style.display = theme === "dark" ? "block" : "none";
-    }
-  }
-
-  applyTheme();
-
-  new MutationObserver(applyTheme).observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"],
-  });
-</script>
-
 <style>
   .logo {
     height: 70px;
     width: auto;
     display: block;
+  }
+
+  @media (max-width: 900px) {
+    .logo {
+      height: 44px;
+    }
   }
 
   #title {
