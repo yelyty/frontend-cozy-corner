@@ -30,9 +30,10 @@ import Swatches from "../Swatches.astro";
 
   <SwatchCard label="live">
     <input
-      class="input input--fillled input--live"
+      class="input input--filled input--live"
       type="text"
       placeholder="Type to focus…"
+      aria-label="Demo field"
     />
   </SwatchCard>
 </Swatches>
@@ -109,7 +110,7 @@ import Swatches from "../Swatches.astro";
     height: 18px;
     border-radius: 50%;
     font-size: 11px;
-    color: #8f5c1f;
+    color: #fff;
     background: var(--input-badge);
   }
 </style>

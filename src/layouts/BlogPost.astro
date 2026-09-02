@@ -9,6 +9,7 @@ import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
 // import ShareButtons from "../components/ShareButtons.astro";
 import CozyCorner from '../components/CozyCorner.astro';
+import PlantSprout from '../components/PlantSprout.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -18,6 +19,7 @@ type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	tag?: string;
 	goBack?: boolean;
 	readingTime?: number;
+	nextPost?: { url: string, title: string; description?: string};
 };
 
 const {
@@ -28,7 +30,8 @@ const {
 	showDate = true,
 	tag,
 	goBack = true,
-	readingTime
+	readingTime,
+	nextPost,
 } = Astro.props;
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
@@ -45,7 +48,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 		<main id="main">
 			<article>
 				<div class="prose">
-					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All posts</a>}
+					{goBack && <a href="/blog" class="all-posts"><ArrowLeft width="16px"/> All writings</a>}
 					
 					{showTitle && (
 						
@@ -67,7 +70,15 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 							<Divider />
 							<!-- <ShareButtons title={title} url={url} /> -->
 				</div>
-				
+		{nextPost && (
+			<nav class="read-next" aria-label="Read next">
+				<span class="next-sprig"><PlantSprout /></span>
+				<p class="next-labe">Next in the cozy corner</p>
+				<a class="next-title" href={nextPost.url}>{nextPost.title}</a>
+				{nextPost.description && (<p class="next-description">{nextPost.description}</p>)}
+				{/* <a class="read-all" href="/blog">All writings</a> */}
+			</nav>
+		)}
 			</article>
 		</main>
 		<CozyCorner />
@@ -186,4 +197,68 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			.readmeta {
 				font-size: var(--t-meta);
 			}
+
+			.read-next {
+				position: relative;
+				width: min(100% - 2 * var(--gutter), var(--shell));
+				margin: var(--s-8) auto 0;
+				padding: var(--s-7) var(--s-5);
+				border-radius: 22px;
+				background: var(--bg-tint);
+				text-align: center;
+				transition: background 0.18s ease;
+			}
+
+			.next-sprig {
+				display: block;
+				width: 30px;
+				height: 39px;
+				margin: 0 auto var(--s-4);
+			}
+			.next-label {
+				margin: 0 0 var(--s-3);
+				font-style: italic;
+				font-size: var(--t-small);
+				line-height: var(--lh-small);
+				color: var(--accent-text);
+			}
+
+			.next-title {
+				margin: 0;
+				font-size: var(--t-section);
+				list-hight: var(--lh-title);
+				font-weight: 700;
+text-wrap: balance;
+			}
+
+			.next-title a{
+				color: rgb(var(--text-primary));
+				text-decoration: underline;
+				text-decoration-thickness: 1px;
+				text-decoration-color: rgba(var(--text-primary), 0.25);
+				text-underline-offset: 0.18rem;
+				transition: text-decoration-color 0.15s ease, color 0.15s ease;
+			}
+
+			.next-title a::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				border-radius: 22px;
+			}
+
+			.read-next:hover, .next-title a {
+				color: var(--accent-text-hover);
+				text-decoration-color: var(--accent-text-hover);
+			}
+
+			.next-description {
+				max-width: 46ch;
+				margin: var(--s-3) auto 0;
+				font-size: var(--t-small);
+				line-height: var(--lh-small);
+				color:rgba(var(--text-primary), 0.8);
+				text-align: center;
+			}
+
 		</style>

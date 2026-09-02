@@ -15,6 +15,7 @@
   --bg-floor: rgba(180,96,96,0.11);
   --corner-w: 0rem;
   --plant-max: 18rem;
+  --plant-shadow: rbg(226,221,211);
 
   --line: rgba(var(--text-primary), 0.12);
 
@@ -31,7 +32,7 @@
   --lh-title: 1.36;
   --lh-display: 1.15;
 
-  --measure: 41rem;
+  --measure: 34rem;
   --gutter: 1.5rem;
   --shell: 44rem;
 
@@ -58,6 +59,7 @@
     --text-primary: 230, 220, 210;
     --bg-tint: #2b2521;
 	--bg-floor: rgba(209, 135,135,0.09);
+	--plant-shadow: rgb(60,60,60);
   }
 }
 
@@ -71,7 +73,8 @@
   --secondary-rgb: 204, 143, 109;
   --bg-tint: #2b2521;
   --text-primary: 230, 220, 210;
-  	--bg-floor: rgba(209, 135,135,0.09);
+  --bg-floor: rgba(209, 135,135,0.09);
+  --plant-shadow: rgb(60,60,60);
 }
 
 html {
@@ -142,25 +145,7 @@ h6 {
     BlinkMacSystemFont,
     sans-serif; */
 }
-h1 {
-  font-size: 3.052em;
-}
-h2 {
-  font-size: 2.441em;
-}
-h3 {
-  font-size: 1.953em;
-}
-h4 {
-  font-size: 1.563em;
-}
-h5 {
-  font-size: 1.25em;
-}
-strong,
-b {
-  font-weight: 700;
-}
+
 a {
   color: var(--accent-text);
 }

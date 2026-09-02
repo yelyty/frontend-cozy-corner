@@ -25,14 +25,14 @@ const { position = "fixed" } = Astro.props;
         >
           <path
             d="M1299.42,1010.96C1299.42,1010.96 1343.19,1001.54 1334.3,986.998C1325.41,972.455 1300.18,961.618 1300.18,961.618L1272.93,989.797"
-            id="shadow"></path>
+            class="pot-shadow"></path>
         </g>
         <path d="M1416.02,990.546L1405.82,999.03" style="fill:none;"></path>
       </g>
       <g id="Layer37">
         <path
           d="M1388.4,1010.96C1388.4,1010.96 1427.25,989.123 1421.38,982.318C1415.51,975.514 1353.17,970.132 1353.17,970.132"
-          id="shadow"></path>
+          class="pot-shadow"></path>
       </g>
       <g>
         <g>
@@ -998,6 +998,9 @@ const { position = "fixed" } = Astro.props;
   </svg>
 </div>
 <style is:global>
+  .pot-shadow {
+    fill: var(--plant-shadow);
+  }
   .banana-decoration {
     position: fixed;
     bottom: clamp(12px, 3vw, 20px);
@@ -1381,21 +1384,21 @@ const { position = "fixed" } = Astro.props;
         });
       });
     }
-    const shadows = document.querySelectorAll<SVGElement>("#shadow");
+    // dows = document.querySelectorAll<SVGElement>("#shadow");
 
-    function applyShadowColor() {
-      if (!shadows) return;
-      const theme = document.documentElement.getAttribute("data-theme");
-      const color = theme === "dark" ? "rgb(60,60,60)" : "rgb(226,221,211)";
+    // function applyShadowColor() {
+    //   if (!shadows) return;
+    //   const theme = document.documentElement.getAttribute("data-theme");
+    //   const color = theme === const sha"dark" ? "rgb(60,60,60)" : "rgb(226,221,211)";
 
-      shadows.forEach((shadow) => {
-        shadow.style.fill = color;
-      });
-    }
-    applyShadowColor();
-    new MutationObserver(applyShadowColor).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
+    //   shadows.forEach((shadow) => {
+    //     shadow.style.fill = color;
+    //   });
+    // }
+    // applyShadowColor();
+    // new MutationObserver(applyShadowColor).observe(document.documentElement, {
+    //   attributes: true,
+    //   attributeFilter: ["data-theme"],
+    // });
   });
 </script>
