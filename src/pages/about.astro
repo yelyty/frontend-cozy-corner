@@ -40,53 +40,88 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="profile-text">
             <p class="profile-lede">
-              Hi, I am Liza, a software engineer with over 6 years of experience
-              in the industry. While working both on frontend and backend, I
-              love and enjoy frontend the most. That's the reason I started that
-              humble blog.
+              Hi, I'm Liza, a product-minded software engineer with over 6 years
+              of experience. I push back on a design spec and catch the edge
+              case before it's built. While working both on frontend and
+              backend, I love and enjoy frontend the most. That's the reason I
+              started that humble blog.
             </p>
             <p class="profile-aside">
               When I'm not coding, you can find me hiking in the mountains,
-              reading literature, or exploring new places.
+              reading literature, or exploring new places. I find inspiration in
+              books, art and nature.
             </p>
           </div>
         </div>
+        <Divider />
         <section class="timeline-section">
-          <h2 class="section-label">Where I've been</h2>
+          <h2 class="section-label">Where I worked</h2>
 
           <div class="timeline">
-            <article class="stop">
+            <section class="stop">
               <span class="dot"></span>
-
-              <h3>A social app for sport clubs</h3>
-              <p class="when">Where it started</p>
+              <div class="when">Where I am now</div>
+              <h3>Senior care</h3>
               <p>
-                Web application that helps users to find and join different
-                sport events in the city, to meet like-minded people for sport
-                activities, with a built-in attendance system for event
-                organizers.
+                An American startup connecting senior-care providers with
+                families. It constists from a few apps: <span class="tech"
+                  >React Native</span
+                > mobile app for iOS and Android,<span class="tech">React</span> web
+                application,
+                <span class="tech">React Native</span> TV app for Android TV and Amazon
+                Alexa skill.
               </p>
               <ul class="achievements-list">
-                <li>Built the social feed</li>
-                <li>Blog UI for articles</li>
                 <li>
-                  Built a personal profile with an achievements & results
-                  dashboard
+                  Developing features for <span class="tech">React</span> and <span
+                    class="tech">Typescript</span
+                  > web app in a <span class="tech">Yarn/Turborepo</span> monorepo.
+                  Features include messaging, administation with tables and <span
+                    >Formik</span
+                  >forms, bots UI, integration with third-party services UI.
                 </li>
-                <li>Maintained existing features</li>
+                <li>
+                  Developing <span>React Native</span> mobile app with messaging feature
+                </li>
+                <li>
+                  Developing and maintaining a shared component library
+                  documented in <span class="tech">Storybook</span> and design tokens
+                </li>
+                <li>
+                  Partnering tightly with design, translating intent into
+                  production ui
+                </li>
+                <li>
+                  Styling the app with <span class="tech">Material UI</span> and <span
+                    class="tech">Emotion</span
+                  >
+                </li>
+                <li>
+                  Writing unit tests with <span class="tech">Vitest</span>, <span
+                    class="tech">Playwright</span
+                  > specs for testing end-to-end flows and fixtures
+                </li>
+                <li>
+                  Adding observabillity to <span class="tech">Sentry</span>
+                </li>
+                <li>
+                  Managed client state with <span class="tech"
+                    >Redux Toolkit</span
+                  >, <span class="tech">redux-saga</span> for async flows and subscriptions,
+                  and later lead moving the same surface to <span class="tech"
+                    >Urql</span
+                  >
+                </li>
+                <li>
+                  Built <span class="tech">Next.js</span> app styles with <span
+                    class="tech">Tailwind</span
+                  > for display Digital Signage slides on Android TV app written in
+                  <span class="tech">React Native </span>
+                </li>
               </ul>
-              <div>
-                <Tag size="large">React</Tag>
-                <Tag size="large">JavaScript</Tag>
-                <Tag size="large">Sass</Tag>
-                <Tag size="large">Bootstrap</Tag>
-                <Tag size="large">Redux</Tag>
-                <Tag size="large">Apollo</Tag>
-                <Tag size="large">GraphQL</Tag>
-              </div>
-            </article>
+            </section>
 
-            <article class="stop">
+            <section class="stop">
               <span class="dot"></span>
               <div class="when">Then</div>
               <h3>To the railways</h3>
@@ -97,9 +132,13 @@ import Footer from "../components/Footer.astro";
                 warranty claims.
               </p>
               <ul class="achievements-list">
-                <li>Front-end setup</li>
-                <li>Build a lot of tables and long forms</li>
-                <li>And, of course, dashboards</li>
+                <li>Set up <span class="tech">React</span> web application</li>
+                <li>Writing custom hooks</li>
+                <li>
+                  Built dashboards, multi-step forms and tables with <span
+                    class="tech">Bootstrap</span
+                  >
+                </li>
               </ul>
               <a
                 class="project-link"
@@ -109,43 +148,83 @@ import Footer from "../components/Footer.astro";
               >
                 Read the case study <ArrowRight width="16" />
               </a>
-              <div>
-                <Tag size="large">React</Tag>
-                <Tag size="large">JavaScript</Tag>
-                <Tag size="large">Redux</Tag>
-                <Tag size="large">And definetely something else I forgot</Tag>
-              </div>
-            </article>
-
-            <article class="stop">
+            </section>
+            <section class="stop">
               <span class="dot"></span>
-              <div class="when">Where I am now</div>
-              <h3>Senior care</h3>
+
+              <h3>A social app for sport clubs</h3>
+              <p class="when">Where it started</p>
               <p>
-                An American startup connecting senior-care providers with
-                families. The whole projects consists of a few clients, and I
-                have been personally working on the following:
+                Web application that helps users to find and join different
+                sport events in the city, to meet like-minded people for sport
+                activities, with a built-in attendance system and tournaments
+                organization for event organizers.
               </p>
-              <p>
-                React Web application with messaging and administrative
-                features.
-              </p>
-              <p>React Native mobile app for iOS and Android</p>
-              <p>
-                NextJs web app and React Native app for Android TV that provide
-                Digital Signage features
-              </p>
-              <div>
-                <Tag size="large">NextJs</Tag>
-                <Tag size="large">Tailwind</Tag>
-                <Tag size="large">React</Tag>
-                <Tag size="large">React Native</Tag>
-                <Tag size="large">TypeScript</Tag>
-                <Tag size="large">MUI</Tag>
-                <Tag size="large">Urql</Tag>
-                <Tag size="large">Storybook</Tag>
-              </div>
-            </article>
+              <ul class="achievements-list">
+                <li>
+                  Maintained existing features of <span class="tech">React</span
+                  > web application from the era when components were still classes,
+                  in Javascript.
+                </li>
+                <li>
+                  Built several screens: Facebook like social feed, Blog UI,
+                  personal profile and achievements dashboard using <span
+                    class="tech">Bootstrap</span
+                  > and <span class="tech">SCSS</span> for the visuals.
+                </li>
+                <li>
+                  Maintained localization of the app with <span class="tech"
+                    >i18next</span
+                  >
+                </li>
+                <li>
+                  Managed app state in <span class="tech">Redux</span> and fetched
+                  data over <span class="tech">GraphQL</span>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </section>
+        <Divider />
+        <section class="tech-section">
+          <h2 class="section-label">What I work with</h2>
+          <p class="tech-group">Language</p>
+          <div class="tech-row">
+            <Tag size="large">Javascript</Tag>
+            <Tag size="large">Typescript</Tag>
+          </div>
+          <p class="tech-group">Frontend</p>
+          <div class="tech-row">
+            <Tag size="large">React</Tag>
+            <Tag size="large">React Native</Tag>
+            <Tag size="large">Next.js</Tag>
+            <Tag size="large">React Router</Tag>
+            <Tag size="large">HTML</Tag>
+            <Tag size="large">CSS</Tag>
+            <Tag size="large">MUI</Tag>
+            <Tag size="large">Tailwind</Tag>
+            <Tag size="large">Redux</Tag>
+            <Tag size="large">Urql</Tag>
+            <Tag size="large">Graphql</Tag>
+            <Tag size="large">Rest API</Tag>
+          </div>
+          <p class="tech-group">Backend</p>
+          <div class="tech-row">
+            <Tag size="large">Node.js</Tag>
+            <Tag size="large">Drizzle</Tag>
+            <Tag size="large">Supabase</Tag>
+            <Tag size="large">AWS</Tag>
+            <Tag size="large">DynamoDB</Tag>
+            <Tag size="large">Sqllite</Tag>
+          </div>
+          <p class="tech-group">Other tools</p>
+          <div class="tech-row">
+            <Tag size="large">Github</Tag>
+            <Tag size="large">Claude Code</Tag>
+            <Tag size="large">Postman</Tag>
+            <Tag size="large">Zod</Tag>
+            <Tag size="large">Playwright</Tag>
+            <Tag size="large">Cypress</Tag>
           </div>
         </section>
         <Divider />
@@ -231,12 +310,12 @@ import Footer from "../components/Footer.astro";
     font-weight: 700;
     margin: 0 0 var(--s-5);
   }
-
+  /* 
   .section-label::after {
     content: "";
     flex: 1;
     border-bottom: 1px solid var(--accent);
-  }
+  } */
 
   .timeline::before {
     content: "";
@@ -378,5 +457,32 @@ import Footer from "../components/Footer.astro";
     margin: 0 0 var(--s-4);
     color: rgba(var(--text-primary), 0.8);
     text-align: center;
+  }
+
+  .tech-section {
+    margin-top: var(--s-5);
+    margin-bottom: var(--s-5);
+  }
+
+  .tech-group {
+    margin: var(--s-5) 0 var(--s-3);
+    font-size: var(--t-meta);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(var(--text-primary), 0.8);
+  }
+
+  .tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  .tech {
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: 0.88em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--accent-text);
   }
 </style>
