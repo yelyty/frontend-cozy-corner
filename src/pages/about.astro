@@ -41,9 +41,9 @@ import Footer from "../components/Footer.astro";
           <div class="profile-text">
             <p class="profile-lede">
               Hi, I'm Liza, a product-minded software engineer with over 6 years
-              of experience React and Node.js ecosystem. I push back on a design
-              spec and catch the edge case before it's built. I've worked on
-              both ends of the stack and I keep choosing frontend. That's the
+              of experience in React and Node.js ecosystem. I push back on a
+              design spec and catch the edge case before it's built. I've worked
+              on both ends of the stack and I keep choosing frontend. That's the
               reason why this humble blog exists.
             </p>
             <p class="profile-aside">
@@ -60,8 +60,7 @@ import Footer from "../components/Footer.astro";
           <div class="timeline">
             <section class="stop">
               <span class="dot"></span>
-              <div class="when">Where I am now</div>
-              <h3>Senior care</h3>
+              <h3>Four apps for senior care</h3>
               <p>
                 An American startup connecting senior-care providers with
                 families. It constists of a few apps: <span class="tech"
@@ -124,8 +123,7 @@ import Footer from "../components/Footer.astro";
 
             <section class="stop">
               <span class="dot"></span>
-              <div class="when">Then</div>
-              <h3>To the railways</h3>
+              <h3>Service-center platform railways</h3>
               <p>
                 Green-field project. A custom service-center platform for the
                 railway industry, where manufacturers and their customers share
@@ -140,20 +138,10 @@ import Footer from "../components/Footer.astro";
                   >
                 </li>
               </ul>
-              <a
-                class="project-link"
-                href="https://astrumq.com/jak-jsme-vyvijeli-webovy-system-a-design-aplikace-pro-lokomotivy-cz-loko/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read the case study <ArrowRight width="16" />
-              </a>
             </section>
             <section class="stop">
               <span class="dot"></span>
-
               <h3>A social app for sport clubs</h3>
-              <p class="when">Where it started</p>
               <p>
                 Web application that helps users to find and join different
                 sport events in the city, to meet like-minded people for sport
@@ -250,15 +238,11 @@ import Footer from "../components/Footer.astro";
   .layout > :global(*) {
     grid-column: 1;
   }
-  .project-link {
-    display: inline-block;
-    margin-bottom: 2rem;
-  }
   .profile {
     display: flex;
     align-items: flex-start;
     gap: var(--s-5);
-    margin-bottom: var(--s-8);
+    margin-bottom: var(--s-7);
   }
   .profile-photo-frame {
     flex-shrink: 0;
@@ -300,6 +284,11 @@ import Footer from "../components/Footer.astro";
   .timeline {
     position: relative;
     padding-left: 34px;
+
+    --rail-pad: 34px;
+    --rail-x: 9px;
+    --rail-w: 2px;
+    --dot-size: 15px;
   }
   .section-label {
     display: flex;
@@ -310,12 +299,6 @@ import Footer from "../components/Footer.astro";
     font-weight: 700;
     margin: 0 0 var(--s-5);
   }
-  /* 
-  .section-label::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid var(--accent);
-  } */
 
   .timeline::before {
     content: "";
@@ -338,22 +321,14 @@ import Footer from "../components/Footer.astro";
 
   .dot {
     position: absolute;
-    left: -36px;
-    top: 4px;
-    width: 15px;
-    height: 15px;
+    left: calc(var(--rail-x) - var(--rail-pad) - var(--dot-size) / 2);
+    top: 6px;
+    width: var(--dot-size);
+    height: var(--dot-size);
     border-radius: 50%;
     background: var(--accent);
     border: 4px solid var(--bg-primary);
     box-shadow: 0 0 0 1px rgba(var(--text-primary), 0.12);
-  }
-
-  .when {
-    font-size: var(--t-meta);
-    color: rgba(var(--text-primary), 0.8);
-    letter-spacing: 0.14em;
-    margin-bottom: 3px;
-    text-transform: uppercase;
   }
 
   .stop h3 {
@@ -362,7 +337,6 @@ import Footer from "../components/Footer.astro";
     line-height: var(--lh-title);
     color: rgb(var(--text-primary));
     margin-bottom: 6px;
-    line-height: 1.3;
   }
 
   .stop h3 a {
