@@ -7,9 +7,9 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
-// import ShareButtons from "../components/ShareButtons.astro";
 import CozyCorner from '../components/CozyCorner.astro';
 import PlantSprout from '../components/PlantSprout.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -68,7 +68,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 					)}
 					<slot />
 							<Divider />
-							<!-- <ShareButtons title={title} url={url} /> -->
+							<ShareButtons title={title} url={url} />
 				</div>
 		{nextPost && (
 			<nav class="read-next" aria-label="Read next">
@@ -76,7 +76,6 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				<p class="next-labe">Next in the cozy corner</p>
 				<a class="next-title" href={nextPost.url}>{nextPost.title}</a>
 				{nextPost.description && (<p class="next-description">{nextPost.description}</p>)}
-				{/* <a class="read-all" href="/blog">All writings</a> */}
 			</nav>
 		)}
 			</article>

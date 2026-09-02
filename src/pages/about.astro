@@ -25,8 +25,6 @@ import Footer from "../components/Footer.astro";
       <div class="layout">
         <div class="hero">
           <h1>Frontend by choice, backend when asked</h1>
-        </div>
-        <div class="profile">
           <div class="profile-photo-frame">
             <img
               class="profile-photo"
@@ -38,6 +36,8 @@ import Footer from "../components/Footer.astro";
               loading="lazy"
             />
           </div>
+        </div>
+        <div class="profile">
           <div class="profile-text">
             <p class="profile-lede">
               Hi, I'm Liza, a product-minded software engineer with over 6 years
@@ -243,13 +243,12 @@ import Footer from "../components/Footer.astro";
     display: flex;
     align-items: flex-start;
     gap: var(--s-5);
-    margin-bottom: var(--s-7);
   }
   .profile-photo-frame {
     flex-shrink: 0;
     width: 140px;
     height: 140px;
-    border-radius: 50%;
+    border-radius: 20px;
     overflow: hidden;
   }
   .profile-photo {
@@ -261,7 +260,7 @@ import Footer from "../components/Footer.astro";
   .profile p {
     flex: 1;
     line-height: 1.75;
-    margin: 0;
+    /* margin: 0; */
   }
 
   @media (max-width: 520px) {
@@ -382,7 +381,9 @@ import Footer from "../components/Footer.astro";
   }
   .hero {
     text-align: left;
-    margin: 0 0 var(--s-7);
+    margin: 0 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
   }
 
   .hero h1 {
@@ -391,6 +392,7 @@ import Footer from "../components/Footer.astro";
     max-width: 22ch;
     text-wrap: balance;
     margin: 0;
+    align-self: flex-end;
   }
 
   .layout a {
@@ -415,6 +417,7 @@ import Footer from "../components/Footer.astro";
   .profile-text {
     flex: 1;
     min-width: 0;
+    text-align: justify;
   }
   .profile-lede {
     margin: 0;
@@ -422,7 +425,10 @@ import Footer from "../components/Footer.astro";
   }
 
   .profile-aside {
-    margin: var(--s-4) 0 0;
+    display: block;
+    margin: 0;
+    margin-top: var(--s-3);
+    /* margin: var(--s-4) 0 0; */
     color: rgba(var(--text-primary), 0.8);
     font-style: italic;
     line-height: 1.75;
