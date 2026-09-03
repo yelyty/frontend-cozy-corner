@@ -38,7 +38,7 @@ const description = `Everything taggs ${tag}.`;
   <head>
     <BaseHead
       title={`${tag} | ${SITE_TITLE}`}
-      description={"Notes on front-end"}
+      description={"Writtings about ${tag} "}
     />
   </head>
   <body>
@@ -46,11 +46,7 @@ const description = `Everything taggs ${tag}.`;
     <main class="shell" id="main">
       <div class="layout">
         <div class="page-head">
-          <h1>Notes from the keyboard</h1>
-          <p class="lede">
-            Half-formed thoughts about building for the web, finished just
-            enough to be published.
-          </p>
+          <h1>{tag}</h1>
         </div>
         <ol class="posts" role="list">
           {
