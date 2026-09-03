@@ -90,13 +90,17 @@ const Heading = headingLevel;
 
   .post-title a {
     color: rgb(var(--text-primary));
+    text-decoration: none;
+    transition:
+      text-decoration-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .post-title:visited {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-decoration-color: rgba(var(--text-primary), 0.25);
     text-underline-offset: 0.18em;
-    transition:
-      text-decoration-color 0.15s ease,
-      color 0.15s ease;
   }
 
   .post-title a::after {

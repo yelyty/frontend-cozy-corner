@@ -8,9 +8,9 @@ import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
 import CozyCorner from '../components/CozyCorner.astro';
-import PlantSprout from '../components/PlantSprout.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import { tagSlug } from '../consts';
+import PlantInBlossom from '../components/PlantInBlossom.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -74,8 +74,8 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				</div>
 		{nextPost && (
 			<nav class="read-next" aria-label="Read next">
-				<span class="next-sprig"><PlantSprout /></span>
-				<p class="next-labe">Next in the cozy corner</p>
+				<span class="next-sprig"><PlantInBlossom /></span>
+				<p class="next-label">Next in Frontend Cozy Corner</p>
 				<a class="next-title" href={nextPost.url}>{nextPost.title}</a>
 				{nextPost.description && (<p class="next-description">{nextPost.description}</p>)}
 			</nav>
@@ -136,8 +136,6 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				text-align: left;
 				margin: 0.5rem 0 0.6rem;
 				padding: 0;
-				max-width: 22ch;
-
 			}
 			.prose :global(:where(h2,h3)){
 				font-weight: 700;
@@ -212,12 +210,12 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 
 			.next-sprig {
 				display: block;
-				width: 30px;
-				height: 39px;
+				width: 50px;
+				height: 60px;
 				margin: 0 auto var(--s-4);
 			}
 			.next-label {
-				margin: 0 0 var(--s-3);
+				margin: 0;
 				font-style: italic;
 				font-size: var(--t-small);
 				line-height: var(--lh-small);
@@ -227,17 +225,18 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			.next-title {
 				margin: 0;
 				font-size: var(--t-section);
-				list-hight: var(--lh-title);
+				line-height: var(--lh-title);
 				font-weight: 700;
 text-wrap: balance;
 			}
 
 			.next-title a{
 				color: rgb(var(--text-primary));
-				text-decoration: underline;
+				text-decoration: none;
+				/* text-decoration: underline;
 				text-decoration-thickness: 1px;
-				text-decoration-color: rgba(var(--text-primary), 0.25);
-				text-underline-offset: 0.18rem;
+				text-decoration-color: rgba(var(--text-primary), 0.25); */
+				/* text-underline-offset: 0.18rem; */
 				transition: text-decoration-color 0.15s ease, color 0.15s ease;
 			}
 
@@ -250,7 +249,7 @@ text-wrap: balance;
 
 			.read-next:hover, .next-title a {
 				color: var(--accent-text-hover);
-				text-decoration-color: var(--accent-text-hover);
+				/* text-decoration-color: var(--accent-text-hover); */
 			}
 
 			.next-description {

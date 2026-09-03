@@ -1,5 +1,5 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 :root {
   /* Color Palette */
@@ -12,10 +12,10 @@
   --secondary-rgb: 255, 191, 155;
   --text-primary: 59, 46, 40;
   --bg-tint: #f9ead2;
-  --bg-floor: rgba(180,96,96,0.11);
+  --bg-floor: rgba(180, 96, 96, 0.11);
   --corner-w: 0rem;
   --plant-max: 18rem;
-  --plant-shadow: rbg(226,221,211);
+  --plant-shadow: rbg(226, 221, 211);
 
   --line: rgba(var(--text-primary), 0.12);
 
@@ -58,8 +58,8 @@
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
     --bg-tint: #2b2521;
-	--bg-floor: rgba(209, 135,135,0.09);
-	--plant-shadow: rgb(60,60,60);
+    --bg-floor: rgba(209, 135, 135, 0.09);
+    --plant-shadow: rgb(60, 60, 60);
   }
 }
 
@@ -73,8 +73,8 @@
   --secondary-rgb: 204, 143, 109;
   --bg-tint: #2b2521;
   --text-primary: 230, 220, 210;
-  --bg-floor: rgba(209, 135,135,0.09);
-  --plant-shadow: rgb(60,60,60);
+  --bg-floor: rgba(209, 135, 135, 0.09);
+  --plant-shadow: rgb(60, 60, 60);
 }
 
 html {
@@ -118,7 +118,7 @@ main {
 }
 
 .layout > * {
-	grid-column: 2;
+  grid-column: 2;
 }
 
 :where(a, button):focus-visible {
@@ -148,9 +148,15 @@ h6 {
 
 a {
   color: var(--accent-text);
+  text-decoration: none;
 }
+
 a:hover {
   color: var(--accent-text-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent-text-hover);
+  text-underline-offset: 0.18rem;
 }
 /* p {
   margin-bottom: 1em;
@@ -237,16 +243,16 @@ svg text {
 }
 
 /* Let the light glow */
-[data-theme="dark"] body, [data-theme="dark"] header {
-	background-color: var(--bg-primary);
-	background-attachment: fixed;
+[data-theme="dark"] body,
+[data-theme="dark"] header {
+  background-color: var(--bg-primary);
+  background-attachment: fixed;
   background-image: radial-gradient(
     60rem 40rem at 6% -6%,
     rgba(209, 135, 135, 0.12),
     transparent 62%
   );
 }
-
 
 @media (min-width: 75rem) {
   :root {
@@ -259,61 +265,70 @@ svg text {
   }
 }
 
-
-@media(max-width: 58rem) {
-	.layout {
-		grid-template-columns: minmax(0, 1fr);
-		padding-block: 2.5rem 3rem;
-	}
-	.layout > * {grid-column: 1;}
+@media (max-width: 58rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 2.5rem 3rem;
+  }
+  .layout > * {
+    grid-column: 1;
+  }
 }
 
 header {
-	border-bottom: 1px solid transparent;
-	transition: border-color 0.2s ease;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
 [data-scrolled] header {
-	border-bottom-color: var(--line);
+  border-bottom-color: var(--line);
 }
 
-footer a, .posts-all, .all-posts, .tail-actions a {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 24px;
-	min-width: 24px;
+footer a,
+.posts-all,
+.all-posts,
+.tail-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  min-width: 24px;
 }
 
 .pill {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0.5rem 0.9rem;
-	border-radius:999px;
-	background: transparent;
-	border: 1px solid rgba(var(--text-primary), 0.2);
-	font-family: "Raleway", system-iu, sans-serif;
-	font-size: 14px;
-	color: rgb(var(--text-primary));
-	text-decoration: none;
-	cursor: pointer;
-	transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(var(--text-primary), 0.2);
+  font-family: "Raleway", system-iu, sans-serif;
+  font-size: 14px;
+  color: rgb(var(--text-primary));
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
 }
 
 .pill svg {
-	flex: none;
-	width: 16px;
-	height: 16px;
-	color: var(--accent-text);
-	transition: color 0.25s ease;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--accent-text);
+  transition: color 0.25s ease;
 }
 
 .pill:hover {
-	background: var(--accent-dark);
-	color: var(--bg-primary);
+  background: var(--accent-dark);
+  color: var(--bg-primary);
+  text-decoration: none;
 }
 
 .pill:hover svg {
-	color: var(--bg-primary);
+  color: var(--bg-primary);
 }
