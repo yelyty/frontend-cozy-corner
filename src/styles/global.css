@@ -284,3 +284,36 @@ footer a, .posts-all, .all-posts, .tail-actions a {
 	min-height: 24px;
 	min-width: 24px;
 }
+
+.pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.9rem;
+	border-radius:999px;
+	background: transparent;
+	border: 1px solid rgba(var(--text-primary), 0.2);
+	font-family: "Raleway", system-iu, sans-serif;
+	font-size: 14px;
+	color: rgb(var(--text-primary));
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pill svg {
+	flex: none;
+	width: 16px;
+	height: 16px;
+	color: var(--accent-text);
+	transition: color 0.25s ease;
+}
+
+.pill:hover {
+	background: var(--accent-dark);
+	color: var(--bg-primary);
+}
+
+.pill:hover svg {
+	color: var(--bg-primary);
+}

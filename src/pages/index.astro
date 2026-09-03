@@ -43,8 +43,8 @@ const latestPost = (await getCollection("blog"))
         <Divider />
         <div class="posts-head">
           <h2 class="posts-title">Latest writings</h2>
-          <a href="/blog" class="posts-all"
-            >See all <ArrowRight width="16" /></a
+          <a href="/blog" class="pill"
+            >All writings <ArrowRight width="16" /></a
           >
         </div>
         <ol class="posts" role="list">
@@ -160,7 +160,7 @@ const latestPost = (await getCollection("blog"))
   .posts-head {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     margin: 0 0 1rem;
     grid-column: 1 / span 2;
   }
@@ -172,19 +172,7 @@ const latestPost = (await getCollection("blog"))
     margin: 0;
   }
 
-  .posts-all {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 13px;
-    color: var(--accent-text);
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
 
-  .posts-all:hover {
-    color: var(--accent-text-hover);
-  }
 
   @media (max-width: 58rem) {
     .hero,
