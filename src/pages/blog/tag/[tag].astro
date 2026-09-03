@@ -1,0 +1,155 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { SITE_TITLE, tagSlug } from "../../../consts";
+import BaseHead from "../../../components/BaseHead.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+import CozyCorner from "../../../components/CozyCorner.astro";
+import Divider from "../../../components/Divider.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+
+interface Props {
+  tag: string;
+  posts: CollectionEntry<"blog">[];
+}
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags = [
+    ...new Set(posts.map((p) => p.data.tag).filter((t): t is string => !!t)),
+  ];
+
+  return tags.map((tag) => ({
+    params: { tag: tagSlug(tag) },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tag === tag)
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const description = `Everything taggs ${tag}.`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`${tag} | ${SITE_TITLE}`}
+      description={"Notes on front-end"}
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="shell" id="main">
+      <div class="layout">
+        <div class="page-head">
+          <h1>Notes from the keyboard</h1>
+          <p class="lede">
+            Half-formed thoughts about building for the web, finished just
+            enough to be published.
+          </p>
+        </div>
+        <ol class="posts" role="list">
+          {
+            posts.map((post) => (
+              <BlogCard
+                url={`/blog/${post.id}/`}
+                title={post.data.title}
+                tag={post.data.tag}
+                postedDate={post.data.pubDate}
+                description={post.data.description}
+                headingLevel="h2"
+              />
+            ))
+          }
+        </ol>
+        <div class="tail">
+          <Divider />
+          <p class="endnote">
+            That's everything so far. More when there is something worth writing
+            down.
+          </p>
+          <p class="tail-actions">
+            <a href="/rss.xml">Subscribe by RSS</a>
+            <a href="/about">About me</a>
+          </p>
+        </div>
+      </div>
+      <CozyCorner />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+<style>
+  .page-head,
+  .tail {
+    grid-column: 2;
+  }
+  .page-head h1 {
+    margin: 0;
+    font-size: var(--t-display);
+    line-height: var(--lh-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  .endnote {
+    max-width: 34ch;
+    margin: 0;
+    font-size: var(--t-small);
+    line-height: var(--lh-small);
+    color: rgba(var(--text-primary), 0.8);
+  }
+  .lede {
+    text-wrap: pretty;
+    margin: 1rem 0 0;
+    font-size: var(--t-body);
+    line-height: var(--lh-body);
+    color: rgba(var(--text-primary), 0.8);
+    max-width: 45ch;
+    font-weight: 400;
+  }
+  .posts {
+    grid-column: 1 / span 2;
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+  }
+
+  .tail {
+    margin-top: 3rem;
+  }
+
+  .tail-actions {
+    margin: 1rem 0 0;
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    font-family: "Raleway", system-ui, sans-serif;
+    font-size: var(--t-meta);
+    letter-spacing: 0.02em;
+  }
+
+  .tail-actions a {
+    color: var(--accent-text);
+    text-decoration: none;
+  }
+  .tail-actions a:hover {
+    color: var(--accent-text-hover);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 58rem) {
+    .posts {
+      grid-column: 1;
+    }
+    .page-head,
+    .tail {
+      grid-column: 1;
+    }
+  }
+</style>

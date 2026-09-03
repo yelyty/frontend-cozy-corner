@@ -1,6 +1,7 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
 import Tag from "./Tag.astro";
+import { tagSlug } from "../consts";
 
 interface Props {
   url: string;
@@ -25,7 +26,13 @@ const Heading = headingLevel;
 <li class="post-row">
   <div class="post-meta">
     <span class="post-date"><FormattedDate date={postedDate} /></span>
-    {tag && <Tag size="large">{tag}</Tag>}
+    {
+      tag && (
+        <Tag size="large" href={`/blog/tag/${tagSlug(tag)}`}>
+          {tag}
+        </Tag>
+      )
+    }
   </div>
   <div class="post-body">
     <Heading class="post-title"><a href={url}>{title}</a></Heading>
