@@ -11,7 +11,7 @@ import BlogCard from "../components/BlogCard.astro";
 
 const latestPost = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 1);
+  .slice(0, 2);
 ---
 
 <!doctype html>
@@ -42,7 +42,7 @@ const latestPost = (await getCollection("blog"))
         </section>
         <Divider />
         <div class="posts-head">
-          <h2 class="posts-title">Latest writing</h2>
+          <h2 class="posts-title">Latest writings</h2>
           <a href="/blog" class="posts-all"
             >See all <ArrowRight width="16" /></a
           >
@@ -68,9 +68,14 @@ const latestPost = (await getCollection("blog"))
   </body>
 </html>
 <style>
-  .hero,
   .layout > :global(.plant-divider) {
     grid-column: 1 / span 2;
+  }
+ 
+  .hero{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   }
 
   .hero h1 {
@@ -92,8 +97,8 @@ const latestPost = (await getCollection("blog"))
     line-height: var(--lh-body);
     text-wrap: pretty;
     color: rgba(var(--text-primary), 0.8);
-    max-width: 25rem;
-    margin: 1rem 0 0;
+    /* max-width: 25rem;
+    margin: 1rem 0 0; */
   }
 
   .hero-ctas {
@@ -101,7 +106,7 @@ const latestPost = (await getCollection("blog"))
     align-items: center;
     gap: 1.25rem;
     flex-wrap: wrap;
-    margin: 2rem 0 0;
+    /* margin: 2rem 0 0; */
   }
 
   .cta {
