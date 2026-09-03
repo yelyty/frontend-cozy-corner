@@ -1,9 +1,9 @@
 ---
-const { size = "small", href } = Astro.props;
+const { size = "small", href, state } = Astro.props;
 const El = href ? "a" : "span";
 ---
 
-<El class="tag" data-size={size} href={href}><slot /></El>
+<El class="tag" data-size={size} href={href} data-state={state}><slot /></El>
 <style>
   a.tag {
     position: relative;
@@ -25,6 +25,7 @@ const El = href ? "a" : "span";
     border-radius: 999px;
     color: var(--accent-text);
     background: var(--bg-tint);
+    border: 1px solid transparent;
   }
   .tag[data-size="small"] {
     font-size: 13px;
@@ -33,5 +34,24 @@ const El = href ? "a" : "span";
   .tag[data-size="large"] {
     font-size: 14px;
     padding: 0.4rem 0.75rem;
+  }
+  .tag[data-state="link"] {
+    background: transparent;
+    border-color: rgba(var(--text-primary), 0.2);
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .tag[data-state="link"]:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    transform: translateY(-2px);
+    color: var(--bg-primary);
   }
 </style>

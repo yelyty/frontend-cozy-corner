@@ -10,6 +10,7 @@ import Divider from '../components/Divider.astro';
 import CozyCorner from '../components/CozyCorner.astro';
 import PlantSprout from '../components/PlantSprout.astro';
 import ShareButtons from '../components/ShareButtons.astro';
+import { tagSlug } from '../consts';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -60,7 +61,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 									<FormattedDate date={pubDate} />
 								</div>
 							)}
-							{tag && <Tag>{tag}</Tag>}
+							{tag && <Tag state="link" href={`/blog/tag/${tagSlug(tag)}`} >{tag}</Tag>}
 							<span class="readmeta">{readingTime} min read</span>
 					</div>
 							<Divider />
@@ -68,6 +69,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 					)}
 					<slot />
 							<Divider />
+							<p class="share-title">Like it? Share.</p>
 							<ShareButtons title={title} url={url} />
 				</div>
 		{nextPost && (
@@ -260,4 +262,8 @@ text-wrap: balance;
 				text-align: center;
 			}
 
+			.share-title {
+				text-align: center;
+				text-size: var(--t-meta);
+			}
 		</style>

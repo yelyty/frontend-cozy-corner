@@ -28,7 +28,7 @@ const Heading = headingLevel;
     <span class="post-date"><FormattedDate date={postedDate} /></span>
     {
       tag && (
-        <Tag size="large" href={`/blog/tag/${tagSlug(tag)}`}>
+        <Tag size="large" state="link" href={`/blog/tag/${tagSlug(tag)}`}>
           {tag}
         </Tag>
       )
