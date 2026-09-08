@@ -4,9 +4,9 @@ import { SITE_TITLE, tagSlug } from "../../../consts";
 import BaseHead from "../../../components/BaseHead.astro";
 import BlogCard from "../../../components/BlogCard.astro";
 import CozyCorner from "../../../components/CozyCorner.astro";
-import Divider from "../../../components/Divider.astro";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
+import PlantInBlossom from "../../../components/PlantInBlossom.astro";
 
 interface Props {
   tag: string;
@@ -59,17 +59,15 @@ const description = `Everything ${tag}.`;
             ))
           }
         </ol>
-        <div class="tail">
-          <Divider />
-          <p class="endnote">
-            That's everything for {tag}. More when there is something worth
-            writing down.
-          </p>
-          <p class="tail-actions">
-            <a href="/rss.xml">Subscribe by RSS</a>
-            <a href="/about">About me</a>
-          </p>
-        </div>
+        <!-- TODO: fix styles and rename classes -->
+        <nav class="read-next" aria-label="Read next">
+          <span class="next-sprig">
+            <!-- Add a new plant here -->
+            <PlantInBlossom />
+          </span>
+          <p class="next-label">That's it for this tag</p>
+          <a class="next-title" href="/blog"> Return to the Writings page </a>
+        </nav>
       </div>
       <CozyCorner />
     </main>
@@ -130,6 +128,56 @@ const description = `Everything ${tag}.`;
     color: var(--accent-text-hover);
 
     /* text-decoration: underline; */
+  }
+
+  .read-next {
+    position: relative;
+    width: min(100% - 2 * var(--gutter), var(--shell));
+    margin: var(--s-8) auto 0;
+    padding: var(--s-7) var(--s-5);
+    border-radius: 22px;
+    background: var(--bg-tint);
+    text-align: center;
+    transition: background 0.18s ease;
+    grid-column: 1 / span 2;
+  }
+
+  .next-sprig {
+    display: block;
+    width: 50px;
+    height: 60px;
+    margin: 0 auto var(--s-4);
+  }
+
+  .next-label {
+    margin: 0;
+    font-style: italic;
+    font-size: var(--t-small);
+    line-height: var(--lh-small);
+    color: var(--accent-text);
+  }
+
+  .next-title {
+    display: block;
+    margin: 0;
+    font-size: var(--t-section);
+    line-height: var(--lh-title);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .next-title a {
+    text-wrap: balance;
+    color: rgba(var(--text-primary));
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .next-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
   }
 
   @media (max-width: 58rem) {
