@@ -9,6 +9,8 @@
   --accent-dark: #8b4545;
   --accent-text: #8b4545;
   --accent-text-hover: #6f3737;
+  --visited: #7a4a63;
+  --visited-hover: #5f3a4f;
   --secondary: #ffbf9b;
   --secondary-rgb: 255, 191, 155;
   --text-primary: 59, 46, 40;
@@ -52,6 +54,8 @@
     --accent-text: #d18787;
     --accent-text-hover: #e8adad;
     --accent-dark: #c47a7a;
+    --visited: #c79ab5;
+    --visited-hover: #dfb7da;
     --secondary: #cc8f6d;
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
@@ -66,6 +70,8 @@
   --accent: #d18787;
   --accent-text: #d18787;
   --accent-text-hover: #e8adad;
+  --visited: #c79ab5;
+  --visited-hover: #dfb7da;
   --accent-dark: #c47a7a;
   --secondary: #cc8f6d;
   --secondary-rgb: 204, 143, 109;
@@ -148,7 +154,7 @@ a:hover {
   color: var(--accent-text-hover);
   text-decoration: underline;
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--accent-text-hover);
+  text-decoration-color: currentcolor;
   text-underline-offset: 0.18rem;
 }
 
@@ -322,4 +328,12 @@ footer a,
 
 .pill:hover svg {
   color: var(--bg-primary);
+}
+
+.prose a:not(.pill, .tag, .share-links *):visited {
+  color: var(--visited);
+}
+
+.prose a:not(.pill, .tag, .share-links *):visited:hover {
+  color: var(--visited-hover);
 }

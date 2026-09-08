@@ -212,6 +212,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			}
 
 			.next-title {
+				display: block;
 				margin: 0;
 				font-size: var(--t-section);
 				line-height: var(--lh-title);
@@ -220,28 +221,25 @@ text-wrap: balance;
 			}
 
 			.next-title a{
+				text-wrap: balance;
 				color: rgba(var(--text-primary));
 				text-decoration: none;
-
-				/* text-decoration: underline;
-				text-decoration-thickness: 1px;
-				text-decoration-color: rgba(var(--text-primary), 0.25); */
-
-				/* text-underline-offset: 0.18rem; */
-				transition: text-decoration-color 0.15s ease, color 0.15s ease;
+				transition: color 0.15s ease;
 			}
 
-			.next-title a::after {
+			.next-title::after {
 				content: '';
 				position: absolute;
 				inset: 0;
 				border-radius: 22px;
 			}
 
-			.read-next:hover, .next-title a {
+			.read-next:hover, .next-title, .next-title:hover{
 				color: var(--accent-text-hover);
+			}
 
-				/* text-decoration-color: var(--accent-text-hover); */
+			.read-next:hover, .next-title:visited, .next-title:visited:hover {
+				color: var(--visited-hover);
 			}
 
 			.next-description {

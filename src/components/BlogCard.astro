@@ -91,16 +91,11 @@ const Heading = headingLevel;
   .post-title a {
     color: rgba(var(--text-primary));
     text-decoration: none;
-    transition:
-      text-decoration-color 0.15s ease,
-      color 0.15s ease;
+    transition: color 0.15s ease;
   }
 
-  .post-title:visited {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: rgba(var(--text-primary), 0.25);
-    text-underline-offset: 0.18em;
+  .post-title a:visited {
+    color: var(--visited);
   }
 
   .post-title a::after {
@@ -110,10 +105,14 @@ const Heading = headingLevel;
   }
 
   .post-row:hover,
-  .post-title a,
-  .post-title a:hover {
+  .post-title a {
     color: var(--accent-text-hover);
-    text-decoration-color: var(--accent-text-hover);
+  }
+
+  .post-row:hover,
+  .post-title a:visited,
+  .post-title a:visited:hover {
+    color: var(--visited-hover);
   }
 
   .post-excerpt {
