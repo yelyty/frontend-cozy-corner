@@ -81,6 +81,7 @@ import { SITE_TITLE } from "../consts";
     padding-block: 1.1rem;
     z-index: 100;
   }
+
   .logo-link {
     display: inline-flex;
     align-items: center;
@@ -92,8 +93,6 @@ import { SITE_TITLE } from "../consts";
 
   .logo-link svg {
     flex: none;
-    width: 2.1rem;
-    height: 2.1rem;
   }
 
   nav {
@@ -111,7 +110,7 @@ import { SITE_TITLE } from "../consts";
     align-items: center;
     flex-wrap: wrap;
     gap: 0.2em;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: var(--t-small);
     margin-left: auto;
   }
@@ -119,7 +118,7 @@ import { SITE_TITLE } from "../consts";
   .menu a {
     padding: 0.45rem 0.7rem;
     border-radius: 999px;
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     font-weight: 600;
     text-decoration: none;
     transition:
@@ -155,6 +154,7 @@ import { SITE_TITLE } from "../consts";
     cursor: pointer;
     z-index: 1001;
   }
+
   .burger span {
     display: block;
     width: 28px;
@@ -166,12 +166,15 @@ import { SITE_TITLE } from "../consts";
       transform 0.3s ease,
       opacity 0.2s ease;
   }
+
   .burger.open span:nth-child(1) {
     transform: translateY(11px) rotate(45deg);
   }
+
   .burger.open span:nth-child(2) {
     opacity: 0;
   }
+
   .burger.open span:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
   }
@@ -180,6 +183,7 @@ import { SITE_TITLE } from "../consts";
     .burger {
       display: flex;
     }
+
     .menu {
       visibility: hidden;
       position: absolute;
@@ -202,23 +206,23 @@ import { SITE_TITLE } from "../consts";
         opacity 0.2s ease,
         transform 0.2s ease;
     }
+
     .menu.open {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
       visibility: visible;
     }
+
     .menu a {
       display: block;
       width: 100%;
       padding: 0.85em 1.5em;
       text-align: left;
     }
+
     .menu a.active {
       background: transparent;
-    }
-    .logo {
-      height: 44px;
     }
   }
 
@@ -238,19 +242,23 @@ import { SITE_TITLE } from "../consts";
     :root {
       timeline-scope: --article;
     }
+
     :global(.prose) {
       view-timeline: --article block;
     }
+
     .progress {
       animation: progress-grow linear both;
       animation-timeline: --article;
       animation-range: contain 0% contain 100%;
     }
   }
+
   @keyframes progress-grow {
     from {
       transform: scaleX(0);
     }
+
     to {
       transform: scaleX(1);
     }

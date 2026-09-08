@@ -278,8 +278,6 @@ header {
 }
 
 footer a,
-.posts-all,
-.all-posts,
 .tail-actions a {
   display: inline-flex;
   align-items: center;
