@@ -64,7 +64,9 @@ const ogImage = new URL(image, Astro.site);
     let saved = null;
     try {
       saved = localStorage.getItem("theme");
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
     const theme =
       saved ??
       (window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -89,7 +91,9 @@ const ogImage = new URL(image, Astro.site);
       document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     try {
       localStorage.setItem("theme", next);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
     applyTheme();
     btn.classList.remove("tg-squish");
     void btn.offsetWidth;
@@ -97,7 +101,7 @@ const ogImage = new URL(image, Astro.site);
   });
 </script>
 <script>
-  var onScroll = function () {
+  const onScroll = function () {
     document.documentElement.toggleAttribute("data-scrolled", scrollY > 8);
   };
   onScroll();

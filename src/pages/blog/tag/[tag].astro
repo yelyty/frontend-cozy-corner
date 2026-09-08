@@ -30,16 +30,13 @@ export async function getStaticPaths() {
 }
 
 const { tag, posts } = Astro.props;
-const description = `Everything taggs ${tag}.`;
+const description = `Everything ${tag}.`;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead
-      title={`${tag} | ${SITE_TITLE}`}
-      description={"Writtings about ${tag} "}
-    />
+    <BaseHead title={`${tag} | ${SITE_TITLE}`} description={description} />
   </head>
   <body>
     <Header />

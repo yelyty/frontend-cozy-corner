@@ -19,12 +19,17 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "astro-eslint-parser": "1.4.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-astro": "1.7.0",
     "gh-pages": "6.3.0",
     "postcss-html": "1.8.1",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "stylelint": "17.15.0",
     "stylelint-config-standard": "40.0.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0"
   }
 }
