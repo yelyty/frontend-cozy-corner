@@ -1,4 +1,5 @@
 ---
+import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import ArrowLeft from "phosphor-astro/ArrowLeftBold.astro";
 import BaseHead from '../components/BaseHead.astro';
@@ -21,6 +22,7 @@ type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	goBack?: boolean;
 	readingTime?: number;
 	nextPost?: { url: string, title: string; description?: string};
+	headings?: MarkdownHeading[];
 };
 
 const {
@@ -33,9 +35,11 @@ const {
 	goBack = true,
 	readingTime,
 	nextPost,
+	headings = []
 } = Astro.props;
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
+const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
 <html lang="en">
@@ -65,8 +69,9 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 							<span class="readmeta">{readingTime} min read</span>
 					</div>
 							<Divider />
-					
 					)}
+					{tableOfContent.length > 1 && (<aside class="toc" aria-labelledy="toc-label"><p class="toc-label" id="toc-label">
+						In this post</p><ol>{tableOfContent.map((h) => (<li class={h.depth === 3 ? "sub" : "undefined"}><a href={`#${h.slug}`}>{h.text}</a></li>))}</ol></aside>)}
 					<slot />
 							<Divider />
 							<p class="share-title">Like it? Share.</p>
@@ -147,6 +152,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				font-size: var(--t-title);
 				line-height: var(--lh-title);
 				margin: var(--s-7) 0 var(--s-3);
+				scroll-margin-top: 5.5rem;
 			}
 
 /* .prose a {
@@ -254,5 +260,74 @@ text-wrap: balance;
 			.share-title {
 				text-align: center;
 				font-size: var(--t-meta);
+			}
+
+			.toc {
+				background: var(--bg-tint);
+				border-radius: 12px;
+				padding: 1.1rem 1.35rem;
+				margin: 0 0 var(--s-6);
+				font-family: Raleway, system-ui, sans-serif;
+			}
+
+			.toc-label {
+				margin: 0 0 0.6rem;
+				font-size: var(--t-meta);
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgba(var(--text-primary), 0.6);
+			}
+
+			.toc ol {
+				margin:0;
+				padding: 0;
+				list-style: none;
+				counter-reset: toc;
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+			}
+
+			.toc li {
+				counter-increment: toc;
+			}
+
+			.toc a {
+				display: inline-flex;
+				align-items: baseline;
+				gap: 0.6rem;
+				font-size: var(--t-small);
+				font-weight: 600;
+				color: rgba(var(--text-primary));
+				text-decoration: none;
+				border-bottom: 1px solid transparent;
+				transition: color 0.15s ease, border-color 0.15s ease;
+			}
+
+			.toc a::before {
+				content: counter(toc);
+				font-size: var(--t-meta);
+				font-weight: 700;
+				font-variant-numeric: tabular-nums;
+				color:var(--accent-text);
+			}
+
+			.toc a:hover {
+				color: var(--accent-text);
+				border-bottom-color: var(--accent);
+			}
+
+			.toc li.sub {
+				margin-left: 1.4rem;
+			}
+
+			.toc li.sub a {
+				font-weight: 500;
+				color: rgba(var(--text-primary), 0.8);
+			}
+
+			.toc li.sub a::before {
+				content: "\2014";
 			}
 		</style>

@@ -27,12 +27,17 @@ type Props = {
 };
 
 const { post, nextPost } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 
 const words = post?.body?.split(/\s+/).filter(Boolean).length || 0;
 const readingTime = Math.max(1, Math.round(words / 200));
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} nextPost={nextPost}>
+<BlogPost
+  {...post.data}
+  readingTime={readingTime}
+  nextPost={nextPost}
+  headings={headings}
+>
   <Content />
 </BlogPost>
