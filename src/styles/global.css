@@ -18,7 +18,7 @@
   --bg-floor: rgba(180, 96, 96, 0.11);
   --corner-w: 0rem;
   --plant-max: 18rem;
-  --plant-shadow: rbg(226, 221, 211);
+  --plant-shadow: rgba(226, 221, 211);
   --line: rgba(var(--text-primary), 0.12);
 
   /* Typescale */
@@ -300,7 +300,7 @@ footer a,
   border-radius: 999px;
   background: transparent;
   border: 1px solid rgba(var(--text-primary), 0.2);
-  font-family: Raleway, system-iu, sans-serif;
+  font-family: Raleway, system-ui, sans-serif;
   font-size: 14px;
   color: rgba(var(--text-primary));
   text-decoration: none;

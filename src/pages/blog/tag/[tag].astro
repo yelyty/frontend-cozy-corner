@@ -80,11 +80,6 @@ const description = `Everything ${tag}.`;
     grid-column: 2;
   }
 
-  .tail {
-    grid-column: 1 / span 2;
-    margin-top: 3rem;
-  }
-
   .page-head h1 {
     margin: 0;
     font-size: var(--t-display);
@@ -94,40 +89,11 @@ const description = `Everything ${tag}.`;
     text-wrap: balance;
   }
 
-  .endnote {
-    max-width: 34ch;
-    margin: 0;
-    font-size: var(--t-small);
-    line-height: var(--lh-small);
-    color: rgba(var(--text-primary), 0.8);
-  }
-
   .posts {
     grid-column: 1 / span 2;
     list-style: none;
     margin: 2.5rem 0 0;
     padding: 0;
-  }
-
-  .tail-actions {
-    margin: 1rem 0 0;
-    display: flex;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-    font-family: Raleway, system-ui, sans-serif;
-    font-size: var(--t-meta);
-    letter-spacing: 0.02em;
-  }
-
-  .tail-actions a {
-    color: var(--accent-text);
-    text-decoration: none;
-  }
-
-  .tail-actions a:hover {
-    color: var(--accent-text-hover);
-
-    /* text-decoration: underline; */
   }
 
   .read-next {
@@ -185,8 +151,7 @@ const description = `Everything ${tag}.`;
       grid-column: 1;
     }
 
-    .page-head,
-    .tail {
+    .page-head {
       grid-column: 1;
     }
   }
