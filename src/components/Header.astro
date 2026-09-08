@@ -42,11 +42,16 @@ import { SITE_TITLE } from "../consts";
       if (!burger || !navMenu) return;
 
       function setMenu(open) {
+        const wasOpen = burger.getAttribute("aria-expanded") === true;
+        const hasFocus = navMenu.contains(document.activeElement);
         burger.setAttribute("aria-expanded", String(open));
         burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
         burger.classList.toggle("open", open);
         navMenu.classList.toggle("open", open);
         if (open) navMenu.querySelector("a")?.focus();
+        else if (wasOpen && hasFocus) {
+          burger.focus();
+        }
       }
 
       burger.addEventListener("click", () => {
@@ -65,6 +70,11 @@ import { SITE_TITLE } from "../consts";
         );
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") setMenu(false);
+      });
+      navMenu.addEventListener("focusout", (e) => {
+        if (burger.getAttribute("aria-expanded") !== "true") return;
+        const next = e.relatedTarget;
+        if (next !== burger && !navMenu.contains(next)) setMenu(false);
       });
     }
     document.addEventListener("astro:page-load", initMenu);
@@ -197,7 +207,7 @@ import { SITE_TITLE } from "../consts";
       border-radius: 10px;
       border: 1px solid var(--accent-dark);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      padding: 0.5em 0;
+      padding: 0.5em;
       z-index: 2000;
       opacity: 0;
       transform: translateY(-8px);
@@ -217,7 +227,7 @@ import { SITE_TITLE } from "../consts";
     .menu a {
       display: block;
       width: 100%;
-      padding: 0.85em 1.5em;
+      padding: 0.85em 1em;
       text-align: left;
     }
 
