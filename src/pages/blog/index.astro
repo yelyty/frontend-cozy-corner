@@ -68,9 +68,12 @@ const posts = (await getCollection("blog")).sort(
   .page-head {
     grid-column: 2;
   }
+
   .tail {
     grid-column: 1 / span 2;
+    margin-top: 3rem;
   }
+
   .page-head h1 {
     margin: 0;
     font-size: var(--t-display);
@@ -79,6 +82,7 @@ const posts = (await getCollection("blog")).sort(
     letter-spacing: -0.015em;
     text-wrap: balance;
   }
+
   .endnote {
     max-width: 34ch;
     margin: 0;
@@ -86,6 +90,7 @@ const posts = (await getCollection("blog")).sort(
     line-height: var(--lh-small);
     color: rgba(var(--text-primary), 0.8);
   }
+
   .lede {
     text-wrap: pretty;
     margin: 1rem 0 0;
@@ -95,6 +100,7 @@ const posts = (await getCollection("blog")).sort(
     max-width: 45ch;
     font-weight: 400;
   }
+
   .posts {
     grid-column: 1 / span 2;
     list-style: none;
@@ -102,16 +108,12 @@ const posts = (await getCollection("blog")).sort(
     padding: 0;
   }
 
-  .tail {
-    margin-top: 3rem;
-  }
-
   .tail-actions {
     margin: 1rem 0 0;
     display: flex;
     gap: 1.25rem;
     flex-wrap: wrap;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: var(--t-meta);
     letter-spacing: 0.02em;
   }
@@ -120,8 +122,10 @@ const posts = (await getCollection("blog")).sort(
     color: var(--accent-text);
     text-decoration: none;
   }
+
   .tail-actions a:hover {
     color: var(--accent-text-hover);
+
     /* text-decoration: underline; */
   }
 
@@ -129,6 +133,7 @@ const posts = (await getCollection("blog")).sort(
     .posts {
       grid-column: 1;
     }
+
     .page-head,
     .tail {
       grid-column: 1;

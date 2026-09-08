@@ -41,6 +41,7 @@ const today = new Date();
     border-top: 1px solid var(--line);
     color: rgba(var(--text-primary), 0.8);
   }
+
   .inner {
     width: min(100% - 3rem, 44rem);
     margin-inline: auto;
@@ -57,7 +58,7 @@ const today = new Date();
     font-size: var(--t-title);
     text-wrap: balance;
     line-height: var(--lh-title);
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
   }
 
   .signoff-sub {
@@ -77,6 +78,7 @@ const today = new Date();
     gap: 1rem 1.5rem;
     margin-top: 2rem;
   }
+
   .pages,
   .elsewhere {
     display: flex;
@@ -89,7 +91,7 @@ const today = new Date();
   }
 
   .pages a {
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: var(--t-small);
     font-weight: 600;
     color: rgba(var(--text-primary), 0.85);
@@ -103,7 +105,7 @@ const today = new Date();
 
   .pages a:hover {
     background: rgba(var(--text-primary), 0.06);
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     text-decoration: none;
   }
 
@@ -114,9 +116,9 @@ const today = new Date();
     padding: 0.5rem 0.9rem;
     border-radius: 999px;
     border: 1px solid rgba(var(--text-primary), 0.2);
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: 14px;
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     text-decoration: none;
     transition:
       background 0.15s ease,
@@ -150,11 +152,12 @@ const today = new Date();
     margin-top: 2rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--line);
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: var(--t-meta);
     letter-spacing: 0.02rem;
     color: rgba(var(--text-primary), 0.75);
   }
+
   @media (max-width: 34rem) {
     .ways {
       flex-direction: column;

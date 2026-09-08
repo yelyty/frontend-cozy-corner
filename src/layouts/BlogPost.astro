@@ -104,32 +104,34 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				width:100%;
 				margin: 0;
 			}
+
 			.prose {
 				width: min(100% - 2 * var(--gutter), var(--shell));
 				margin-inline: auto;
 				padding: 0;
-				color: rgb(var(--text-primary));
+				color: rgba(var(--text-primary));
 				text-align: left;
 				text-wrap: pretty;
 				hyphens: auto;
 			}
+
 			.prose > :global(:where(p, ul, ol, blockquote)) {
 				max-width: var(--measure);
 				text-align: justify;
 				text-justify: inter-word;
 				hyphens: auto;
 			}
+
 		 .prose :global(li)::marker {
     color: var(--accent-text);
   }
+
   .title, .prose :global(:where(h2,h3,h4)){
 	hyphens: manual;
 	text-wrap: balance;
   }
 
 			.title {
-				padding: 1rem 0;
-				line-height: 1;
 				font-size: var(--t-display);
 				line-height: var(--lh-display);
 				font-weight: 700;
@@ -137,14 +139,16 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				margin: 0.5rem 0 0.6rem;
 				padding: 0;
 			}
+
 			.prose :global(:where(h2,h3)){
 				font-weight: 700;
 				letter-spacing: -0.015rem;
 				text-align: left;
 				font-size: var(--t-title);
 				line-height: var(--lh-title);
-				margin var(--s-7) 0 var(--s-3);
+				margin: var(--s-7) 0 var(--s-3);
 			}
+
 /* .prose a {
     color: var(--accent-text);
     text-decoration: none;
@@ -162,24 +166,26 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
   } */
 
 			.date {
-				color: rgb(var(--text-primary));
+				color: rgba(var(--text-primary));
 				opacity: 0.7;
 				font-size: var(--t-meta);
 				font-variant-numeric: tabular-nums;
 			}
+
 			footer {
 				flex-shrink: 0;
 				margin-top: auto;	
 			}
+
 			.data {
 				display: flex;
-				flex-direction: row;
+				flex-flow: row wrap;
 				justify-content: flex-start;
 				align-items: center;
 				gap: 0.6rem;
-				flex-wrap: wrap;
 				margin: 0 0 1.5rem;
 			}
+
 			.all-posts{
 				display: inline-flex;
 				align-items: center;
@@ -193,6 +199,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 			.all-posts a:hover {
 				text-decoration: underline;
 			}
+
 			.readmeta {
 				font-size: var(--t-meta);
 			}
@@ -214,6 +221,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 				height: 60px;
 				margin: 0 auto var(--s-4);
 			}
+
 			.next-label {
 				margin: 0;
 				font-style: italic;
@@ -231,11 +239,13 @@ text-wrap: balance;
 			}
 
 			.next-title a{
-				color: rgb(var(--text-primary));
+				color: rgba(var(--text-primary));
 				text-decoration: none;
+
 				/* text-decoration: underline;
 				text-decoration-thickness: 1px;
 				text-decoration-color: rgba(var(--text-primary), 0.25); */
+
 				/* text-underline-offset: 0.18rem; */
 				transition: text-decoration-color 0.15s ease, color 0.15s ease;
 			}
@@ -249,6 +259,7 @@ text-wrap: balance;
 
 			.read-next:hover, .next-title a {
 				color: var(--accent-text-hover);
+
 				/* text-decoration-color: var(--accent-text-hover); */
 			}
 
@@ -263,6 +274,6 @@ text-wrap: balance;
 
 			.share-title {
 				text-align: center;
-				text-size: var(--t-meta);
+				font-size: var(--t-meta);
 			}
 		</style>

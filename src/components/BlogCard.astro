@@ -73,7 +73,7 @@ const Heading = headingLevel;
     line-height: 1.25;
     color: rgba(var(--text-primary), 0.8);
     font-variant-numeric: tabular-nums;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
   }
 
   .post-body {
@@ -89,7 +89,7 @@ const Heading = headingLevel;
   }
 
   .post-title a {
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     text-decoration: none;
     transition:
       text-decoration-color 0.15s ease,
@@ -128,10 +128,12 @@ const Heading = headingLevel;
     .post-row {
       grid-template-columns: minmax(0, 1fr);
     }
+
     .post-meta,
     .post-body {
       grid-column: 1;
     }
+
     .post-meta {
       flex-direction: row;
       align-items: center;

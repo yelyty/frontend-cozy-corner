@@ -11,14 +11,16 @@ const El = href ? "a" : "span";
     text-decoration: none;
     transition: background-color 0.15s ease;
   }
+
   a.tag:hover {
     background: var(--accent-dark);
     color: var(--bg-primary);
   }
+
   .tag {
     display: inline-block;
     line-height: 1;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -27,14 +29,17 @@ const El = href ? "a" : "span";
     background: var(--bg-tint);
     border: 1px solid transparent;
   }
+
   .tag[data-size="small"] {
     font-size: 13px;
     padding: 0.3rem 0.6rem;
   }
+
   .tag[data-size="large"] {
     font-size: 14px;
     padding: 0.4rem 0.75rem;
   }
+
   .tag[data-state="link"] {
     background: transparent;
     border-color: rgba(var(--text-primary), 0.2);

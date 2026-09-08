@@ -12,7 +12,7 @@ import GithubLogoBold from "phosphor-astro/GithubLogoBold.astro";
     <LinkedinLogoBold width="16" height="16" />
     LinkedIn
   </a>
-    <a href="https://github.com/yelyty" target="_blank" rel="noopener">
+  <a href="https://github.com/yelyty" target="_blank" rel="noopener">
     <GithubLogoBold width="16" height="16" />
     GitHub
   </a>
@@ -34,12 +34,16 @@ import GithubLogoBold from "phosphor-astro/GithubLogoBold.astro";
     border-radius: 999px;
     background: var(--bg-primary);
     border: 1px solid rgba(var(--text-primary), 0.15);
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     text-decoration: none;
-	font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: var(--t-small);
     font-weight: 500;
-    transition: background 0.15s ease, color 0.15s ease, border-color: 0.15s ease, transform 0.15s ease;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.15s ease;
   }
 
   .social-links a svg {
@@ -64,6 +68,7 @@ import GithubLogoBold from "phosphor-astro/GithubLogoBold.astro";
     outline: 2px solid var(--accent-text);
     outline-offset: 3px;
   }
+
   .section-label {
     font-style: italic;
     font-size: 18px;
