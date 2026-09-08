@@ -74,6 +74,7 @@ import { SITE_TITLE } from "../consts";
       navMenu.addEventListener("focusout", (e) => {
         if (burger.getAttribute("aria-expanded") !== "true") return;
         const next = e.relatedTarget;
+        if (!next) return;
         if (next !== burger && !navMenu.contains(next)) setMenu(false);
       });
     }
