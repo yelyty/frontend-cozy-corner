@@ -42,7 +42,18 @@ const {
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
+<script>
 
+	function placeTableOfContent() {
+		const tableOfContent = document.querySelector<HTMLElement>(".prose > .toc");
+		const firstHeading = document.querySelector<HTMLElement>(".prose > h2");
+		if (!tableOfContent || !firstHeading || tableOfContent.dataset.placed) return;
+		firstHeading.before(tableOfContent);
+		tableOfContent.dataset.placed = "1";
+	}
+	placeTableOfContent();
+	document.addEventListener("astro:page-load", placeTableOfContent);
+</script>
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
@@ -72,7 +83,7 @@ const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 							<Divider />
 					)}
 					{tableOfContent.length > 1 && (<aside class="toc" aria-labelledy="toc-label"><p class="toc-label" id="toc-label">
-						In this post</p><ol>{tableOfContent.map((h) => (<li class={h.depth === 3 ? "sub" : "undefined"}><a href={`#${h.slug}`}>{h.text}</a></li>))}</ol></aside>)}
+						In this post</p><ol>{tableOfContent.map((h) => (<li class={h.depth === 3 ? "sub" : undefined}><a href={`#${h.slug}`}>{h.text}</a></li>))}</ol></aside>)}
 					<slot />
 							<Divider />
 							<p class="share-title">Like it? Share.</p>
@@ -340,3 +351,4 @@ text-wrap: balance;
 				content: "\2014";
 			}
 		</style>
+		
