@@ -348,7 +348,7 @@ footer a,
   float: left;
   margin: 0 0.09em 0 0;
   font-size: 5.8em;
-  line-height: 0.082;
+  line-height: 0.82;
   font-weight: 600;
   color: var(--accent-text);
 }
