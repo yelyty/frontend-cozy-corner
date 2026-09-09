@@ -60,19 +60,20 @@ const ogImage = new URL(image, Astro.site);
 <ClientRouter />
 
 <script is:inline>
-  function applyTheme() {
-    let saved = null;
-    try {
-      saved = localStorage.getItem("theme");
-    } catch (e) {
-      console.log(e);
+  (function () {
+    const osPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    function savedTheme() {
+      try {
+        return localStorage.getItem("theme") ?? window.__cozyTheme ?? null;
+      } catch (e) {
+        console.log(e);
+        return window.__cozyTheme ?? null;
+      }
     }
-    const theme =
-      saved ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
+  });
 
+  function applyTheme() {
+    const theme = savedTheme() ?? (osPrefersDark.matches ? "dark" : "light");
     document.documentElement.dataset.theme = theme;
     const btn = document.getElementById("theme-toggle");
     if (btn) btn.setAttribute("aria-checked", String(theme === "dark"));
@@ -82,8 +83,12 @@ const ogImage = new URL(image, Astro.site);
   document.addEventListener("astro:after-swap", applyTheme);
   document.addEventListener("astro:page-load", applyTheme);
 
+  osPrefersDark.addEventListener("change", () => {
+    if (!savedTheme()) applyTheme();
+  });
+
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest("#theme-toggle");
+    const btn = e.target.closest("#theme=toggle");
     if (!btn) {
       return;
     }

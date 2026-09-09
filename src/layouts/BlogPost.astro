@@ -50,7 +50,7 @@ const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
 	<body>
 		<Header />
-		<main id="main">
+		<main id="main" tabindex="-1">
 			<article>
 				<div class="prose">
 					{goBack && <a href="/blog" class="pill"><ArrowLeft width="16px"/> All writings</a>}

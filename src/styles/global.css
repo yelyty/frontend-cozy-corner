@@ -3,6 +3,8 @@
 }
 
 :root {
+  color-scheme: light;
+
   /* Color Palette */
   --bg-primary: #fff4e0;
   --accent: #b46060;
@@ -48,7 +50,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
     --bg-primary: #1f1a17;
     --accent: #d18787;
     --accent-text: #d18787;
@@ -66,6 +70,8 @@
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
+
   --bg-primary: #1f1a17;
   --accent: #d18787;
   --accent-text: #d18787;
