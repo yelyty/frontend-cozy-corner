@@ -11,8 +11,8 @@
   --accent-dark: #8b4545;
   --accent-text: #8b4545;
   --accent-text-hover: #6f3737;
-  --visited: #7a4a63;
-  --visited-hover: #5f3a4f;
+  --visited: #6f4038;
+  --visited-hover: #57302a;
   --secondary: #ffbf9b;
   --secondary-rgb: 255, 191, 155;
   --text-primary: 59, 46, 40;
@@ -58,8 +58,8 @@
     --accent-text: #d18787;
     --accent-text-hover: #e8adad;
     --accent-dark: #c47a7a;
-    --visited: #c79ab5;
-    --visited-hover: #dfb7da;
+    --visited: #b07d70;
+    --visited-hover: #c99a8c;
     --secondary: #cc8f6d;
     --secondary-rgb: 204, 143, 109;
     --text-primary: 230, 220, 210;
@@ -76,8 +76,8 @@
   --accent: #d18787;
   --accent-text: #d18787;
   --accent-text-hover: #e8adad;
-  --visited: #c79ab5;
-  --visited-hover: #dfb7da;
+  --visited: #b07d70;
+  --visited-hover: #c99a8c;
   --accent-dark: #c47a7a;
   --secondary: #cc8f6d;
   --secondary-rgb: 204, 143, 109;
@@ -342,4 +342,28 @@ footer a,
 
 .prose a:not(.pill, .tag, .share-links *):visited:hover {
   color: var(--visited-hover);
+}
+
+.prose > p:first-of-type::first-letter {
+  float: left;
+  margin: 0 0.09em 0 0;
+  font-size: 5.8em;
+  line-height: 0.082;
+  font-weight: 600;
+  color: var(--accent-text);
+}
+
+::selection {
+  background: var(--accent-dark);
+  color: var(--bg-primary);
+}
+
+html[data-focus] .banana-decoration,
+html[data-focus] .plant-divider-icon,
+html[data-focus] .next-sprig {
+  display: none;
+}
+
+html[data-focus] .plant-divider {
+  gap: 0;
 }

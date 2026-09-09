@@ -1,6 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import BookOpenBold from "phosphor-astro/BookOpenBold.astro";
 import Logo from "./Logo.astro";
 import { SITE_TITLE } from "../consts";
 ---
@@ -17,6 +18,15 @@ import { SITE_TITLE } from "../consts";
       <HeaderLink href="/about">About</HeaderLink>
     </div>
     <div class="nav-controls">
+      <button
+        class="tidy"
+        id="tidy-toggle"
+        type="button"
+        aria-pressed="true"
+        aria-label="Remove all distractions from the reading"
+        data-tip="Remove all distractions from the reading"
+        ><BookOpenBold width="20" height="20" /></button
+      >
       <ThemeToggle />
       <button
         class="burger"
@@ -147,6 +157,7 @@ import { SITE_TITLE } from "../consts";
   }
 
   .nav-controls {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -272,6 +283,74 @@ import { SITE_TITLE } from "../consts";
 
     to {
       transform: scaleX(1);
+    }
+  }
+
+  .tidy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--accent);
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .tidy:active {
+    transform: none;
+  }
+
+  .tidy:hover {
+    background: rgba(var(--text-primary), 0.06);
+  }
+
+  .tidy[aria-pressed="true"] {
+    background: var(--accent-dark);
+    color: var(--bg-primary);
+  }
+
+  .tidy::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 10;
+    width: max-content;
+    max-width: min(15rem, calc(100vw - 2rem));
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    background: var(--accent-dark);
+    color: var(--bg-primary);
+    font-family: Raleway, system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.15s ease,
+      visibility 0.15s;
+  }
+
+  .tidy:hover::after,
+  .tidy:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tidy,
+    .tidy::after {
+      transition: none;
     }
   }
 </style>
