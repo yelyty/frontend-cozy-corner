@@ -367,3 +367,11 @@ html[data-focus] .next-sprig {
 html[data-focus] .plant-divider {
   gap: 0;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-iteration-count: 1 !important;
+  }
+}

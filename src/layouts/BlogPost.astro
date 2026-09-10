@@ -82,7 +82,7 @@ const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 					</div>
 							<Divider />
 					)}
-					{tableOfContent.length > 1 && (<aside class="toc" aria-labelledy="toc-label"><p class="toc-label" id="toc-label">
+					{tableOfContent.length > 1 && (<aside class="toc" aria-labelledby="toc-label"><p class="toc-label" id="toc-label">
 						In this post</p><ol>{tableOfContent.map((h) => (<li class={h.depth === 3 ? "sub" : undefined}><a href={`#${h.slug}`}>{h.text}</a></li>))}</ol></aside>)}
 					<slot />
 							<Divider />
@@ -145,7 +145,6 @@ const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
   .title, .prose :global(:where(h2,h3,h4)){
 	hyphens: manual;
-	text-wrap: balance;
   }
 
 			.title {
@@ -244,13 +243,6 @@ const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 				line-height: var(--lh-title);
 				font-weight: 700;
 text-wrap: balance;
-			}
-
-			.next-title a{
-				text-wrap: balance;
-				color: rgba(var(--text-primary));
-				text-decoration: none;
-				transition: color 0.15s ease;
 			}
 
 			.next-title::after {

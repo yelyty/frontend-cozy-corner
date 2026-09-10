@@ -126,11 +126,6 @@ const latestPost = (await getCollection("blog"))
       transform 0.15s ease;
   }
 
-  .cta:active {
-    transform: translateY(1px);
-    transition-duration: 0.06s;
-  }
-
   .cta-primary {
     background: var(--accent-dark);
     color: var(--bg-primary);
@@ -139,6 +134,11 @@ const latestPost = (await getCollection("blog"))
   .cta-primary:hover {
     background: var(--accent-text-hover);
     transform: translateY(-2px);
+  }
+
+  .cta:active {
+    transform: translateY(1px);
+    transition-duration: 0.06s;
   }
 
   .cta-outlined {

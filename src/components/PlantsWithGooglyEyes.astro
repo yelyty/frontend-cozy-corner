@@ -1306,8 +1306,10 @@ const { position = "fixed" } = Astro.props;
       }, CYCLE);
     }
 
+    const noMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
     function start() {
-      if (running || !plant) return;
+      if (running || !plant || noMotion.matches) return;
       running = true;
       plant.classList.remove("settle");
       loop();

@@ -52,7 +52,7 @@ import { SITE_TITLE } from "../consts";
       if (!burger || !navMenu) return;
 
       function setMenu(open) {
-        const wasOpen = burger.getAttribute("aria-expanded") === true;
+        const wasOpen = burger.getAttribute("aria-expanded") === "true";
         const hasFocus = navMenu.contains(document.activeElement);
         burger.setAttribute("aria-expanded", String(open));
         burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
