@@ -1,21 +1,22 @@
 ---
 import LinkedinLogoBold from "phosphor-astro/LinkedinLogoBold.astro";
 import GithubLogoBold from "phosphor-astro/GithubLogoBold.astro";
+import Pill from "./Pill.astro";
 ---
 
 <div class="social-links">
-  <a
+  <Pill
     href="https://linkedin.com/in/lizatymosenko"
     target="_blank"
     rel="noopener"
   >
     <LinkedinLogoBold width="16" height="16" />
     LinkedIn
-  </a>
-  <a href="https://github.com/yelyty" target="_blank" rel="noopener">
+  </Pill>
+  <Pill href="https://github.com/yelyty" target="_blank" rel="noopener">
     <GithubLogoBold width="16" height="16" />
     GitHub
-  </a>
+  </Pill>
 </div>
 <style>
   .social-links {
@@ -24,52 +25,5 @@ import GithubLogoBold from "phosphor-astro/GithubLogoBold.astro";
     gap: 10px;
     align-items: center;
     flex-wrap: wrap;
-  }
-
-  .social-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    background: var(--bg-primary);
-    border: 1px solid rgba(var(--text-primary), 0.15);
-    color: rgba(var(--text-primary));
-    text-decoration: none;
-    font-family: Raleway, system-ui, sans-serif;
-    font-size: var(--t-small);
-    font-weight: 500;
-    transition:
-      background 0.15s ease,
-      color 0.15s ease,
-      border-color 0.15s ease,
-      transform 0.15s ease;
-  }
-
-  .social-links a svg {
-    width: 16px;
-    height: 16px;
-    color: var(--accent-text);
-    transition: color 0.25s ease;
-  }
-
-  .social-links a:hover {
-    background: var(--accent-dark);
-    border-color: var(--accent-dark);
-    color: var(--bg-primary);
-    transform: translateY(-2px);
-  }
-
-  .social-links a:active {
-    transform: translateY(1px);
-  }
-
-  .social-links a:hover svg {
-    color: var(--bg-primary);
-  }
-
-  .social-links a:focus-visible {
-    outline: 2px solid var(--accent-text);
-    outline-offset: 3px;
   }
 </style>

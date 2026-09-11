@@ -11,6 +11,7 @@ import Tag from '../components/Tag.astro';
 import Divider from '../components/Divider.astro';
 import CozyCorner from '../components/CozyCorner.astro';
 import ShareButtons from '../components/ShareButtons.astro';
+import Pill from '../components/Pill.astro';
 import { tagSlug } from '../consts';
 import PlantInBlossom from '../components/PlantInBlossom.astro';
 
@@ -65,7 +66,7 @@ const tableOfContent = headings.filter((h) => h.depth === 2 || h.depth === 3);
 		<main id="main" tabindex="-1">
 			<article>
 				<div class="prose">
-					{goBack && <a href="/blog" class="pill"><ArrowLeft width="16px"/> All writings</a>}
+					{goBack && <Pill href="/blog" class="pill"><ArrowLeft width="16px"/> All writings</Pill>}
 					
 					{showTitle && (
 						

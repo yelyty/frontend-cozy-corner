@@ -8,6 +8,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import CozyCorner from "../components/CozyCorner.astro";
 import { getCollection } from "astro:content";
 import BlogCard from "../components/BlogCard.astro";
+import Pill from "../components/Pill.astro";
 
 const latestPost = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -43,7 +44,8 @@ const latestPost = (await getCollection("blog"))
         <Divider />
         <div class="posts-head">
           <h2 class="posts-title">Latest writings</h2>
-          <a href="/blog" class="pill">All writings <ArrowRight width="16" /></a
+          <Pill href="/blog" class="pill"
+            >All writings <ArrowRight width="16" /></Pill
           >
         </div>
         <ol class="posts" role="list">

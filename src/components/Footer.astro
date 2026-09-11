@@ -1,6 +1,7 @@
 ---
 import RssSimpleBold from "phosphor-astro/RssSimpleBold.astro";
 import LinkedinLogoBold from "phosphor-astro/LinkedinLogoBold.astro";
+import Pill from "./Pill.astro";
 import LogoShort from "./LogoShort.astro";
 const today = new Date();
 ---
@@ -18,14 +19,15 @@ const today = new Date();
       </nav>
 
       <div class="elsewhere">
-        <a class="pill" href="/rss.xml"
-          ><RssSimpleBold width="16" height="16" /> RSS</a
+        <Pill class="pill" href="/rss.xml"
+          ><RssSimpleBold width="16" height="16" /> RSS</Pill
         >
-        <a
+        <Pill
           class="pill"
           href="https://linkedin.com/in/lizatymosenko"
           target="_blank"
-          rel="noopener"><LinkedinLogoBold width="16" height="16" />LinkedIn</a
+          rel="noopener"
+          ><LinkedinLogoBold width="16" height="16" />LinkedIn</Pill
         >
       </div>
     </div>
