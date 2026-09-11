@@ -1,26 +1,65 @@
 ---
-const { size = "small" } = Astro.props;
+const { size = "small", href, state } = Astro.props;
+const El = href ? "a" : "span";
 ---
 
-<span class="tag" data-size={size}><slot /></span>
+<El class="tag" data-size={size} href={href} data-state={state}><slot /></El>
 <style>
+  a.tag {
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+  }
+
+  a.tag:hover {
+    background: var(--accent-dark);
+    color: var(--bg-primary);
+  }
+
   .tag {
-    display: inline;
+    display: inline-block;
     line-height: 1;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.08em;
     border-radius: 999px;
     color: var(--accent-text);
     background: var(--bg-tint);
+    border: 1px solid transparent;
   }
+
   .tag[data-size="small"] {
     font-size: 13px;
     padding: 0.3rem 0.6rem;
   }
+
   .tag[data-size="large"] {
     font-size: 14px;
     padding: 0.4rem 0.75rem;
+  }
+
+  .tag[data-state="link"] {
+    background: transparent;
+    border-color: rgba(var(--text-primary), 0.2);
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .tag[data-state="link"]:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    transform: translateY(-2px);
+    color: var(--bg-primary);
+  }
+
+  .tag[data-state="link"]:active {
+    transform: translateY(1px);
   }
 </style>

@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import PlantsWithGooglyEyes from "../components/PlantsWithGooglyEyes.astro";
+import PlantsWithGooglyEyes from "../components/svgs/PlantsWithGooglyEyes.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
@@ -25,6 +25,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         text-align: center;
         margin-inline: auto;
       }
+
       .plants-wrapper .title {
         font-size: var(--t-display);
         line-height: var(--lh-display);
@@ -36,10 +37,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
   <body>
     <Header />
-    <main>
+    <main id="main" tabindex="-1">
       <div class="plants-wrapper">
         <h1 class="title">
-          Could be a typo, could be me. Let's try the <a href="/">homepage</a>.
+          Page not found. Could be a typo, could be me. Let's try the <a
+            href="/">homepage</a
+          >.
         </h1>
         <PlantsWithGooglyEyes position="static" />
       </div>

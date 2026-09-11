@@ -1,0 +1,13 @@
+{
+	"extends": ["stylelint-config-standard"],
+	"rules": {
+		"selector-pseudo-class-no-unknown": [true, {
+			"ignorePseudoClasses": ["global"]
+		}],
+		 "media-feature-range-notation": "prefix",
+         "color-function-notation": "legacy",
+ 		 "alpha-value-notation": "number",
+  		 "color-function-alias-notation": "with-alpha"
+	},
+	"overrides": [{"files": ["**/*.astro"], "customSyntax": "postcss-html"}]
+}

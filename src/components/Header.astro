@@ -1,8 +1,10 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import ThemeToggle from "./ThemeToggle.astro";
-import Logo from "./Logo.astro";
+import BookOpenBold from "phosphor-astro/BookOpenBold.astro";
 import { SITE_TITLE } from "../consts";
+
+import HeaderLink from "./HeaderLink.astro";
+import ThemeToggle from "./svgs/ThemeToggle.astro";
+import Logo from "./svgs/Logo.astro";
 ---
 
 <header>
@@ -10,13 +12,22 @@ import { SITE_TITLE } from "../consts";
     <a href="/" class="logo-link" aria-label={SITE_TITLE}>
       <Logo />
     </a>
-
     <div class="menu" id="nav-menu">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Writings</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
     </div>
     <div class="nav-controls">
+      <button
+        class="tidy"
+        id="tidy-toggle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Remove all distractions from the reading"
+        data-tip="Remove all distractions from the reading"
+      >
+        <BookOpenBold width="20" height="20" />
+      </button>
       <ThemeToggle />
       <button
         class="burger"
@@ -42,11 +53,16 @@ import { SITE_TITLE } from "../consts";
       if (!burger || !navMenu) return;
 
       function setMenu(open) {
+        const wasOpen = burger.getAttribute("aria-expanded") === "true";
+        const hasFocus = navMenu.contains(document.activeElement);
         burger.setAttribute("aria-expanded", String(open));
         burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
         burger.classList.toggle("open", open);
         navMenu.classList.toggle("open", open);
         if (open) navMenu.querySelector("a")?.focus();
+        else if (wasOpen && hasFocus) {
+          burger.focus();
+        }
       }
 
       burger.addEventListener("click", () => {
@@ -66,6 +82,12 @@ import { SITE_TITLE } from "../consts";
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") setMenu(false);
       });
+      navMenu.addEventListener("focusout", (e) => {
+        if (burger.getAttribute("aria-expanded") !== "true") return;
+        const next = e.relatedTarget;
+        if (!next) return;
+        if (next !== burger && !navMenu.contains(next)) setMenu(false);
+      });
     }
     document.addEventListener("astro:page-load", initMenu);
   </script>
@@ -81,6 +103,7 @@ import { SITE_TITLE } from "../consts";
     padding-block: 1.1rem;
     z-index: 100;
   }
+
   .logo-link {
     display: inline-flex;
     align-items: center;
@@ -92,8 +115,6 @@ import { SITE_TITLE } from "../consts";
 
   .logo-link svg {
     flex: none;
-    width: 2.1rem;
-    height: 2.1rem;
   }
 
   nav {
@@ -111,7 +132,7 @@ import { SITE_TITLE } from "../consts";
     align-items: center;
     flex-wrap: wrap;
     gap: 0.2em;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
     font-size: var(--t-small);
     margin-left: auto;
   }
@@ -119,7 +140,7 @@ import { SITE_TITLE } from "../consts";
   .menu a {
     padding: 0.45rem 0.7rem;
     border-radius: 999px;
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     font-weight: 600;
     text-decoration: none;
     transition:
@@ -137,6 +158,7 @@ import { SITE_TITLE } from "../consts";
   }
 
   .nav-controls {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -155,6 +177,7 @@ import { SITE_TITLE } from "../consts";
     cursor: pointer;
     z-index: 1001;
   }
+
   .burger span {
     display: block;
     width: 28px;
@@ -166,12 +189,15 @@ import { SITE_TITLE } from "../consts";
       transform 0.3s ease,
       opacity 0.2s ease;
   }
+
   .burger.open span:nth-child(1) {
     transform: translateY(11px) rotate(45deg);
   }
+
   .burger.open span:nth-child(2) {
     opacity: 0;
   }
+
   .burger.open span:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
   }
@@ -180,6 +206,7 @@ import { SITE_TITLE } from "../consts";
     .burger {
       display: flex;
     }
+
     .menu {
       visibility: hidden;
       position: absolute;
@@ -193,7 +220,7 @@ import { SITE_TITLE } from "../consts";
       border-radius: 10px;
       border: 1px solid var(--accent-dark);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      padding: 0.5em 0;
+      padding: 0.5em;
       z-index: 2000;
       opacity: 0;
       transform: translateY(-8px);
@@ -202,23 +229,23 @@ import { SITE_TITLE } from "../consts";
         opacity 0.2s ease,
         transform 0.2s ease;
     }
+
     .menu.open {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
       visibility: visible;
     }
+
     .menu a {
       display: block;
       width: 100%;
-      padding: 0.85em 1.5em;
+      padding: 0.85em 1em;
       text-align: left;
     }
+
     .menu a.active {
       background: transparent;
-    }
-    .logo {
-      height: 44px;
     }
   }
 
@@ -238,21 +265,93 @@ import { SITE_TITLE } from "../consts";
     :root {
       timeline-scope: --article;
     }
+
     :global(.prose) {
       view-timeline: --article block;
     }
+
     .progress {
       animation: progress-grow linear both;
       animation-timeline: --article;
       animation-range: contain 0% contain 100%;
     }
   }
+
   @keyframes progress-grow {
     from {
       transform: scaleX(0);
     }
+
     to {
       transform: scaleX(1);
+    }
+  }
+
+  .tidy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--accent);
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .tidy:active {
+    transform: none;
+  }
+
+  .tidy:hover {
+    background: rgba(var(--text-primary), 0.06);
+  }
+
+  .tidy[aria-pressed="true"] {
+    background: var(--accent-dark);
+    color: var(--bg-primary);
+  }
+
+  .tidy::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 10;
+    width: max-content;
+    max-width: min(15rem, calc(100vw - 2rem));
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    background: var(--accent-dark);
+    color: var(--bg-primary);
+    font-family: Raleway, system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.15s ease,
+      visibility 0.15s;
+  }
+
+  .tidy:hover::after,
+  .tidy:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tidy,
+    .tidy::after {
+      transition: none;
     }
   }
 </style>

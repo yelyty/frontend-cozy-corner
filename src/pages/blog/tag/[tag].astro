@@ -1,0 +1,158 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { SITE_TITLE, tagSlug } from "../../../consts";
+import BaseHead from "../../../components/BaseHead.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+import CozyCorner from "../../../components/CozyCorner.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import PlantInBlossom from "../../../components/svgs/PlantInBlossom.astro";
+
+interface Props {
+  tag: string;
+  posts: CollectionEntry<"blog">[];
+}
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags = [
+    ...new Set(posts.map((p) => p.data.tag).filter((t): t is string => !!t)),
+  ];
+
+  return tags.map((tag) => ({
+    params: { tag: tagSlug(tag) },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tag === tag)
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const description = `Everything ${tag}.`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${tag} | ${SITE_TITLE}`} description={description} />
+  </head>
+  <body>
+    <Header />
+    <main class="shell" id="main" tabindex="-1">
+      <div class="layout">
+        <div class="page-head">
+          <h1>{tag}</h1>
+        </div>
+        <ol class="posts" role="list">
+          {
+            posts.map((post) => (
+              <BlogCard
+                url={`/blog/${post.id}/`}
+                title={post.data.title}
+                tag={post.data.tag}
+                postedDate={post.data.pubDate}
+                description={post.data.description}
+                headingLevel="h2"
+              />
+            ))
+          }
+        </ol>
+        <!-- TODO: fix styles and rename classes -->
+        <nav class="read-next" aria-label="Read next">
+          <span class="next-sprig">
+            <!-- Add a new plant here -->
+            <PlantInBlossom />
+          </span>
+          <p class="next-label">That's it for this tag</p>
+          <a class="next-title" href="/blog"> Return to the Writings page </a>
+        </nav>
+      </div>
+      <CozyCorner />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+<style>
+  .page-head {
+    grid-column: 2;
+  }
+
+  .page-head h1 {
+    margin: 0;
+    font-size: var(--t-display);
+    line-height: var(--lh-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .posts {
+    grid-column: 1 / span 2;
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+  }
+
+  .read-next {
+    position: relative;
+    width: min(100% - 2 * var(--gutter), var(--shell));
+    margin: var(--s-8) auto 0;
+    padding: var(--s-7) var(--s-5);
+    border-radius: 22px;
+    background: var(--bg-tint);
+    text-align: center;
+    transition: background 0.18s ease;
+    grid-column: 1 / span 2;
+  }
+
+  .next-sprig {
+    display: block;
+    width: 50px;
+    height: 60px;
+    margin: 0 auto var(--s-4);
+  }
+
+  .next-label {
+    margin: 0;
+    font-style: italic;
+    font-size: var(--t-small);
+    line-height: var(--lh-small);
+    color: var(--accent-text);
+  }
+
+  .next-title {
+    display: block;
+    margin: 0;
+    font-size: var(--t-section);
+    line-height: var(--lh-title);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .next-title a {
+    text-wrap: balance;
+    color: rgba(var(--text-primary));
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .next-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+  }
+
+  @media (max-width: 58rem) {
+    .posts {
+      grid-column: 1;
+    }
+
+    .page-head {
+      grid-column: 1;
+    }
+  }
+</style>

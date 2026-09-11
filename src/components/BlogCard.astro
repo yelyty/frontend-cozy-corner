@@ -1,7 +1,7 @@
 ---
-import { ur } from "zod/locales";
 import FormattedDate from "./FormattedDate.astro";
 import Tag from "./Tag.astro";
+import { tagSlug } from "../consts";
 
 interface Props {
   url: string;
@@ -26,7 +26,13 @@ const Heading = headingLevel;
 <li class="post-row">
   <div class="post-meta">
     <span class="post-date"><FormattedDate date={postedDate} /></span>
-    {tag && <Tag size="large">{tag}</Tag>}
+    {
+      tag && (
+        <Tag size="large" state="link" href={`/blog/tag/${tagSlug(tag)}`}>
+          {tag}
+        </Tag>
+      )
+    }
   </div>
   <div class="post-body">
     <Heading class="post-title"><a href={url}>{title}</a></Heading>
@@ -37,7 +43,6 @@ const Heading = headingLevel;
 <style>
   .post-row {
     display: grid;
-    position: relative;
     grid-template-columns: 8rem minmax(0, 34rem);
     column-gap: 2rem;
     padding-block: 2rem;
@@ -68,7 +73,7 @@ const Heading = headingLevel;
     line-height: 1.25;
     color: rgba(var(--text-primary), 0.8);
     font-variant-numeric: tabular-nums;
-    font-family: "Raleway", system-ui, sans-serif;
+    font-family: Raleway, system-ui, sans-serif;
   }
 
   .post-body {
@@ -84,13 +89,29 @@ const Heading = headingLevel;
   }
 
   .post-title a {
-    color: rgb(var(--text-primary));
+    color: rgba(var(--text-primary));
     text-decoration: none;
+    transition: color 0.15s ease;
   }
 
-  .post-title a:hover {
+  .post-title a,
+  .post-row:hover {
     color: var(--accent-text-hover);
-    text-decoration: underline;
+  }
+
+  .post-title a:visited {
+    color: var(--visited);
+  }
+
+  .post-title a:visited:hover,
+  .post-row:hover .post-title a:visited {
+    color: var(--visited-hover);
+  }
+
+  .post-title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
   }
 
   .post-excerpt {
@@ -105,10 +126,12 @@ const Heading = headingLevel;
     .post-row {
       grid-template-columns: minmax(0, 1fr);
     }
+
     .post-meta,
     .post-body {
       grid-column: 1;
     }
+
     .post-meta {
       flex-direction: row;
       align-items: center;

@@ -60,25 +60,54 @@ const ogImage = new URL(image, Astro.site);
 <ClientRouter />
 
 <script is:inline>
-  function applyTheme() {
-    let saved = null;
+  const osPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  function applyFocus() {
+    let on = false;
     try {
-      saved = localStorage.getItem("theme");
-    } catch (e) {}
-    const theme =
-      saved ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
+      on = localStorage.getItem("focus") === "on";
+    } catch (e) {
+      console.log(e);
+    }
+    document.documentElement.toggleAttribute("data-focus", on);
+    const btn = document.getElementById("tidy-toggle");
+    if (btn) {
+      const tip = on
+        ? "Bring the decorations back"
+        : "Remove all distractions from the reading ";
+      btn.setAttribute("aria-pressed", String(on));
+      btn.setAttribute("aria-label", tip);
+      btn.setAttribute("data-tip", tip);
+    }
+  }
 
+  function savedTheme() {
+    try {
+      return localStorage.getItem("theme") ?? window.__cozyTheme ?? null;
+    } catch (e) {
+      console.log(e);
+      return window.__cozyTheme ?? null;
+    }
+  }
+
+  function applyTheme() {
+    const theme = savedTheme() ?? (osPrefersDark.matches ? "dark" : "light");
     document.documentElement.dataset.theme = theme;
     const btn = document.getElementById("theme-toggle");
     if (btn) btn.setAttribute("aria-checked", String(theme === "dark"));
   }
 
-  applyTheme();
-  document.addEventListener("astro:after-swap", applyTheme);
-  document.addEventListener("astro:page-load", applyTheme);
+  function applyPrefs() {
+    applyTheme();
+    applyFocus();
+  }
+
+  applyPrefs();
+  document.addEventListener("astro:after-swap", applyPrefs);
+  document.addEventListener("astro:page-load", applyPrefs);
+
+  osPrefersDark.addEventListener("change", () => {
+    if (!savedTheme()) applyTheme();
+  });
 
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("#theme-toggle");
@@ -89,15 +118,34 @@ const ogImage = new URL(image, Astro.site);
       document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     try {
       localStorage.setItem("theme", next);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
     applyTheme();
     btn.classList.remove("tg-squish");
     void btn.offsetWidth;
     btn.classList.add("tg-squish");
   });
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("#tidy-toggle");
+    if (!btn) {
+      return;
+    }
+    const next = document.documentElement.hasAttribute("data-focus")
+      ? "off"
+      : "on";
+
+    try {
+      localStorage.setItem("focus", next);
+    } catch (e) {
+      console.log(e);
+    }
+    applyFocus();
+  });
 </script>
 <script>
-  var onScroll = function () {
+  const onScroll = function () {
     document.documentElement.toggleAttribute("data-scrolled", scrollY > 8);
   };
   onScroll();
