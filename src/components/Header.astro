@@ -1,9 +1,10 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 import BookOpenBold from "phosphor-astro/BookOpenBold.astro";
-import Logo from "./Logo.astro";
 import { SITE_TITLE } from "../consts";
+
+import HeaderLink from "./HeaderLink.astro";
+import ThemeToggle from "./svgs/ThemeToggle.astro";
+import Logo from "./svgs/Logo.astro";
 ---
 
 <header>
@@ -11,7 +12,6 @@ import { SITE_TITLE } from "../consts";
     <a href="/" class="logo-link" aria-label={SITE_TITLE}>
       <Logo />
     </a>
-
     <div class="menu" id="nav-menu">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Writings</HeaderLink>
@@ -25,8 +25,9 @@ import { SITE_TITLE } from "../consts";
         aria-pressed="false"
         aria-label="Remove all distractions from the reading"
         data-tip="Remove all distractions from the reading"
-        ><BookOpenBold width="20" height="20" /></button
       >
+        <BookOpenBold width="20" height="20" />
+      </button>
       <ThemeToggle />
       <button
         class="burger"

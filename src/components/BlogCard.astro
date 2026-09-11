@@ -94,23 +94,24 @@ const Heading = headingLevel;
     transition: color 0.15s ease;
   }
 
+  .post-title a,
+  .post-row:hover {
+    color: var(--accent-text-hover);
+  }
+
   .post-title a:visited {
     color: var(--visited);
+  }
+
+  .post-title a:visited:hover,
+  .post-row:hover .post-title a:visited {
+    color: var(--visited-hover);
   }
 
   .post-title a::after {
     content: "";
     position: absolute;
     inset: 0;
-  }
-
-  .post-row:hover .post-title a {
-    color: var(--accent-text-hover);
-  }
-
-  .post-row:hover .post-title a:visited,
-  .post-title a:visited:hover {
-    color: var(--visited-hover);
   }
 
   .post-excerpt {

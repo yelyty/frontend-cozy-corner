@@ -13,7 +13,7 @@ import CozyCorner from '../components/CozyCorner.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import Pill from '../components/Pill.astro';
 import { tagSlug } from '../consts';
-import PlantInBlossom from '../components/PlantInBlossom.astro';
+import PlantInBlossom from '../components/svgs/PlantInBlossom.astro';
 
 type Props = Partial<CollectionEntry<'blog'>['data']> & {
 	title: string;
@@ -253,11 +253,11 @@ text-wrap: balance;
 				border-radius: 22px;
 			}
 
-			.read-next:hover .next-title, .next-title:hover{
+			.next-title:hover, .read-next:hover .next-title, {
 				color: var(--accent-text-hover);
 			}
 
-			.read-next:hover .next-title:visited, .next-title:visited:hover {
+			.next-title:visited:hover, .read-next:hover .next-title:visited, {
 				color: var(--visited-hover);
 			}
 
