@@ -15,7 +15,7 @@ import Footer from "../components/Footer.astro";
   <head>
     <BaseHead
       title={`About | ${SITE_TITLE}`}
-      description="Software engineer with 6+ years across frontend and backend, happiest in the frontend and pretty UIs"
+      description="Software engineer with 6+ years across frontend and backend in React and Node ecosystem. I write about things frontend things I do or learn on the way"
     />
   </head>
   <body>
@@ -23,7 +23,11 @@ import Footer from "../components/Footer.astro";
     <main class="shell" id="main" tabindex="-1">
       <div class="layout">
         <div class="hero">
-          <h1>Frontend by choice, backend when asked</h1>
+          <h1>
+            <span class="accent-text">Frontend </span>by choice, <span
+              class="accent-text">backend</span
+            > when asked
+          </h1>
           <div class="profile-photo-frame">
             <img
               class="profile-photo"
@@ -40,143 +44,25 @@ import Footer from "../components/Footer.astro";
           <div class="profile-text">
             <p class="profile-lede">
               Hi, I'm Liza, a product-minded software engineer with over 6 years
-              of experience in React and Node.js ecosystem. I push back on a
-              design spec and catch the edge case before it's built. I've worked
-              on both ends of the stack and I keep choosing frontend. That's the
-              reason why this blog exists.
+              of experience in React and Node.js ecosystem, mostly on interfaces
+              people use every day.
+            </p>
+            <p class="profile-lede">
+              I push back on a design spec and catch the edge case before it's
+              built. I've worked on both ends of the stack and I keep choosing
+              frontend. That's the reason why this blog exists.
             </p>
             <p class="profile-aside">
-              When I'm not coding, you can find me hiking in the mountains,
-              reading, or exploring new places, which is where the most of my
-              ideas come from.
+              The cozy corner is a real place: an armchair at home, surrounded
+              by too many plants, where I read in the evening. That's the place
+              where ideas come to my mind.
             </p>
           </div>
         </div>
         <Divider />
-        <!-- <section class="timeline-section">
-          <h2 class="section-label">Where I've worked</h2>
-
-          <div class="timeline">
-            <section class="stop">
-              <span class="dot"></span>
-              <h3>Four apps for senior care</h3>
-              <p>
-                An American startup connecting senior-care providers with
-                families. It constists of a few apps: <span class="tech"
-                  >React Native</span
-                > mobile app for iOS and Android,<span class="tech">React</span> web
-                application,
-                <span class="tech">React Native</span> TV app for Android TV and Amazon
-                Alexa skill.
-              </p>
-              <ul class="achievements-list">
-                <li>
-                  Build features for <span class="tech">React</span> and <span
-                    class="tech">TypeScript</span
-                  > web app in a <span class="tech">Yarn/Turborepo</span> monorepo.
-                  Features include messaging, administration with tables and <span
-                    class="tech">Formik</span
-                  > forms, chat bots UI, integration with third-party services UI.
-                </li>
-                <li>
-                  Build <span class="tech">React Native</span> mobile, including its
-                  messaging feature
-                </li>
-                <li>
-                  Maintain a shared component library documented and design
-                  tokens in <span class="tech">Storybook</span>
-                </li>
-                <li>
-                  Work closely with design and product, translating intent into
-                  production ui
-                </li>
-                <li>
-                  Style the app with <span class="tech">Material UI</span> and <span
-                    class="tech">Emotion</span
-                  >
-                </li>
-                <li>
-                  Write unit tests with <span class="tech">Vitest</span>, <span
-                    class="tech">Playwright</span
-                  > specs for testing end-to-end flows and fixtures
-                </li>
-                <li>
-                  Instrument the apps with <span class="tech">Sentry</span> for error
-                  and performance monitoring
-                </li>
-                <li>
-                  Manage client state with <span class="tech"
-                    >Redux Toolkit</span
-                  >, <span class="tech">redux-saga</span> for async flows and subscriptions,
-                  and later lead the migration of that surface to <span
-                    class="tech">Urql</span
-                  >
-                </li>
-                <li>
-                  Build <span class="tech">Next.js</span> app styles with <span
-                    class="tech">Tailwind</span
-                  > for display Digital Signage slides, rendered by Android TV app
-                  written in
-                  <span class="tech">React Native </span>
-                </li>
-              </ul>
-            </section>
-
-            <section class="stop">
-              <span class="dot"></span>
-              <h3>Service-center platform railways</h3>
-              <p>
-                Green-field project. Manufacturers and their customers share one
-                system to track equipment, schedule service, and file warranty
-                claims.
-              </p>
-              <ul class="achievements-list">
-                <li>Set up <span class="tech">React</span> web application</li>
-                <li>
-                  Built dashboards, multi-step forms and tables with <span
-                    class="tech">Bootstrap</span
-                  >
-                </li>
-              </ul>
-            </section>
-            <section class="stop">
-              <span class="dot"></span>
-              <h3>A social app for sport clubs</h3>
-              <p>
-                Web application that helps users to find and join different
-                sport events in the city, to meet like-minded people for sport
-                activities, with a built-in attendance system and tournaments
-                organization for event organizers.
-              </p>
-              <ul class="achievements-list">
-                <li>
-                  Maintained existing features of <span class="tech">React</span
-                  > web application from the era when components were still classes,
-                  in JavaScript.
-                </li>
-                <li>
-                  Built several screens: Facebook-like social feed, Blog UI,
-                  personal profile and achievements dashboard using <span
-                    class="tech">Bootstrap</span
-                  > and <span class="tech">SCSS</span> for the visuals.
-                </li>
-                <li>
-                  Maintained localization of the app with <span class="tech"
-                    >i18next</span
-                  >
-                </li>
-                <li>
-                  Managed app state in <span class="tech">Redux</span> and fetched
-                  data over <span class="tech">GraphQL</span>
-                </li>
-              </ul>
-            </section>
-          </div>
-        </section> -->
-        <!-- <Divider /> -->
         <section class="tech-section">
           <h2 class="section-label">What I work with</h2>
-          <p class="tech-group">Language</p>
+          <p class="tech-group">Languages</p>
           <div class="tech-row">
             <Tag size="large">Javascript</Tag>
             <Tag size="large">Typescript</Tag>
@@ -191,10 +77,11 @@ import Footer from "../components/Footer.astro";
             <Tag size="large">CSS</Tag>
             <Tag size="large">MUI</Tag>
             <Tag size="large">Tailwind</Tag>
+            <Tag size="large">Storybook</Tag>
             <Tag size="large">Redux</Tag>
             <Tag size="large">Urql</Tag>
-            <Tag size="large">Graphql</Tag>
-            <Tag size="large">Rest API</Tag>
+            <Tag size="large">GraphQL</Tag>
+            <Tag size="large">REST API</Tag>
           </div>
           <p class="tech-group">Backend</p>
           <div class="tech-row">
@@ -203,23 +90,27 @@ import Footer from "../components/Footer.astro";
             <Tag size="large">Supabase</Tag>
             <Tag size="large">AWS</Tag>
             <Tag size="large">DynamoDB</Tag>
-            <Tag size="large">Sqllite</Tag>
+            <Tag size="large">SQLite</Tag>
           </div>
-          <p class="tech-group">Other tools</p>
+          <p class="tech-group">Testing</p>
+          <div class="tech-row">
+            <Tag size="large">Playwright</Tag>
+            <Tag size="large">Cypress</Tag>
+            <Tag size="large">Vitest</Tag>
+          </div>
+          <p class="tech-group">Day to day</p>
           <div class="tech-row">
             <Tag size="large">Github</Tag>
             <Tag size="large">Claude Code</Tag>
             <Tag size="large">Postman</Tag>
             <Tag size="large">Zod</Tag>
-            <Tag size="large">Playwright</Tag>
-            <Tag size="large">Cypress</Tag>
           </div>
         </section>
         <Divider />
         <div class="social-links-wrapper">
           <h2 class="social-title">Get in touch</h2>
           <p class="social-note">
-            LinkedIn is where I answer. Github is where the code lives.
+            LinkedIn is where I answer. GitHub is where the code lives.
           </p>
           <SocialLinks />
         </div>
@@ -422,6 +313,10 @@ import Footer from "../components/Footer.astro";
     line-height: 1.75;
   }
 
+  .profile-lede + .profile-lede {
+    margin-top: var(--s-4);
+  }
+
   .profile-aside {
     display: block;
     margin: 0;
@@ -463,6 +358,10 @@ import Footer from "../components/Footer.astro";
     font-size: 0.88em;
     font-weight: 600;
     letter-spacing: 0.01em;
+    color: var(--accent-text);
+  }
+
+  .accent-text {
     color: var(--accent-text);
   }
 </style>
