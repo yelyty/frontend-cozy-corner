@@ -1,21 +1,18 @@
 ---
 interface Props {
   label: string;
-  labelPosition?: "top" | "bottom";
 }
 
-const { label, labelPosition = "bottom" } = Astro.props;
+const { label } = Astro.props;
 ---
 
 <div class="card">
-  {labelPosition === "top" && <span class="label">{label}</span>}
   <slot />
-  {labelPosition === "bottom" && <span class="label">{label}</span>}
+  <span class="label">{label}</span>
 </div>
 
 <style>
   .card {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
