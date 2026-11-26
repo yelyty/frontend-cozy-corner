@@ -9,6 +9,8 @@ import CozyCorner from "../components/CozyCorner.astro";
 import { getCollection } from "astro:content";
 import BlogCard from "../components/BlogCard.astro";
 import Pill from "../components/Pill.astro";
+import ProjectRow from "../components/ProjectRow.astro";
+import { projects } from "../data/projects";
 
 const latestPost = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -62,6 +64,14 @@ const latestPost = (await getCollection("blog"))
             ))
           }
         </ol>
+        <section class="projects" aria-labelledby="projects-title">
+          <div class="posts-head">
+            <h2 class="posts-title" id="projects-title">Things I've made</h2>
+          </div>
+          <ul class="posts" role="list">
+            {projects.map((project) => <ProjectRow {...project} />)}
+          </ul>
+        </section>
       </div>
     </main>
     <CozyCorner />
@@ -178,8 +188,14 @@ const latestPost = (await getCollection("blog"))
     margin: 0;
   }
 
+  .projects {
+    grid-column: 1 / span 2;
+    margin-top: var(--s-8);
+  }
+
   @media (max-width: 58rem) {
     .hero,
+    .projects,
     .posts,
     .posts-head,
     .layout > :global(.plant-divider) {

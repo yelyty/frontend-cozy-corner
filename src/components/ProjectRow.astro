@@ -1,0 +1,425 @@
+---
+import { Image } from "astro:assets";
+import ArrowUpRight from "phosphor-astro/ArrowUpRightBold.astro";
+import MapPin from "phosphor-astro/MapPinFill.astro";
+import Tag from "./Tag.astro";
+import type { Project } from "../data/projects";
+
+interface Props extends Project {
+  headingLevel?: "h2" | "h3";
+}
+
+const {
+  name,
+  url,
+  status,
+  description,
+  image,
+  builtWith,
+  headingLevel = "h3",
+} = Astro.props;
+const Heading = headingLevel;
+// The screenshot sits in a 15rem column beside the text; on phones it goes full width.
+const imageWidths = [240, 480, 756];
+const imageSizes = "(max-width: 40rem) calc(100vw - 3rem), 15rem";
+// A banner spans the full 44rem shell; the source is 1408px wide (2x).
+const bannerWidths = [704, 1056, 1408];
+const bannerSizes = "(max-width: 47rem) calc(100vw - 3rem), 44rem";
+---
+
+<li
+  class="project-row"
+  data-has-shot={image && !image.banner ? "" : undefined}
+  data-banner={image?.banner ? "" : undefined}
+>
+  <div class="project-body">
+    {status && <Tag size="large">{status}</Tag>}
+    <Heading class="project-title">
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {name}
+        <span class="sr-only">(external site, opens in a new tab)</span>
+        <ArrowUpRight class="project-icon" width="18" aria-hidden="true" />
+      </a>
+    </Heading>
+    <p class="project-desc">
+      {
+        description.map((part) =>
+          typeof part === "string" ? (
+            part
+          ) : (
+            <span class="mark" data-tone={part.tone} set:text={part.text} />
+          ),
+        )
+      }
+    </p>
+    {builtWith && <p class="project-built">{builtWith}</p>}
+  </div>
+  {
+    image?.banner && (
+      <Image
+        src={image.light}
+        alt={image.alt}
+        widths={bannerWidths}
+        sizes={bannerSizes}
+        loading="lazy"
+        class="banner-art"
+      />
+    )
+  }
+  {
+    image && !image.banner && (
+      <div class="project-shot">
+        <Image
+          src={image.light}
+          alt={image.alt}
+          widths={imageWidths}
+          sizes={imageSizes}
+          loading="lazy"
+          class:list={["shot", image.dark && "shot-light"]}
+        />
+        {image.dark && (
+          <Image
+            src={image.dark}
+            alt={image.alt}
+            widths={imageWidths}
+            sizes={imageSizes}
+            loading="lazy"
+            class="shot shot-dark"
+          />
+        )}
+        {image.pin && (
+          <span
+            class="pin"
+            style={`--pin-x: ${image.pin.x}%; --pin-y: ${image.pin.y}%;`}
+            aria-hidden="true"
+          >
+            <span class="pin-shadow" />
+            <MapPin class="pin-icon" width="20" height="20" />
+          </span>
+        )}
+      </div>
+    )
+  }
+</li>
+
+<style>
+  .project-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 2rem;
+    align-items: center;
+    padding-block: 2rem;
+    position: relative;
+    transition: background 0.12s ease;
+  }
+
+  .project-row[data-has-shot] {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    grid-template-areas: "shot body";
+  }
+
+  .project-row:hover {
+    background-color: rgba(var(--text-primary), 0.035);
+  }
+
+  .project-row:not(:first-child) {
+    border-top: 1px solid var(--line);
+  }
+
+  .project-shot {
+    grid-area: shot;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .project-row:hover .project-shot {
+    border-color: rgba(var(--text-primary), 0.24);
+  }
+
+  .shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  /* Pin drop: on hover/focus a map pin falls onto the screenshot's map,
+     the way a logged book lands on the atlas. It sits on the screenshot,
+     so its colours stay fixed across the site's light and dark themes. */
+  .project-shot {
+    position: relative;
+  }
+
+  .pin {
+    position: absolute;
+    left: var(--pin-x);
+    top: var(--pin-y);
+    width: 20px;
+    height: 20px;
+    margin: -18px 0 0 -10px;
+    pointer-events: none;
+  }
+
+  .pin-icon {
+    display: block;
+    color: #a3443a;
+    filter: drop-shadow(0 2px 2px rgba(59, 46, 40, 0.35));
+    transform-origin: 50% 100%;
+    opacity: 0;
+  }
+
+  .pin-shadow {
+    position: absolute;
+    left: 50%;
+    top: 17px;
+    width: 9px;
+    height: 3px;
+    margin-left: -4.5px;
+    border-radius: 50%;
+    background: rgba(59, 46, 40, 0.35);
+    filter: blur(1px);
+    opacity: 0;
+  }
+
+  .project-row:hover .pin-icon,
+  .project-row:focus-within .pin-icon {
+    animation: pin-drop 0.6s 0.2s both;
+  }
+
+  .project-row:hover .pin-shadow,
+  .project-row:focus-within .pin-shadow {
+    animation: pin-shadow 0.6s 0.2s both;
+  }
+
+  @keyframes pin-drop {
+    0% {
+      opacity: 0;
+      transform: translateY(-22px);
+      animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+
+    55% {
+      opacity: 1;
+      transform: translateY(0) scale(1.06, 0.92);
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    75% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pin-shadow {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+
+    55%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* No hover on touch screens: the pin is simply already there. */
+  @media (hover: none) {
+    .pin-icon,
+    .pin-shadow {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-row:hover .pin-icon,
+    .project-row:focus-within .pin-icon,
+    .project-row:hover .pin-shadow,
+    .project-row:focus-within .pin-shadow {
+      animation: none;
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  /* Match the screenshot to the site's theme toggle. */
+  .shot-dark,
+  :global([data-theme="dark"]) .shot-light {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .shot-dark {
+    display: block;
+  }
+
+  .project-body {
+    grid-area: body;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-2);
+  }
+
+  .project-title {
+    font-size: var(--t-title);
+    font-weight: 600;
+    margin: 0;
+    line-height: var(--lh-title);
+    text-wrap: balance;
+  }
+
+  .project-title a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent-text-hover);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .project-title a:visited {
+    color: var(--visited);
+  }
+
+  .project-row:hover .project-title a:visited {
+    color: var(--visited-hover);
+  }
+
+  .project-title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .project-icon {
+    flex: none;
+    color: var(--accent-text);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-row:hover .project-icon {
+    transform: translate(2px, -2px);
+  }
+
+  .project-desc,
+  .project-built {
+    font-size: var(--t-small);
+    color: rgba(var(--text-primary), 0.8);
+    margin: 0;
+    max-width: 62ch;
+    line-height: var(--lh-small);
+  }
+
+  .project-built {
+    margin-top: 0.5rem;
+    font-family: Raleway, system-ui, sans-serif;
+    font-size: var(--t-meta);
+    color: rgba(var(--text-primary), 0.7);
+  }
+
+  /* Two marks per book: on hover/focus the setting and the author's
+     country get highlighted in the app's own olive and rust. */
+  .project-row {
+    --mark-olive: rgba(110, 140, 60, 0.3);
+    --mark-rust: rgba(176, 72, 58, 0.24);
+  }
+
+  :global([data-theme="dark"]) .project-row {
+    --mark-olive: rgba(140, 170, 90, 0.3);
+    --mark-rust: rgba(210, 110, 95, 0.28);
+  }
+
+  .mark {
+    background-image: linear-gradient(var(--mark-tone), var(--mark-tone));
+    background-repeat: no-repeat;
+    background-position: 0 96%;
+    background-size: 0% 0.42em;
+    box-decoration-break: clone;
+    transition: background-size 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mark[data-tone="olive"] {
+    --mark-tone: var(--mark-olive);
+  }
+
+  .mark[data-tone="rust"] {
+    --mark-tone: var(--mark-rust);
+
+    transition-delay: 0.14s;
+  }
+
+  .project-row:hover .mark,
+  .project-row:focus-within .mark {
+    background-size: 100% 0.42em;
+  }
+
+  /* No hover on touch screens, so show the marks from the start. */
+  @media (hover: none) {
+    .mark {
+      background-size: 100% 0.42em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-row:hover .project-icon {
+      transform: none;
+    }
+
+    .mark {
+      transition: none;
+    }
+  }
+
+  /* Phones: stack the screenshot above the text. */
+  @media (max-width: 40rem) {
+    .project-row[data-has-shot] {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "shot"
+        "body";
+      row-gap: var(--s-4);
+    }
+  }
+  /* Banner: the text sits on the page like any row, with the project's
+     own art full width below it. */
+  .project-row[data-banner] {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-5);
+  }
+
+  .banner-art {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-row[data-banner]:hover .banner-art,
+  .project-row[data-banner]:focus-within .banner-art {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -14px rgba(31, 46, 27, 0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banner-art {
+      transition: none;
+    }
+
+    .project-row[data-banner]:hover .banner-art,
+    .project-row[data-banner]:focus-within .banner-art {
+      transform: none;
+    }
+  }
+</style>
